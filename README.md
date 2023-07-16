@@ -79,7 +79,9 @@ Anyway, just press any key to skip it.
 And here we go, once the partition is mounted you get access to the entire set of actions WinEFIMounter is capable of doing.
 Now, you're able to do three more things:
 - Open the EFI partition in a Command Prompt instance
-- Open it by cloning its content
+- Open it in the File Explorer by cloning its content to a directory you can access without admin privileges
+- Unmount the partition
+  > Perform this action once you're about to exit WinEFIMounter.
 ## Errors
 ## Credits
 
