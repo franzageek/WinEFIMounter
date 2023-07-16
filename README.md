@@ -7,7 +7,7 @@ WinEFIMounter is a simple Batch program that makes it easy to mount the EFI part
 
 
 ## Usage
-> facilità e casi d'uso
+WinEFIMounter
 ## Errors
 ## Credits
 
