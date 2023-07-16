@@ -69,7 +69,17 @@ You'll get to this screen, which basically tells you that you have two ways to e
   > Although it might seem pretty straightforward, this is the most complicated procedure you can choose. Yk, it's always a smarter idea to do things in a GUI when you have the possibility to.
 - By opening an EFI partition's clone in File Explorer
   > This is achieved by copying the entire directory tree of the EFI partition onto a directory that can be accessed with standard privileges. In fact, the EFI partition itself it cannot be accessed by TrustedInstaller either, which the highest authority in your system. The fun fact is that despite all that it can be easily accessed by an elevated Command Prompt, and you can use it to copy the content over to a folder that you can access with standard user rights. So, by running WinEFIMount as administrator you will be able to copy the entire partition tree over to a standard directory, which will be then flushed back to the EFI partition once you're done modifying your files.
+  >  > FYI, the directory that will host the clone of the EFI partition is "C:\EFIPartition\".
 
+Anyway, just press any key to skip it.
+
+
+![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/c3af8250-112b-4b40-930b-4ab54c21c14f)
+
+And here we go, once the partition is mounted you get access to the entire set of actions WinEFIMounter is capable of doing.
+Now, you're able to do three more things:
+- Open the EFI partition in a Command Prompt instance
+- Open it by cloning its content
 ## Errors
 ## Credits
 
