@@ -1,4 +1,5 @@
 # WinEFIMounter
+![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/348fdc42-7341-49ae-a7b5-f39bb04ba5ac)
 Windows tool to mount your Hackintosh EFI partition.
 [a.k.a. MountEFI for Windows].
 
