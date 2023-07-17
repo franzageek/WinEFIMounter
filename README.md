@@ -89,7 +89,7 @@ Now, you're able to do three more things:
 Option 1 will simply open a Command Prompt window in the EFI partition directory.
 
 
-![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/c30d517a-3460-44b9-b94e-4b295ff30951)
+![Screenshot 2023-07-17 051401](https://github.com/franzageek/WinEFIMounter/assets/88248950/80aba53d-8e2d-4767-9d5e-340b2b9585c2)
 Option 2 will show this message. To start cloning, type C and hit enter.
 
 
