@@ -114,7 +114,6 @@ The files you modified are now in your EFI partition, and you didn't have to wor
 
 
 ![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/21835753-d725-4e1a-92d0-e01d97543da3)
-
 Choosing Option 3 in the main menu will result in this screen. Type U and press Enter to continue.
 > Before unmounting your EFI Partition, make sure you don't have any open file with unsaved work inside of it. Always save your work and close any file that belongs to the EFI partition before unmounting it.
 
@@ -125,8 +124,7 @@ And here you have your success screen. Pressing any key will show again the mini
 
 
 ![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/5ae3f0b3-ed03-4852-b068-f406ec46bbb9)
-
-Choosing Option Q from the main menu while your partition is still mounted will take you to this warning screen, which basically reminds you to unmount your EFI partition before you leave WinEFIMounter.
+Choosing Option E from the main menu while your partition is still mounted will take you to this warning screen, which basically reminds you to unmount your EFI partition before you leave WinEFIMounter.
 
 > If you didn't care of the message and closed the window, the next time you will have to launch WinEFIMounter you would have to start again from mounting the partition (which is already mounted), resulting in a general mess where the Z letter is taken by the already mounted EFI partition and WinEFIMounter is forced to assign the Y letter to a partition which is already mounted to Z:\ and when unmounting it WinEFIMounter will unmount a non-existent partition....... not a good experience after all.
 
