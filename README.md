@@ -3,12 +3,12 @@ Windows tool to mount your Hackintosh EFI partition.
 [a.k.a. MountEFI for Windows].
 
 ## Introduction
-WinEFIMounter is a simple Batch program that makes it easy to mount the EFI partition on your Hackintosh drive directly from Windows. It could be used to mount any EFI partition (also Windows and Linux ones) from a Windows environment, but its main purpose is to let you mount your Hackintosh EFI partition without having to boot it. It's hard to believe but in reality there isn't any simple software such as [Corpnewt](https://github.com/corpnewt)'s [MountEFI](https://github.com/corpnewt/MountEFI) (for Mac) that lets you do it from Windows: you would have to download third-party programs. Try WinEFIMounter instead: it's light and easy-to-use!
+WinEFIMounter is a simple and standalone Batch program that makes it easy to **mount the EFI partition** on your Hackintosh drive **directly from Windows**. It could be used to mount any EFI partition (also Windows and Linux ones) from a Windows environment, but its main purpose is to let you mount **your Hackintosh EFI partition without having to boot it**. It's hard to believe but in reality _**there isn't any simple software**_ such as [Corpnewt](https://github.com/corpnewt)'s [**MountEFI**](https://github.com/corpnewt/MountEFI) (for Mac) that lets you do it from Windows: you would have to download **third-party programs**. Try WinEFIMounter instead: it's light and easy-to-use!
 
 
 ## Usage
 ### Supported actions
-WinEFIMounter is very easy to use. It's got a simple CLI with numbers and menus that are really easy to navigate through.
+WinEFIMounter is very easy to use. It's got a **simple CLI** with numbers and menus that are really easy to navigate through.
 With WinEFIMounter you can:
 - Mount an EFI partiton
 - Browse its content
@@ -19,7 +19,7 @@ With WinEFIMounter you can:
 It can currently perform some very basic actions, but it will get more and more advanced later in time.
 
 ### Used tools
-To get its job done, WinEFIMounter utilizes a bunch of Windows' preinstalled tools, such as:
+To get its job done, WinEFIMounter utilizes a bunch of Windows' **preinstalled tools**, such as:
   - DiskPart
     > It is used to mount the EFI partition. 
   - XCopy
@@ -29,7 +29,7 @@ To get its job done, WinEFIMounter utilizes a bunch of Windows' preinstalled too
 WinEFIMounter is the perfect solution for a variety of problems.
 You can use it to:
 - Fix your Hackintosh if it's not booting and you have no idea how to access the EFI folder
-  > If you fuck up with your kexts, SSDTs or drivers you will likely need a quick way to fix them to make your Hackintosh ready again ASAP
+  > If you fuck up with your kexts, SSDTs or drivers (like I did) you will likely need a quick way to fix them to make your Hackintosh ready again ASAP
 - Clean up your EFI
   > If you've ever done Hackintoshing before, you'll be familiar with those annoying logs left by OpenCore every time you boot your Hackintosh. With WinEFIMounter you can get rid of them up in under than 1 minute!
 - Add files to your EFI
@@ -41,7 +41,6 @@ You can use it to:
 ### Application behavior
 Once you start up WinEFIMounter, you are welcomed by a simple introduction window.
 ![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/ef66e019-d72a-46d3-a22a-13cb6935fb7f)
-
 To skip it, just press any key.
 
 
@@ -130,11 +129,11 @@ TL;DR: Just unmount your partition as you leave WinEFIMounter.
 ## Errors
 
 ### Flushing procedure failed
-WinEFIMounter is a simple script. If you scroll through the code, you will see that it's just about 400 lines long, and the Mounting and Unmounting parts of the program are literally made of 3 lines of code each. And those are DiskPart commands!
+WinEFIMounter is a simple script. If you scroll through the code, you will see that it's **just about 400 lines long**, and the Mounting and Unmounting parts of the program are literally made of **3 lines of code** each. And those are DiskPart commands!
 
 Other parts of WinEFIMounter are really simple too, such as the "Open partition in Command prompt" option (which literally consists in the "start cmd /k Z:" command) or the "Exit" option (it's all about showing the credits screen and resetting all the variables).
 
-The only part that can appear a little more complex iis the cloning part. You see, a lot of stuff is involved there.
+The only part that can appear a little more complex is the cloning part. You see, a lot of stuff is involved there.
 
 This is the step-by-step description of what happens at the moment of cloning:
 
@@ -147,9 +146,9 @@ And this is what happens when you flush the files back to the EFI partition:
 - Old files and folders are deleted
 - The destination directory is deleted
 
-Yeah, I agree, that's not a lot of stuff whatsoever. But this is exactly the reason for which I decided to take extra-precautions and make the whole program even safer: at the end of the day it's just a simple script, and adding an extra part to prevent file loss shouldn't be too difficult.
+Yeah, I agree, that's not a lot of stuff whatsoever. But this is exactly the reason for which I decided to take **extra-precautions** and make the whole program **even safer**: at the end of the day it's just a simple script, and adding an extra part to prevent file loss shouldn't be too difficult.
 
-So here's what I did: the part where errors are most likely to occur is when flushing updated files back to the EFI. So I added an ERRORLEVEL check after the XCopy command. This means that if something goes wrong during the XCopy command the ERRORLEVEL value will be different from 0, making the program show this error screen:
+So here's what I did: the part where errors are most likely to occur is when flushing updated files back to the EFI. So I added an **ERRORLEVEL check** after the XCopy command. This means that if something goes wrong during the XCopy command the ERRORLEVEL value will be **different from 0**, making the program show this error screen:
 ![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/3d15b0ed-86b2-4eac-8f12-61955cf01613)
 
 This error will only occur if the destination directory cannot be found 
@@ -159,7 +158,7 @@ I'm planning to add the same ERRORLEVEL check when cloning the files from the EF
 
 
 ## Credits
-The main reason I decided to create this program is the fact that there isn't ANY MountEFI VERSION FOR WINDOWS! I was trying to repair my Hackintosh partition I accidentally fucked up with, and I was negatively surprised when I learned ther wasn't any MountEFI version for Windows. So I did it my way, playing around with Diskpart. Then I created a script that could automatically mount the partition, and then slightly modified it to make WinEFIMounter.
+The main reason I decided to create this program is the fact that there isn't ANY MountEFI VERSION FOR WINDOWS! I was trying to repair my Hackintosh EFI I accidentally fucked up with, and I was negatively surprised when I learned ther wasn't any MountEFI version for Windows. So I did it my way, playing around with Diskpart. Then I created a script that could automatically mount the partition, and then slightly modified it to make WinEFIMounter.
 I hope that with WinEFIMounter you can save the time you would have spent downloading a 3rd-party program.
 I hope you find it useful.
 
