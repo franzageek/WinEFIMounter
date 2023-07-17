@@ -86,7 +86,6 @@ Now, you're able to do three more things:
 
 
 ![Screenshot 2023-07-17 050930](https://github.com/franzageek/WinEFIMounter/assets/88248950/abcda3ec-626e-4e89-90c3-93de454e2fda)
-
 Optioni 1 will simply open a Command Prompt window in the EFI partition directory.
 
 
