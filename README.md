@@ -64,6 +64,7 @@ Do the same thing for the EFI partition you need to mount.
 Once you selected your drive and EFI partition, type M to confirm. The mounting process will begin instantly.
 
 ![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/2735dfff-0ed2-4507-85b4-90fc38c38802)
+Congrats! Your EFI Partition is now mounted to "Z:\" (or, if it's taken, to another letter at the very end of the alphabet).
 You'll get to this screen, which basically tells you that you have two ways to edit your EFI partition's content:
 - By browsing files and folders using the Command Prompt (via "cd", "del", "move" and "copy")
   > Although it might seem pretty straightforward, this is the most complicated procedure you can choose. Yk, it's always a smarter idea to do things in a GUI when you have the possibility to.
@@ -82,6 +83,37 @@ Now, you're able to do three more things:
 - Open it in the File Explorer by cloning its content to a directory you can access without admin privileges
 - Unmount the partition
   > Perform this action once you're about to exit WinEFIMounter.
+
+
+![Screenshot 2023-07-17 050930](https://github.com/franzageek/WinEFIMounter/assets/88248950/abcda3ec-626e-4e89-90c3-93de454e2fda)
+
+Optioni 1 will simply open a Command Prompt window in the EFI partition directory.
+
+
+![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/c30d517a-3460-44b9-b94e-4b295ff30951)
+
+Option 2 will show this message. To start cloning, type C and hit enter.
+
+
+![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/93081a2a-f52d-4990-906b-1c6c9ded6861)
+
+After you typed C, all the files in your EFI folder get copied in "C:\EFIPartition". WinEFIMounter will automatically open an Explorer window in that directory for you.
+
+You can now access your files like you normally would, and you won't even notice the fact that you're actually outside of your EFI partition.
+
+But how can you apply the changes made to your files in "C:\EFIPartition" to make them effective in the EFI partition itself?
+
+
+Well, there's a simple yet slightly complex solution, but we'll tink about it later in this ReadMe.
+
+Just press F and hit Enter to start flushing the updated files back to the EFI.
+
+
+![Screenshot 2023-07-17 053408](https://github.com/franzageek/WinEFIMounter/assets/88248950/76cb80af-8a14-47e4-b088-da2c0e5bcf7c)
+
+And you will see pretty much the same screen you saw when cloning the EFI partition, except that now every file you see is coming from "C:\EFIPartition" and it's heading to your EFI partition.
+
+
 ## Errors
 ## Credits
 
