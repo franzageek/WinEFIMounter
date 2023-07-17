@@ -89,12 +89,11 @@ Now, you're able to do three more things:
 Option 1 will simply open a Command Prompt window in the EFI partition directory.
 
 
-![Screenshot 2023-07-17 051401](https://github.com/franzageek/WinEFIMounter/assets/88248950/80aba53d-8e2d-4767-9d5e-340b2b9585c2)
+![Screenshot 2023-07-17 051300](https://github.com/franzageek/WinEFIMounter/assets/88248950/53ba8760-9fce-4379-9eef-5312d49fa8e3)
 Option 2 will show this message. To start cloning, type C and hit enter.
 
 
-![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/93081a2a-f52d-4990-906b-1c6c9ded6861)
-
+![Screenshot 2023-07-17 051401](https://github.com/franzageek/WinEFIMounter/assets/88248950/87d57928-cb4f-4fa9-93d5-6a3cdd69cd65)
 After you typed C, all the files in your EFI folder get copied in "C:\EFIPartition". WinEFIMounter will automatically open an Explorer window in that directory for you.
 
 You can now access your files like you normally would, and you won't even notice the fact that you're actually outside of your EFI partition.
