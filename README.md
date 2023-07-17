@@ -52,7 +52,7 @@ Right after you start the program, you are able to do two things:
 - Choose a partition to mount
 - Quit the program
 
-To choose the action to perform, just type 1 (to mount a partition) or Q  (to exit WiEFIMounter) and then hit Enter.
+To choose the action to perform, just type 1 (to mount a partition) or E (to exit WiEFIMounter) and then hit Enter.
 
 When you want to mount a partition, you have to press 1 at the main menu. You'll get to the point where you need to select the drive and the partition to mount.
 ![Screenshot 2023-07-16 202956](https://github.com/franzageek/WinEFIMounter/assets/88248950/cdceb712-3afd-465b-a8f7-43a524d12931)
