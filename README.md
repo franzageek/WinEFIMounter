@@ -14,7 +14,7 @@ With WinEFIMounter you can:
 - Browse its content
   - Via the Command Prompt
   - Via the File Explorer
-- Unmount an EFI partition.
+- Unmount an EFI partition
 
 It can currently perform some very basic actions, but it will get more and more advanced later in time.
 
