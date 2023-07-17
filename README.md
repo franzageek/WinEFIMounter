@@ -52,7 +52,7 @@ Right after you start the program, you are able to do two things:
 - Choose a partition to mount
 - Quit the program
 
-To choose the action to perform, just type `1` (to mount a partition) or `E` (to exit WinEFIMounter) and then hit `Enter`.
+To choose the action to perform, just type `1` (to mount a partition) or `E` (to exit WinEFIMounter) and then hit Enter.
 
 When you want to mount a partition, you have to press `1` at the main menu. You'll get to the point where you need to select the drive and the partition to mount.
 ![Screenshot 2023-07-16 202956](https://github.com/franzageek/WinEFIMounter/assets/88248950/cdceb712-3afd-465b-a8f7-43a524d12931)
@@ -89,7 +89,7 @@ Option `1` will simply open a Command Prompt window in the EFI partition directo
 
 
 ![Screenshot 2023-07-17 051300](https://github.com/franzageek/WinEFIMounter/assets/88248950/53ba8760-9fce-4379-9eef-5312d49fa8e3)
-Option `2` will show this message. To start cloning, type `C` and hit enter.
+Option `2` will show this message. To start cloning, type `C` and hit Enter.
 
 
 ![Screenshot 2023-07-17 051401](https://github.com/franzageek/WinEFIMounter/assets/88248950/87d57928-cb4f-4fa9-93d5-6a3cdd69cd65)
