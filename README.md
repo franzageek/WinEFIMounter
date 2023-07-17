@@ -45,14 +45,14 @@ Once you start up WinEFIMounter, you are welcomed by a simple introduction windo
 To skip it, just press any key.
 
 
-After it, you get brought to the main menu.
-![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/29ce972d-19be-45a3-b39d-95cfcb8004c3)
 
+![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/1ad744f3-bfa5-45a5-91ac-a7d283849d43)
+After it, you get brought to the main menu.
 Right after you start the program, you are able to do two things:
 - Choose a partition to mount
 - Quit the program
 
-To choose the action to perform, just type 1 (to mount a partition) or E (to exit WiEFIMounter) and then hit Enter.
+To choose the action to perform, just type 1 (to mount a partition) or E (to exit WinEFIMounter) and then hit Enter.
 
 When you want to mount a partition, you have to press 1 at the main menu. You'll get to the point where you need to select the drive and the partition to mount.
 ![Screenshot 2023-07-16 202956](https://github.com/franzageek/WinEFIMounter/assets/88248950/cdceb712-3afd-465b-a8f7-43a524d12931)
@@ -75,8 +75,7 @@ You'll get to this screen, which basically tells you that you have two ways to e
 Anyway, just press any key to skip it.
 
 
-![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/c3af8250-112b-4b40-930b-4ab54c21c14f)
-
+![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/348fdc42-7341-49ae-a7b5-f39bb04ba5ac)
 And here we go, once the partition is mounted you get access to the entire set of actions WinEFIMounter is capable of doing.
 Now, you're able to do three more things:
 - Open the EFI partition in a Command Prompt instance
@@ -107,7 +106,6 @@ Just press F and hit Enter to start flushing the updated files back to the EFI.
 
 
 ![Screenshot 2023-07-17 053408](https://github.com/franzageek/WinEFIMounter/assets/88248950/76cb80af-8a14-47e4-b088-da2c0e5bcf7c)
-
 And you will see pretty much the same screen you saw when cloning the EFI partition, except that now every file you see is coming from "C:\EFIPartition" and it's heading to your EFI partition.
 
 The files you modified are now in your EFI partition, and you didn't have to worry about it!
@@ -119,7 +117,6 @@ Choosing Option 3 in the main menu will result in this screen. Type U and press 
 
 
 ![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/c5ec573c-3cbc-4351-a97c-fb08dace2cb8)
-
 And here you have your success screen. Pressing any key will show again the minimal version of the main menu (the one we saw earlier yk, just Mount and Exit...).
 
 
@@ -162,6 +159,7 @@ I'm planning to add the same ERRORLEVEL check when cloning the files from the EF
 
 
 ## Credits
-
-
+The main reason I decided to create this program is the fact that there isn't ANY MountEFI VERSION FOR WINDOWS! I was trying to repair my Hackintosh partition I accidentally fucked up with, and I was negatively surprised when I learned ther wasn't any MountEFI version for Windows. So I did it my way, playing around with Diskpart. Then I created a script that could automatically mount the partition, and then slightly modified it to make WinEFIMounter.
+I hope that with WinEFIMounter you can save the time you would have spent downloading a 3rd-party program.
+I hope you find it useful.
 
