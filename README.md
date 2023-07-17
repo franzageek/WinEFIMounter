@@ -113,8 +113,53 @@ Just press F and hit Enter to start flushing the updated files back to the EFI.
 
 And you will see pretty much the same screen you saw when cloning the EFI partition, except that now every file you see is coming from "C:\EFIPartition" and it's heading to your EFI partition.
 
+The files you modified are now in your EFI partition, and you didn't have to worry about it!
+
+
+![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/21835753-d725-4e1a-92d0-e01d97543da3)
+
+Choosing Option 3 in the main menu will result in this screen. Type U and press Enter to continue.
+> Before unmounting your EFI Partition, make sure you don't have any open file with unsaved work inside of it. Always save your work and close any file that belongs to the EFI partition before unmounting it.
+
+
+![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/c5ec573c-3cbc-4351-a97c-fb08dace2cb8)
+
+And here you have your success screen. Pressing any key will show again the minimal version of the main menu (the one we saw earlier yk, just Mount and Exit...).
+
+
+![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/5ae3f0b3-ed03-4852-b068-f406ec46bbb9)
+
+Choosing Option Q from the main menu while your partition is still mounted will take you to this warning screen, which basically reminds you to unmount your EFI partition before you leave WinEFIMounter.
+
+> If you didn't care of the message and closed the window, the next time you will have to launch WinEFIMounter you would have to start again from mounting the partition (which is already mounted), resulting in a general mess where the Z letter is taken by the already mounted EFI partition and WinEFIMounter is forced to assign the Y letter to a partition which is already mounted to Z:\ and when unmounting it WinEFIMounter will unmount a non-existent partition....... not a good experience after all.
+
+TL;DR: Just unmount your partition as you leave WinEFIMounter.
 
 ## Errors
+
+WinEFIMounter is a simple script. If you scroll through the code, you will see that it's just about 400 lines long (I think this ReadMe is more), and the Mounting and Unmounting parts of the program are literally made of 3 lines of code each. And those are DiskPart commands!
+
+Other parts of WinEFIMounter are really simple too, such as the "Open partition in Command prompt" option (which literally consists in the "start cmd /k Z:" command) or the "Exit" option (it's all about showing the credits screen and resetting all the variables).
+
+The only part that can appear a little more complex iis the cloning part. You see, a lot of stuff is involved there.
+
+This is the step-by-step description of what happens at the moment of cloning:
+
+- Destination folder gets created
+- The whole directory tree of the EFI partition is copied over to the destination folder
+
+And this is what happens when you flush the files back to the EFI partition:
+
+- New files from the destination directory are copied over to the EFI partition
+- Old files and folders are deleted
+- The destination directory is deleted
+
+Yeah, I agree, that's not a lot of stuff whatsoever. But this is exactly the reason for which I decided to take extra-precautions and make the whole program even safer: at the end of the day it's just a simple script, and adding an extra part to prevent file loss shouldn't be too difficult.
+
+So here's what I did: the part where errors are most likely to occur is when flushing updated files back to the EFI. So I added an ERRORLEVEL check after the XCopy command. This means that if something goes wrong during the XCopy command the ERRORLEVEL value will be different from 0, making the program show this error screen:
+![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/3d15b0ed-86b2-4eac-8f12-61955cf01613)
+
+
 ## Credits
 
 
