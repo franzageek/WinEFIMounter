@@ -52,25 +52,25 @@ Right after you start the program, you are able to do two things:
 - Choose a partition to mount
 - Quit the program
 
-To choose the action to perform, just type 1 (to mount a partition) or E (to exit WinEFIMounter) and then hit Enter.
+To choose the action to perform, just type `1` (to mount a partition) or `E` (to exit WinEFIMounter) and then hit `Enter`.
 
-When you want to mount a partition, you have to press 1 at the main menu. You'll get to the point where you need to select the drive and the partition to mount.
+When you want to mount a partition, you have to press `1` at the main menu. You'll get to the point where you need to select the drive and the partition to mount.
 ![Screenshot 2023-07-16 202956](https://github.com/franzageek/WinEFIMounter/assets/88248950/cdceb712-3afd-465b-a8f7-43a524d12931)
 ![Screenshot 2023-07-16 203527](https://github.com/franzageek/WinEFIMounter/assets/88248950/65c5e495-3f59-4f65-a584-966f762a5ef0)
 First, locate in the list the drive you want to edit the EFI partition of, then type its number and hit Enter.
 Do the same thing for the EFI partition you need to mount.
 
 ![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/d1109eef-0d9f-438a-a8bb-ffc472fbc02a)
-Once you selected your drive and EFI partition, type M to confirm. The mounting process will begin instantly.
+Once you selected your drive and EFI partition, type `M` to confirm. The mounting process will begin instantly.
 
 ![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/2735dfff-0ed2-4507-85b4-90fc38c38802)
-Congrats! Your EFI Partition is now mounted to "Z:\" (or, if it's taken, to another letter at the very end of the alphabet).
+Congrats! Your EFI Partition is now mounted to "`Z:\`" (or, if it's taken, to another letter at the very end of the alphabet).
 You'll get to this screen, which basically tells you that you have two ways to edit your EFI partition's content:
-- By browsing files and folders using the Command Prompt (via "cd", "del", "move" and "copy")
+- By browsing files and folders using the Command Prompt (via `cd`, `del`, `move` and `copy`)
   > Although it might seem pretty straightforward, this is the most complicated procedure you can choose. Yk, it's always a smarter idea to do things in a GUI when you have the possibility to.
 - By opening an EFI partition's clone in File Explorer
   > This is achieved by copying the entire directory tree of the EFI partition onto a directory that can be accessed with standard privileges. In fact, the EFI partition itself it cannot be accessed by TrustedInstaller either, which the highest authority in your system. The fun fact is that despite all that it can be easily accessed by an elevated Command Prompt, and you can use it to copy the content over to a folder that you can access with standard user rights. So, by running WinEFIMount as administrator you will be able to copy the entire partition tree over to a standard directory, which will be then flushed back to the EFI partition once you're done modifying your files.
-  >  > FYI, the directory that will host the clone of the EFI partition is "C:\EFIPartition\".
+  >  > FYI, the directory that will host the clone of the EFI partition is `"C:\EFIPartition\"`.
 
 Anyway, just press any key to skip it.
 
@@ -85,34 +85,34 @@ Now, you're able to do three more things:
 
 
 ![Screenshot 2023-07-17 050930](https://github.com/franzageek/WinEFIMounter/assets/88248950/abcda3ec-626e-4e89-90c3-93de454e2fda)
-Option 1 will simply open a Command Prompt window in the EFI partition directory.
+Option `1` will simply open a Command Prompt window in the EFI partition directory.
 
 
 ![Screenshot 2023-07-17 051300](https://github.com/franzageek/WinEFIMounter/assets/88248950/53ba8760-9fce-4379-9eef-5312d49fa8e3)
-Option 2 will show this message. To start cloning, type C and hit enter.
+Option `2` will show this message. To start cloning, type `C` and hit enter.
 
 
 ![Screenshot 2023-07-17 051401](https://github.com/franzageek/WinEFIMounter/assets/88248950/87d57928-cb4f-4fa9-93d5-6a3cdd69cd65)
-After you typed C, all the files in your EFI folder get copied in "C:\EFIPartition". WinEFIMounter will automatically open an Explorer window in that directory for you.
+After you typed `C`, all the files in your EFI folder get copied in `"C:\EFIPartition"`. WinEFIMounter will automatically open an Explorer window in that directory for you.
 
 You can now access your files like you normally would, and you won't even notice the fact that you're actually outside of your EFI partition.
 
-But how can you apply the changes made to your files in "C:\EFIPartition" to make them effective in the EFI partition itself?
+But how can you apply the changes made to your files in `"C:\EFIPartition"` to make them effective in the EFI partition itself?
 
 
 Well, there's a simple yet slightly complex solution, but we'll tink about it later in this ReadMe.
 
-Just press F and hit Enter to start flushing the updated files back to the EFI.
+Just press `F` and hit Enter to start flushing the updated files back to the EFI.
 
 
 ![Screenshot 2023-07-17 053408](https://github.com/franzageek/WinEFIMounter/assets/88248950/76cb80af-8a14-47e4-b088-da2c0e5bcf7c)
-And you will see pretty much the same screen you saw when cloning the EFI partition, except that now every file you see is coming from "C:\EFIPartition" and it's heading to your EFI partition.
+And you will see pretty much the same screen you saw when cloning the EFI partition, except that now every file you see is coming from `"C:\EFIPartition"` and it's heading to your EFI partition.
 
 The files you modified are now in your EFI partition, and you didn't have to worry about it!
 
 
 ![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/21835753-d725-4e1a-92d0-e01d97543da3)
-Choosing Option 3 in the main menu will result in this screen. Type U and press Enter to continue.
+Choosing Option `3` in the main menu will result in this screen. Type `U` and press Enter to continue.
 > Before unmounting your EFI Partition, make sure you don't have any open file with unsaved work inside of it. Always save your work and close any file that belongs to the EFI partition before unmounting it.
 
 
@@ -121,9 +121,9 @@ And here you have your success screen. Pressing any key will show again the mini
 
 
 ![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/5ae3f0b3-ed03-4852-b068-f406ec46bbb9)
-Choosing Option E from the main menu while your partition is still mounted will take you to this warning screen, which basically reminds you to unmount your EFI partition before you leave WinEFIMounter.
+Choosing Option `E` from the main menu while your partition is still mounted will take you to this warning screen, which basically reminds you to unmount your EFI partition before you leave WinEFIMounter.
 
-> If you didn't care of the message and closed the window, the next time you will have to launch WinEFIMounter you would have to start again from mounting the partition (which is already mounted), resulting in a general mess where the Z letter is taken by the already mounted EFI partition and WinEFIMounter is forced to assign the Y letter to a partition which is already mounted to Z:\ and when unmounting it WinEFIMounter will unmount a non-existent partition....... not a good experience after all.
+> If you didn't care of the message and closed the window, the next time you will have to launch WinEFIMounter you would have to start again from mounting the partition (which is already mounted), resulting in a general mess where the `Z` letter is taken by the already mounted EFI partition and WinEFIMounter is forced to assign the `Y` letter to a partition which is already mounted to `"Z:\"` and when unmounting it WinEFIMounter will unmount a non-existent partition....... not a good experience after all.
 
 TL;DR: Just unmount your partition as you leave WinEFIMounter.
 
@@ -132,7 +132,7 @@ TL;DR: Just unmount your partition as you leave WinEFIMounter.
 ### Flushing procedure failed
 WinEFIMounter is a simple script. If you scroll through the code, you will see that it's **just about 400 lines long**, and the Mounting and Unmounting parts of the program are literally made of **3 lines of code** each. And those are DiskPart commands!
 
-Other parts of WinEFIMounter are really simple too, such as the "Open partition in Command prompt" option (which literally consists in the "start cmd /k Z:" command) or the "Exit" option (it's all about showing the credits screen and resetting all the variables).
+Other parts of WinEFIMounter are really simple too, such as the "Open partition in Command prompt" option (which literally consists in the `start cmd /k Z:` command) or the "Exit" option (it's all about showing the credits screen and resetting all the variables).
 
 The only part that can appear a little more complex is the cloning part. You see, a lot of stuff is involved there.
 
@@ -149,17 +149,17 @@ And this is what happens when you flush the files back to the EFI partition:
 
 Yeah, I agree, that's not a lot of stuff whatsoever. But this is exactly the reason for which I decided to take **extra-precautions** and make the whole program **even safer**: at the end of the day it's just a simple script, and adding an extra part to prevent file loss shouldn't be too difficult.
 
-So here's what I did: the part where errors are most likely to occur is when flushing updated files back to the EFI. So I added an **ERRORLEVEL check** after the XCopy command. This means that if something goes wrong during the XCopy command the ERRORLEVEL value will be **different from 0**, making the program show this error screen:
+So here's what I did: the part where errors are most likely to occur is when flushing updated files back to the EFI. So I added an **`ERRORLEVEL` check** after the `XCopy` command. This means that if something goes wrong during the `XCopy` command the `ERRORLEVEL` value will be **different from 0**, making the program show this error screen:
 ![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/3d15b0ed-86b2-4eac-8f12-61955cf01613)
 
 This error will only occur if the destination directory cannot be found 
-> The way I managed to test the error (just to check if everything was working fine) is by mounting and cloning the partition using WinEFIMounter, then unmounting it from outside WinEFIMounter and start flushing back the files with WinEFIMounter. This will restult in XCopy Error 4: Destination cannot be found.
+> The way I managed to test the error (just to check if everything was working fine) is by mounting and cloning the partition using WinEFIMounter, then unmounting it from outside WinEFIMounter and start flushing back the files with WinEFIMounter. This will restult in `XCopy Error 4: Destination cannot be found`.
 
-I'm planning to add the same ERRORLEVEL check when cloning the files from the EFI to the destination folder, to check if the files have been successfully copied or if an error has occurred. I'll do that in a future version.
+I'm planning to add the same `ERRORLEVEL` check when cloning the files from the EFI to the destination folder, to check if the files have been successfully copied to the destination directory or if an error has occurred along the way. I'll do that in a future version.
 
 
 ## Credits
-The main reason I decided to create this program is the fact that there isn't ANY MountEFI VERSION FOR WINDOWS! I was trying to repair my Hackintosh EFI I accidentally fucked up with, and I was negatively surprised when I learned ther wasn't any MountEFI version for Windows. So I did it my way, playing around with Diskpart. Then I created a script that could automatically mount the partition, and then slightly modified it to make WinEFIMounter.
+The main reason I decided to create this program is the fact that there isn't ANY MountEFI VERSION FOR WINDOWS! I was trying to repair my Hackintosh EFI I've _accidentally_ fucked up with, and I was negatively surprised when I learned ther wasn't any MountEFI version for Windows. So I did it my way, playing around with Diskpart. Then I created a script that could automatically mount the partition, and then slightly modified it to make WinEFIMounter.
 I hope that with WinEFIMounter you can save the time you would have spent downloading a 3rd-party program.
 I hope you find it useful.
 
