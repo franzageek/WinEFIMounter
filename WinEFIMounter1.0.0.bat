@@ -159,7 +159,7 @@ echo.
 echo    With the help of XCOPY the script will clone the entire EFI partition 
 echo    to the "C:\EFIPartition" directory. This way, you can use the
 echo    File Explorer to browse its content and make the changes you need,
-echo    all in the File Explorer Window. And when you're done, WinEFIMounter
+echo    all in the File Explorer window. And when you're done, WinEFIMounter
 echo    will flush the changes back to the EFI partition!
 echo.
 echo    And the best part is that this procedure is completely safe!
