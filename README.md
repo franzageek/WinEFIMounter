@@ -133,8 +133,7 @@ And here you have your success screen. Pressing any key will show again the mini
 Choosing Option `E` from the main menu while your partition is still mounted will take you to this warning screen, which basically reminds you to unmount your EFI partition before you leave WinEFIMounter.
 
 > If you didn't care of the message and closed the window, the next time you will have to launch WinEFIMounter you would have to start again from mounting the partition (which is already mounted), resulting in a general mess where the `Z` letter is taken by the already mounted EFI partition and WinEFIMounter is forced to assign the `Y` letter to a partition which is already mounted to `"Z:\"` and when unmounting it WinEFIMounter will unmount a non-existent partition....... not a good experience after all.
-
-TL;DR: Just unmount your partition as you leave WinEFIMounter.
+> > TL;DR: Just unmount your partition as you leave WinEFIMounter.
 
 ## Errors
 
