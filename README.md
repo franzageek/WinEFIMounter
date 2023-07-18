@@ -13,8 +13,8 @@ Windows tool to mount your Hackintosh EFI partition.
 
 | Version | Link |
 | :--- | :--- |
-| Latest release | 1.0.0 |
-| Version 1.0.0 | Download |
+| *Latest release* | [**Download**](github.com/franzageek/WinEFIMounter/releases/latest) |
+| v1.0.0 | [**Download**](github.com/franzageek/WinEFIMounter/releases/tag/1.0.0) |
 | Note | Broken links will be fixed soon |
 
 ## Introduction
