@@ -2,3 +2,9 @@
 theme: minima
 title: WinEFIMounter - MountEFI for Windows
 description: Mount your Hackintosh EFI from Windows
+header_pages:
+  - topbar/introduction.md
+  - topbar/usage.md
+  - topbar/errors.md
+  - topbar/credits.md
+  - topbar/downloads.md
