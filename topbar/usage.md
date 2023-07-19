@@ -115,12 +115,12 @@ Choosing Option `3` in the main menu will result in this screen. Type `U` and pr
 
 
 ![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/c5ec573c-3cbc-4351-a97c-fb08dace2cb8)
-And here you have your success screen. Pressing any key will show again the minimal version of the main menu (the one we saw earlier yk, just Mount and Exit...).
+And here you have your success screen. Pressing any key will show again the minimalistic version of the main menu (the one we saw earlier yk, just Mount and Exit...).
 
 
 ![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/5ae3f0b3-ed03-4852-b068-f406ec46bbb9)
 Choosing Option `E` from the main menu while your partition is still mounted will take you to this warning screen, which basically reminds you to unmount your EFI partition before you leave WinEFIMounter.
 
-> If you didn't care of the message and closed the window, the next time you will have to launch WinEFIMounter you would have to start again from mounting the partition (which is already mounted), resulting in a general mess where the `Z` letter is taken by the already mounted EFI partition and WinEFIMounter is forced to assign the `Y` letter to a partition which is already mounted to "`Z:\`" and when unmounting it WinEFIMounter will unmount a non-existent partition....... not a good experience after all.
+> If you didn't care of the message and closed the window, the next time you will have to launch WinEFIMounter you would have to start again from mounting the partition (which is already mounted), resulting in a general mess where the `Z` letter is taken by the already mounted EFI partition and WinEFIMounter is forced to assign the `Y` letter to a partition which is already mounted to "`Z:\`" and when unmounting it WinEFIMounter will unmount a non-existent partition....... not a good situation to be in, after all.
 > > TL;DR: Just unmount your partition as you leave WinEFIMounter.
 
