@@ -1,3 +1,8 @@
+---
+layout: page
+title:  Credits
+permalink: /credits/
+---
 
 The main reason I decided to create this program is the fact that there isn't ANY MountEFI VERSION FOR WINDOWS! 
 
