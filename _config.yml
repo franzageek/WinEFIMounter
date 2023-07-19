@@ -1,6 +1,6 @@
 # theme: jekyll-theme-minimal
 theme: minima
-title: WinEFIMounter - MountEFI for Windows
+title: WinEFIMounter
 description: Mount your Hackintosh EFI from Windows
 header_pages:
   - topbar/introduction.md
