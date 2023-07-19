@@ -1,3 +1,8 @@
+---
+layout: page
+title:  Errors
+permalink: /errors/
+---
 
 ### Flushing procedure failed
 WinEFIMounter is a simple script. If you scroll through the code, you will see that it's **just about 400 lines long**, and the Mounting and Unmounting parts of the program are literally made of **3 lines of code** each. And those are DiskPart commands!
