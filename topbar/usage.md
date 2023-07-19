@@ -26,9 +26,9 @@ To get its job done, WinEFIMounter utilizes a bunch of Windows' **preinstalled t
 WinEFIMounter is the perfect solution for a variety of problems.
 You can use it to:
 - Fix your Hackintosh if it's not booting and you have no idea how to access the EFI folder
-  > If you fuck up with your kexts, SSDTs or drivers (like I did) you will likely need a quick way to fix them to make your Hackintosh ready again ASAP
+  > If you fuck up with your kexts, SSDTs or drivers (like I did) you will likely need a quick way to fix them to make your Hackintosh ready again
 - Clean up your EFI
-  > If you've ever done Hackintoshing before, you'll be familiar with those annoying logs left by OpenCore every time you boot your Hackintosh. With WinEFIMounter you can get rid of them up in under than 1 minute!
+  > If you've ever done Hackintoshing before, you'll be familiar with those annoying logs left by OpenCore every time you boot your Hackintosh. With WinEFIMounter you can get rid of them in under than 1 minute!
 - Add files to your EFI
   > It's pretty similar to Point 1, both points focus on the ease of access to your EFI folder while on a Windows environment.
 - Manage your Windows or Linux EFI folder
