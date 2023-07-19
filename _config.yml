@@ -1,4 +1,4 @@
 # theme: jekyll-theme-minimal
-remote_theme: sighingnow/jekyll-gitbook
+theme: minima
 title: WinEFIMounter - MountEFI for Windows
 description: Mount your Hackintosh EFI from Windows
