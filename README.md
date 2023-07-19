@@ -1,6 +1,7 @@
 ---
 layout: page
 title:  WinEFIMounter
+permalink: /
 ---
 Mount your Hackintosh EFI partition from Windows. 
 
