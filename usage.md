@@ -1,3 +1,8 @@
+---
+layout: page
+title:  Usage
+permalink: /usage/
+---
 
 ### Supported actions
 WinEFIMounter is very easy to use. It's got a **simple CLI** with numbers and menus that are really easy to navigate through.
