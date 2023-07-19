@@ -36,7 +36,7 @@ You can use it to:
   > The program might often refer to the EFI partition as "the Hackintosh EFI partition" or to the drive as "your Hackintosh disk", but you can use it for non-Hackintosh systems too.
 
 ### Application behavior
-Once you start up WinEFIMounter, you are welcomed by a simple introduction window.
+When you start WinEFIMounter, you are welcomed by a simple introduction window.
 ![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/ef66e019-d72a-46d3-a22a-13cb6935fb7f)
 To skip it, just press any key.
 
@@ -52,10 +52,10 @@ To choose the action to perform, just type `1` (to mount a partition) or `E` (to
 
 When you want to mount a partition, you have to press `1` at the main menu. You'll get to the point where you need to select the drive and the partition to mount.
 ![Screenshot 2023-07-16 202956](https://github.com/franzageek/WinEFIMounter/assets/88248950/cdceb712-3afd-465b-a8f7-43a524d12931)
+First, locate in the list the drive you want to edit the EFI partition of, then type its number and hit Enter.
 
 
 ![Screenshot 2023-07-16 203527](https://github.com/franzageek/WinEFIMounter/assets/88248950/65c5e495-3f59-4f65-a584-966f762a5ef0)
-First, locate in the list the drive you want to edit the EFI partition of, then type its number and hit Enter.
 Do the same thing for the EFI partition you need to mount.
 
 ![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/d1109eef-0d9f-438a-a8bb-ffc472fbc02a)
