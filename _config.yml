@@ -1,5 +1,6 @@
 theme: minima
 title: WinEFIMounter
+name: franzageek
 description: Mount your Hackintosh EFI from Windows
 header_pages:
   - topbar/introduction.md
