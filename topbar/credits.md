@@ -11,3 +11,6 @@ I was trying to repair my Hackintosh EFI I've _accidentally_ fucked up with, and
 I hope that with WinEFIMounter you can save the time you would have spent downloading a 3rd-party program.
 
 I hope you find it useful.
+
+____________________________________
+The project is inspired by [Corpnewt](https://github.com/corpnewt)'s [MountEFI](https://github.com/corpnewt/MountEFI). Go check it out!
