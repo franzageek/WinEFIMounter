@@ -13,4 +13,4 @@ I hope that with WinEFIMounter you can save the time you would have spent downlo
 I hope you find it useful.
 
 ____________________________________
-The project is inspired by [Corpnewt](https://github.com/corpnewt)'s [MountEFI](https://github.com/corpnewt/MountEFI). Go check it out!
+I was inspired by [Corpnewt](https://github.com/corpnewt)'s [MountEFI](https://github.com/corpnewt/MountEFI). Go check it out!
