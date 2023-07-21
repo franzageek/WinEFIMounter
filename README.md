@@ -15,7 +15,7 @@ Mount your Hackintosh EFI partition from Windows.
 
 _______________ ____ ___ __ _
 Developed and maintained by **franzageek**.
-_____________________________
+_______________
 
 
 
