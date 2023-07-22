@@ -82,7 +82,7 @@ done
 
 
 
-if [ -d /mnt ]; then
+if [ -d /mnt/LinuxEFIMounter ]; then
   clear
   echo "The EFI partition is successfully mounted to /mnt."
   echo "Please choose one of the following features:"
