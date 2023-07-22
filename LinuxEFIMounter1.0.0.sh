@@ -66,17 +66,7 @@ unmounted_mainmenu ()
         echo " "
         read -p "   - Press M to mount the selected partition or B to go back to the main menu..." ch1
         case $ch1 in
-          M) 
-            if [ ! -d /mnt/EFIPartition ]; then
-              echo " "
-              echo " "
-              echo " Creating mount point..."
-              mkdir /mnt/EFIPartition/
-            fi
-            echo " Mounting the selected partition......"
-            mount "$disk_path" /mnt/EFIPartition
-            mounted_mainmenu
-  
+
           m) 
             if [ ! -d /mnt/EFIPartition ]; then
               echo " "
@@ -87,15 +77,9 @@ unmounted_mainmenu ()
             echo " Mounting the selected partition......"
             mount "$disk_path" /mnt/EFIPartition
             mounted_mainmenu
-            
-          B)
-            unmounted_mainmenu
   
           b)
             unmounted_mainmenu
-            
-      E)
-        exitscr
         
       e)
         exitscr
