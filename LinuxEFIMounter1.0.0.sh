@@ -1,8 +1,8 @@
 #!/bin/bash
 clear
-if [ -d /mnt/LinuxEFIMounter ]; then
-  if mount | grep "/mnt/LinuxEFIMounter" > /dev/null; then
-    umount /mnt/LinuxEFIMounter
+if [ -d /mnt/EFIPartition ]; then
+  if mount | grep "/mnt/EFIPartition" > /dev/null; then
+    umount /mnt/EFIPartition
   fi
 fi
 
