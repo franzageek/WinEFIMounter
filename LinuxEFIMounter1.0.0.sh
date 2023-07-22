@@ -111,7 +111,7 @@ mounted_mainmenu ()
       e) 
         exitscr
         ;;
-       E) 
+      E) 
         exitscr
         ;;
     esac
@@ -121,20 +121,19 @@ mounted_mainmenu ()
 
 mount_process ()
 {
-clear
-        echo " "
-        read -p "   - Press M to mount the selected partition or B to go back to the main menu..." ch1
-      
-      while true; do
-        case $ch1 in
+  clear
+  echo " "
+  read -p "   - Press M to mount the selected partition or B to go back to the main menu..." ch1
+  while true; do
+    case $ch1 in
 
-          m) 
-            if [ ! -d /mnt/EFIPartition ]; then
-              echo " "
-              echo " "
-              echo " Creating mount point..."
-              mkdir /mnt/EFIPartition/
-            fi
+      m) 
+        if [ ! -d /mnt/EFIPartition ]; then
+          echo " "
+          echo " "
+          echo " Creating mount point..."
+          mkdir /mnt/EFIPartition/
+        fi
 
         echo " Mounting the selected partition..."
         mount "$disk_path" /mnt/EFIPartition
@@ -142,8 +141,8 @@ clear
         ;;
       b)
         unmounted_mainmenu
-          esac
-     done
+    esac
+  done
 }
 
 unmounted_mainmenu () 
