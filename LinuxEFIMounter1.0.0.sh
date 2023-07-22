@@ -25,6 +25,33 @@ echo " "
 echo " "
 read -s -r -p "   - Press any key to continue..."
 
+mount_process ()
+{
+clear
+        echo " "
+        read -p "   - Press M to mount the selected partition or B to go back to the main menu..." ch1
+      
+      while true; do
+        case $ch1 in
+
+          m) 
+            if [ ! -d /mnt/EFIPartition ]; then
+              echo " "
+              echo " "
+              echo " Creating mount point..."
+              mkdir /mnt/EFIPartition/
+            fi
+
+            echo " Mounting the selected partition......"
+            mount "$disk_path" /mnt/EFIPartition
+            mounted_mainmenu
+          ;;
+        b)
+        unmounted_mainmenu
+          esac
+     done
+}
+
 unmounted_mainmenu () 
 {
   clear
@@ -46,6 +73,10 @@ unmounted_mainmenu ()
     read -p "   - Enter your choice:" ch0
   
     case $ch0 in
+      
+      e) 
+      exitscr
+      ;;
       1)
         clear
         echo " "
@@ -61,34 +92,12 @@ unmounted_mainmenu ()
           echo " The specified partition is not valid. Please enter a valid partition path."
           read -p "   - Enter your partiton path:" disk_path
         done
-  
-        clear
-        echo " "
-        read -p "   - Press M to mount the selected partition or B to go back to the main menu..." ch1
-        case $ch1 in
+      mount_process
 
-          m) 
-            if [ ! -d /mnt/EFIPartition ]; then
-              echo " "
-              echo " "
-              echo " Creating mount point..."
-              mkdir /mnt/EFIPartition/
-            fi
-            echo " Mounting the selected partition......"
-            mount "$disk_path" /mnt/EFIPartition
-            mounted_mainmenu
-  
-          b)
-            unmounted_mainmenu
-          
-          esac
-        
-      e)
-        exitscr
     esac
   done
 }
-
+unmounted_mainmenu
 
 
 
@@ -127,7 +136,7 @@ mounted_mainmenu ()
     
         3)
           partition_unmount
-        
+        ;;
         e) 
           exitscr
       esac
@@ -143,7 +152,7 @@ partition_unmount ()
 
     b)
       mounted_mainmenu
-  
+    ;;
     u)
       echo " "
       echo " "
@@ -155,7 +164,26 @@ partition_unmount ()
       read -s -r -p "   - Press any key to go back to the main menu..."
       unmounted_mainmenu
   esac
-{
+}
 
-  
-    
+exitscr ()
+{
+echo " "
+echo    "#####################################################"
+echo   "#                   LinuxEFIMounter                   #"
+echo  "#####################################################"
+echo " "
+echo  LinuxEFIMounter version 1.0.0
+echo " "
+echo  Developed by GiovsTech and FranzaGeek
+echo " "
+echo " "
+echo  GitHub Repository [https://github.com/GiovsTech/LinuxEFIMounter]
+echo  Report an issue [https://github.com/franzageek/LinuxEFIMounter/issues]
+echo " "
+echo  Have a good day!
+echo " "
+echo " "
+echo " "
+rm -r /mnt/EFIMounter
+}
