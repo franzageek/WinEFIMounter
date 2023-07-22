@@ -80,6 +80,8 @@ unmounted_mainmenu ()
   
           b)
             unmounted_mainmenu
+          
+          esac
         
       e)
         exitscr
