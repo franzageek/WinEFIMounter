@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Check if it is opened as root
+
 if [[ $EUID -ne 0 ]]; then
   echo "This script must be run as a root."
   exit 1
@@ -55,15 +55,15 @@ while true; do
       if [[ $(cat $temp_file) -eq 1 ]]; then
 
        
-        if [ ! -d /mnt ]; then
-          echo "Creating /mnt folder..."
-          mkdir /mnt
+        if [ ! -d /mnt/LinuxEFIMounter ]; then
+          echo "Creating /mnt/LinuxEFIMounter folder..."
+          mkdir /mnt/LinuxEFIMounter/
         else
-          echo "/mnt folder already exists."
+          echo "/mnt/LinuxEFIMounter folder already exists."
         fi
 
       
-        mount "$disk_path" /mnt
+        mount "$disk_path" /mnt/LinuxEFIMounter
       else
         echo "Disk not found"
       fi
@@ -79,6 +79,7 @@ while true; do
 done
 
 
+clear
 
 if [ -d /mnt ]; then
   echo "The EFI partition is successfully mounted to /mnt."
@@ -97,13 +98,14 @@ if [ -d /mnt ]; then
       ;;
 
     2)
-      echo "this function is disabled"
+      echo "Opening /mnt folder in the file manager of your Distro"
+      $xdg_open -r /mnt
       
       ;;
 
     3)
       echo "Unmounting disk..."
-      umount /mnt
+      umount /mnt/LinuxEFIMounter
       echo "Disk unmounted."
       ;;
 
