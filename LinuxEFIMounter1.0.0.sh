@@ -1,10 +1,11 @@
 #!/bin/bash
 
 if [ -d /mnt/LinuxEFIMounter ]; then
-  echo "This program can't be opened, because a disk has already mounted in /mnt/LinuxEFIMounter. Please unmount it first."
-  exit 1
+  if mount | grep "/mnt/LinuxEFIMounter" > /dev/null; then
+    echo "Disk is already mounted."
+    exit 1
+  fi
 fi
-  
 
 if [[ $EUID -ne 0 ]]; then
   echo "This script must be run as a root."
@@ -106,7 +107,8 @@ if [ -d /mnt/LinuxEFIMounter ]; then
 
     2)
       echo "Opening /mnt/LinuxEFIMounter folder in the file manager of your Distro"
-      $xdg_open  /mnt/LinuxEFIMounter
+      cd /mnt/LinuxEFIMounter
+      xdg_open
       
       ;;
 
