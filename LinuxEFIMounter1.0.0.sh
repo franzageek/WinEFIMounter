@@ -1,5 +1,5 @@
 #!/bin/bash
-
+clear
 if [ -d /mnt/LinuxEFIMounter ]; then
   if mount | grep "/mnt/LinuxEFIMounter" > /dev/null; then
     umount /mnt/LinuxEFIMounter
@@ -10,7 +10,7 @@ if [[ $EUID -ne 0 ]]; then
   echo "This script must be run as a root."
   exit 1
 fi
-
+clear
 echo " "
 echo "   #####################################################"
 echo "  #                  LinuxEFIMounter                  #"
@@ -24,88 +24,162 @@ echo " is to let you access your Hackintosh EFI partition from Linux."
 echo " "
 echo " "
 read -s -r -p "   - Press any key to continue..."
-clear
-echo " "
-echo "   #####################################################"
-echo "  #                  LinuxEFIMounter                  #"
-echo " #####################################################"
-echo " "
-echo " The EFI partition is currently NOT MOUNTED."
-echo " "
-echo " 1. Mount EFI partition to /mnt/LinuxEFIMounter"
-echo " "
-echo " E. Exit"
-echo " " 
-echo " "
 
-
-while true; do
-  read -p "Please select a function: " function
-
-  case $function in
-    1)
-      clear
-      fdisk -l
-
-      echo "What is the path of the disk you want to mount?"
-      read -p "Disk path: " disk_path
-
-      while [[ ! $(fdisk -l | grep -w -c "$disk_path") -eq 1 ]]; do
-        echo "Disk not found. Please enter a valid disk path."
-        read -p "Disk path: " disk_path
-      done
-
-      if [ ! -d /mnt/LinuxEFIMounter ]; then
-        echo "Creating /mnt/LinuxEFIMounter folder..."
-        mkdir /mnt/LinuxEFIMounter/
-      else
-        echo "/mnt/LinuxEFIMounter folder already exists."
-      fi
-
-      mount "$disk_path" /mnt/LinuxEFIMounter
-      break;;
-
-    E)
-      echo "Exiting..."
-      exit 0
-
-  esac
-done
-
-
-
-
-if [ -d /mnt/LinuxEFIMounter ]; then
+unmounted_mainmenu () 
+{
   clear
-  echo "The EFI partition is successfully mounted to /mnt/LinuxEFIMounter."
-  echo "Please choose one of the following features:"
   echo " "
-  echo "1. Navigate to the disk folder in the terminal"
-  echo "2. Navigate to the disk folder in the file manager"
-  echo "3. Unmount the disk"
+  echo "   #####################################################"
+  echo "  #                  LinuxEFIMounter                  #"
+  echo " #####################################################"
   echo " "
-  read -p "Please select a feature: " feature
-  case $feature in
-    1)
-      echo "Opening /mnt/LinuxEFIMounter folder in the terminal..."
-      cd ~/mnt/LinuxEFIMounter
-      clear
-      ;;
+  echo " The EFI partition is currently NOT MOUNTED."
+  echo " "
+  echo " 1. Mount EFI partition to /mnt/EFIPartition"
+  echo " "
+  echo " E. Exit"
+  echo " " 
+  echo " "
+  
+  
+  while true; do
+    read -p "   - Enter your choice:" ch0
+  
+    case $ch0 in
+      1)
+        clear
+        echo " "
+        echo " In order to mount your EFI, you need to specify your Hackintosh EFI's path."
+        echo " From the below list, enter the full path of your EFI partition"
+        echo " "
+        fdisk -l
+        echo " "
+        read -p "   - Enter your partiton path:" disk_path
+  
+  
+        while [[ ! $(fdisk -l | grep -w -c "$disk_path") -eq 1 ]]; do
+          echo " The specified partition is not valid. Please enter a valid partition path."
+          read -p "   - Enter your partiton path:" disk_path
+        done
+  
+        clear
+        echo " "
+        read -p "   - Press M to mount the selected partition or B to go back to the main menu..." ch1
+        case $ch1 in
+          M) 
+            if [ ! -d /mnt/EFIPartition ]; then
+              echo " "
+              echo " "
+              echo " Creating mount point..."
+              mkdir /mnt/EFIPartition/
+            fi
+            echo " Mounting the selected partition......"
+            mount "$disk_path" /mnt/EFIPartition
+            mounted_mainmenu
+  
+          m) 
+            if [ ! -d /mnt/EFIPartition ]; then
+              echo " "
+              echo " "
+              echo " Creating mount point..."
+              mkdir /mnt/EFIPartition/
+            fi
+            echo " Mounting the selected partition......"
+            mount "$disk_path" /mnt/EFIPartition
+            mounted_mainmenu
+            
+          B)
+            unmounted_mainmenu
+  
+          b)
+            unmounted_mainmenu
+            
+      E)
+        exitscr
+        
+      e)
+        exitscr
+    esac
+  done
+}
 
-    2)
-      echo "Opening /mnt/LinuxEFIMounter folder in the file manager of your D.E."
-      xdg-open /mnt/LinuxEFIMounter
-      
-      ;;
 
-    3)
-      echo "Unmounting disk..."
-      umount /mnt/LinuxEFIMounter
-      echo "Disk unmounted."
-      exit
-      ;;
 
+
+mounted_mainmenu ()
+{
+   clear
+    echo " "
+    echo "   #####################################################"
+    echo "  #                  LinuxEFIMounter                  #"
+    echo " #####################################################"
+    echo " "
+    echo " The EFI partition is currently MOUNTED TO /mnt/EFIPartition."
+    echo " "
+    echo " 1. Browse the EFI partition content via command line"
+    echo " 2. Open EFI Partition in the file manager"
+    echo " 3. Unmount EFI Partition "
+    echo " "
+    echo " E. Exit"
+    echo " " 
+    echo " "
+
+    while true; do
+      read -p "   - Enter your choice:" ch2
+      case $ch2 in
+        1)
+          echo " Terminal window open."
+          cd /mnt/EFIPartition
+          clear
+          ;;
+    
+        2)
+          echo " File manager window open."
+          cd /mnt/EFIPartition
+          xdg-open
+          ;;
+    
+        3)
+          partition_unmount
+      esac
+    done
+}
+
+partition_unmount ()
+{
+  clear
+  echo " "
+  read -p "   - Press U to unmount the EFI partition or B to go back to the main menu..." ch2
+  case $ch2 in
+    B)
+      mounted_mainmenu
+    
+    b)
+      mounted_mainmenu
+    
+    U)
+      echo " "
+      echo " "
+      echo " Unmounting the EFI partition..."
+      echo "    - Started unmounting $disk_path..."
+      umount /mnt/EFIPartition
+      echo " "
+      echo " Done."
+      read -s -r -p "   - Press any key to go back to the main menu..."
+      unmounted_mainmenu
+  
+    u)
+      echo " "
+      echo " "
+      echo " Unmounting the EFI partition..."
+      echo "    - Started unmounting $disk_path..."
+      umount /mnt/EFIPartition
+      echo " "
+      echo " Done."
+      read -s -r -p "   - Press any key to go back to the main menu..."
+      unmounted_mainmenu
   esac
-else
-  echo "The EFI partition is not mounted."
-fi
+{
+
+  
+    
