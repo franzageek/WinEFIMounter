@@ -50,31 +50,19 @@ while true; do
       echo "What is the path of the disk you want to mount?"
       read -p "Disk path: " disk_path
 
+      while [[ ! $(fdisk -l | grep -w -c "$disk_path") -eq 1 ]]; do
+        echo "Disk not found. Please enter a valid disk path."
+        read -p "Disk path: " disk_path
+      done
 
-      temp_file=$(mktemp)
-
-   
-      fdisk -l | grep -w -c "$disk_path" >> $temp_file
-
-
-      if [[ $(cat $temp_file) -eq 1 ]]; then
-
-       
-        if [ ! -d /mnt/LinuxEFIMounter ]; then
-          echo "Creating /mnt/LinuxEFIMounter folder..."
-          mkdir /mnt/LinuxEFIMounter/
-        else
-          echo "/mnt/LinuxEFIMounter folder already exists."
-        fi
-
-      
-        mount "$disk_path" /mnt/LinuxEFIMounter
+      if [ ! -d /mnt/LinuxEFIMounter ]; then
+        echo "Creating /mnt/LinuxEFIMounter folder..."
+        mkdir /mnt/LinuxEFIMounter/
       else
-        echo "Disk not found."
-        exit 1
+        echo "/mnt/LinuxEFIMounter folder already exists."
       fi
 
-      rm $temp_file
+      mount "$disk_path" /mnt/LinuxEFIMounter
       break;;
 
     E)
@@ -99,8 +87,8 @@ if [ -d /mnt/LinuxEFIMounter ]; then
   read -p "Please select a feature: " feature
   case $feature in
     1)
-      echo "Opening /mnt folder in the terminal..."
-      cd /mnt/LinuxEFIMounter
+      echo "Opening /mnt/LinuxEFIMounter folder in the terminal..."
+      cd ~/mnt/LinuxEFIMounter
       clear
       ;;
 
@@ -114,6 +102,7 @@ if [ -d /mnt/LinuxEFIMounter ]; then
       echo "Unmounting disk..."
       umount /mnt/LinuxEFIMounter
       echo "Disk unmounted."
+      exit
       ;;
 
   esac
