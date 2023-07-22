@@ -136,8 +136,8 @@ partition_unmount ()
 {
   clear
   echo " "
-  read -p "   - Press U to unmount the EFI partition or B to go back to the main menu..." ch2
-  case $ch2 in
+  read -p "   - Press U to unmount the EFI partition or B to go back to the main menu..." ch3
+  case $ch3 in
 
     b)
       mounted_mainmenu
