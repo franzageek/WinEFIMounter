@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ -d /mnt/LinuxEFIMounter ]; then
+  echo "This program can't be opened, because a disk has already mounted in /mnt/LinuxEFIMounter. Please unmount it first."
+  exit 1
+fi
+  
 
 if [[ $EUID -ne 0 ]]; then
   echo "This script must be run as a root."
