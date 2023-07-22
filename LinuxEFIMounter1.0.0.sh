@@ -17,7 +17,7 @@ echo "  #                  LinuxEFIMounter                  #"
 echo " #####################################################"
 echo " "
 echo " Welcome to LinuxEFIMounter. This program is meant to be used to access your"
-echo " Hackintosh EFI from Linux. This script is made by GiovsTech as a contribution 
+echo " Hackintosh EFI from Linux. This script is made by GiovsTech as a contribution"
 echo " to WinEFIMounter, written by FranzaGeek for Windows."
 echo " "
 echo " LinuxEFIMounter could be used to mount any EFI partition, but the main purpose of it"
