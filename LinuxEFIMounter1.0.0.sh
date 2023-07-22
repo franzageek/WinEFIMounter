@@ -10,7 +10,7 @@ fi
 echo       "#####################################################"
 echo      "#                   LinuxEFIMounter                   #"
 echo       "#####################################################"
-echo  Welcome to Linux. This program is meant to be used to access your
+echo  Welcome to LinuxEFIMounter. This program is meant to be used to access your
 echo  Hackintosh EFI from Linux. 
 echo
 echo  LinuxEFIMounter could be used to mount any EFI partition, but the main purpose of it
@@ -29,6 +29,8 @@ echo
 echo  "1. Mount EFI partition to /mnt"
 echo
 echo  "E. Exit"
+
+
 
 
 
