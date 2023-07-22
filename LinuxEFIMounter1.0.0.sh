@@ -47,7 +47,7 @@ exitscr ()
   echo " "
   echo " "
   rm -r /mnt/EFIPartition
-  exit
+  exit 0
 }
 
 partition_unmount ()
@@ -134,13 +134,13 @@ mount_process ()
           echo " Creating mount point..."
           mkdir /mnt/EFIPartition/
         fi
-
         echo " Mounting the selected partition..."
         mount "$disk_path" /mnt/EFIPartition
         mounted_mainmenu
         ;;
       b)
         unmounted_mainmenu
+        ;;
     esac
   done
 }
@@ -160,16 +160,11 @@ unmounted_mainmenu ()
   echo " E. Exit"
   echo " " 
   echo " "
-  
-  
   while true; do
     read -p "   - Enter your choice:" ch0
   
     case $ch0 in
       
-       E) 
-        exitscr
-        ;;
       e) 
         exitscr
         ;;
@@ -182,13 +177,12 @@ unmounted_mainmenu ()
         fdisk -l
         echo " "
         read -p "   - Enter your partiton path:" disk_path
-  
-  
         while [[ ! $(fdisk -l | grep -w -c "$disk_path") -eq 1 ]]; do
           echo " The specified partition is not valid. Please enter a valid partition path."
           read -p "   - Enter your partiton path:" disk_path
         done
-      mount_process
+        mount_process
+        ;;
     esac
   done
 }
