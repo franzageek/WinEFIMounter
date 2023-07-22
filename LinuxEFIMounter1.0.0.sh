@@ -2,8 +2,7 @@
 
 if [ -d /mnt/LinuxEFIMounter ]; then
   if mount | grep "/mnt/LinuxEFIMounter" > /dev/null; then
-    echo "Disk is already mounted. Please unmount it first."
-    exit 1
+    umount /mnt/LinuxEFIMounter
   fi
 fi
 
@@ -106,7 +105,7 @@ if [ -d /mnt/LinuxEFIMounter ]; then
       ;;
 
     2)
-      echo "Opening /mnt/LinuxEFIMounter folder in the file manager of your Distro"
+      echo "Opening /mnt/LinuxEFIMounter folder in the file manager of your D.E."
       xdg-open /mnt/LinuxEFIMounter
       
       ;;
