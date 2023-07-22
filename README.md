@@ -1,13 +1,12 @@
-# WinEFIMounter
-Mount your Hackintosh EFI partition from Windows. 
+# LinuxEFIMounter
+Mount your Hackintosh EFI partition from Linux. 
 
-[a.k.a. MountEFI for Windows].
-![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/6904b05f-519e-4c40-92df-559feb890785)
+[Linux port of [franzageek/WinEFIMounter](https://github.com/franzageek/WinEFIMounter)].
+![image](https://github.com/GiovsTech/WinEFIMounterLinuxPort/assets/88248950/3a13aae9-ded7-4072-bbbf-5ca0f7c4c5bb)
 [**Introduction**](#introduction) - [**Usage**](#usage) - [**Errors**](#errors) - [**Credits**](#credits)
 
 ## Introduction
-WinEFIMounter is a simple and standalone Batch program that makes it easy to **mount the EFI partition** on your Hackintosh drive **directly from Windows**. It could be used to mount any EFI partition (also Windows and Linux ones) from a Windows environment, but its main purpose is to let you mount **your Hackintosh EFI partition without having to boot it**. It's hard to believe but in reality _**there isn't any simple software**_ such as [Corpnewt](https://github.com/corpnewt)'s [**MountEFI**](https://github.com/corpnewt/MountEFI) (for Mac) that lets you do it from Windows: you would have to download **third-party programs**. Try WinEFIMounter instead: it's light and easy-to-use!
-
+LinuxEFIMounter is a simple and standalone Bash program that makes it easy to **mount the EFI partition** on your Hackintosh drive **directly from Linux**. It could be used to mount any EFI partition (also Windows and Linux ones) from a Linux environment, but its main purpose is to let you mount **your Hackintosh EFI partition without having to boot it**.
 
 ## Usage
 ### Supported actions
@@ -161,9 +160,5 @@ I'm planning to add the same `ERRORLEVEL` check when cloning the files from the 
 
 
 ## Credits
-The main reason I decided to create this program is the fact that there isn't ANY MountEFI VERSION FOR WINDOWS! I was trying to repair my Hackintosh EFI I've _accidentally_ fucked up with, and I was negatively surprised when I learned there wasn't any MountEFI version for Windows. So I did it my way, playing around with Diskpart. But the procedure was lond and boring, so I created a script that could automatically mount the partition, and then slightly modified it to make WinEFIMounter.
-
-I hope that with WinEFIMounter you can save the time you would have spent downloading a 3rd-party program.
-
-I hope you find it useful.
+This is a Linux port of [franzageek/WinEFIMounter](https://github.com/franzageek/WinEFIMounter) made possible by GiovsTech.
 
