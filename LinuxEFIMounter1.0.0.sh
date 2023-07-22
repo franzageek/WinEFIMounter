@@ -125,6 +125,9 @@ mounted_mainmenu ()
     
         3)
           partition_unmount
+        
+        e) 
+          exitscr
       esac
     done
 }
@@ -135,22 +138,9 @@ partition_unmount ()
   echo " "
   read -p "   - Press U to unmount the EFI partition or B to go back to the main menu..." ch2
   case $ch2 in
-    B)
-      mounted_mainmenu
-    
+
     b)
       mounted_mainmenu
-    
-    U)
-      echo " "
-      echo " "
-      echo " Unmounting the EFI partition..."
-      echo "    - Started unmounting $disk_path..."
-      umount /mnt/EFIPartition
-      echo " "
-      echo " Done."
-      read -s -r -p "   - Press any key to go back to the main menu..."
-      unmounted_mainmenu
   
     u)
       echo " "
