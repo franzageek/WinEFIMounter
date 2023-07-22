@@ -2,7 +2,7 @@
 
 if [ -d /mnt/LinuxEFIMounter ]; then
   if mount | grep "/mnt/LinuxEFIMounter" > /dev/null; then
-    echo "Disk is already mounted."
+    echo "Disk is already mounted. Please unmount it first."
     exit 1
   fi
 fi
@@ -33,7 +33,7 @@ echo " #####################################################"
 echo " "
 echo " The EFI partition is currently NOT MOUNTED."
 echo " "
-echo " 1. Mount EFI partition to /mnt"
+echo " 1. Mount EFI partition to /mnt/LinuxEFIMounter"
 echo " "
 echo " E. Exit"
 echo " " 
@@ -41,11 +41,11 @@ echo " "
 
 
 while true; do
-  read -p "Please select a fuction: " function
+  read -p "Please select a function: " function
 
   case $function in
     1)
-     
+      clear
       fdisk -l
 
       echo "What is the path of the disk you want to mount?"
@@ -90,7 +90,7 @@ done
 
 if [ -d /mnt/LinuxEFIMounter ]; then
   clear
-  echo "The EFI partition is successfully mounted to /mnt."
+  echo "The EFI partition is successfully mounted to /mnt/LinuxEFIMounter."
   echo "Please choose one of the following features:"
   echo " "
   echo "1. Navigate to the disk folder in the terminal"
@@ -101,8 +101,8 @@ if [ -d /mnt/LinuxEFIMounter ]; then
   case $feature in
     1)
       echo "Opening /mnt folder in the terminal..."
-      clear
       cd /mnt/LinuxEFIMounter
+      clear
       ;;
 
     2)
