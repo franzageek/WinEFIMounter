@@ -94,12 +94,12 @@ if [ -d /mnt ]; then
     1)
       echo "Opening /mnt folder in the terminal..."
       clear
-      cd /mnt
+      cd /mnt/LinuxEFIMounter
       ;;
 
     2)
-      echo "Opening /mnt folder in the file manager of your Distro"
-      $xdg_open -r /mnt
+      echo "Opening /mnt/LinuxEFIMounter folder in the file manager of your Distro"
+      $xdg_open -r /mnt/LinuxEFIMounter
       
       ;;
 
