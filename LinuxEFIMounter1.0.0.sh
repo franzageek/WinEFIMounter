@@ -65,7 +65,8 @@ while true; do
       
         mount "$disk_path" /mnt/LinuxEFIMounter
       else
-        echo "Disk not found"
+        echo "Disk not found."
+        exit 1
       fi
 
       rm $temp_file
@@ -79,9 +80,10 @@ while true; do
 done
 
 
-clear
+
 
 if [ -d /mnt ]; then
+  clear
   echo "The EFI partition is successfully mounted to /mnt."
   echo "Please choose one of the following features:"
   echo " "
@@ -99,7 +101,7 @@ if [ -d /mnt ]; then
 
     2)
       echo "Opening /mnt/LinuxEFIMounter folder in the file manager of your Distro"
-      $xdg_open -r /mnt/LinuxEFIMounter
+      $xdg_open  /mnt/LinuxEFIMounter
       
       ;;
 
