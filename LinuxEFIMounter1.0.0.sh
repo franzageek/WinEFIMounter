@@ -25,6 +25,7 @@ echo " is to let you access your Hackintosh EFI partition from Linux."
 echo " "
 echo " "
 read -s -r -p "   - Press any key to continue..."
+unmounted_mainmenu
 
 mount_process ()
 {
