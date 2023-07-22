@@ -28,29 +28,28 @@ read -s -r -p "   - Press any key to continue..."
 
 mount_process ()
 {
-clear
-        echo " "
-        read -p "   - Press M to mount the selected partition or B to go back to the main menu..." ch1
-      
-      while true; do
-        case $ch1 in
+  clear
+  echo " "
+  read -p "   - Press M to mount the selected partition or B to go back to the main menu..." ch1
+  while true; do
+    case $ch1 in
+      m) 
+        if [ ! -d /mnt/EFIPartition ]; then
+          echo " "
+          echo " "
+          echo " Creating mount point..."
+          mkdir /mnt/EFIPartition/
+        fi
 
-          m) 
-            if [ ! -d /mnt/EFIPartition ]; then
-              echo " "
-              echo " "
-              echo " Creating mount point..."
-              mkdir /mnt/EFIPartition/
-            fi
-
-            echo " Mounting the selected partition......"
-            mount "$disk_path" /mnt/EFIPartition
-            mounted_mainmenu
-          ;;
-        b)
+        echo " Mounting the selected partition..."
+        mount "$disk_path" /mnt/EFIPartition
+        mounted_mainmenu
+        ;;
+      b)
         unmounted_mainmenu
-          esac
-     done
+        ;;
+    esac
+  done
 }
 
 unmounted_mainmenu () 
@@ -76,8 +75,8 @@ unmounted_mainmenu ()
     case $ch0 in
       
       e) 
-      exitscr
-      ;;
+        exitscr
+        ;;
       1)
         clear
         echo " "
@@ -94,54 +93,51 @@ unmounted_mainmenu ()
           read -p "   - Enter your partiton path:" disk_path
         done
       mount_process
-
     esac
   done
 }
-unmounted_mainmenu
-
-
 
 mounted_mainmenu ()
 {
-   clear
-    echo " "
-    echo "   #####################################################"
-    echo "  #                  LinuxEFIMounter                  #"
-    echo " #####################################################"
-    echo " "
-    echo " The EFI partition is currently MOUNTED TO /mnt/EFIPartition."
-    echo " "
-    echo " 1. Browse the EFI partition content via command line"
-    echo " 2. Open EFI Partition in the file manager"
-    echo " 3. Unmount EFI Partition "
-    echo " "
-    echo " E. Exit"
-    echo " " 
-    echo " "
-
-    while true; do
-      read -p "   - Enter your choice:" ch2
-      case $ch2 in
-        1)
-          echo " Terminal window open."
-          cd /mnt/EFIPartition
-          clear
-          ;;
-    
-        2)
-          echo " File manager window open."
-          cd /mnt/EFIPartition
-          xdg-open
-          ;;
-    
-        3)
-          partition_unmount
+  clear
+  echo " "
+  echo "   #####################################################"
+  echo "  #                  LinuxEFIMounter                  #"
+  echo " #####################################################"
+  echo " "
+  echo " The EFI partition is currently MOUNTED TO /mnt/EFIPartition."
+  echo " "
+  echo " 1. Browse the EFI partition content via command line"
+  echo " 2. Open EFI Partition in the file manager"
+  echo " 3. Unmount EFI Partition "
+  echo " "
+  echo " E. Exit"
+  echo " " 
+  echo " "
+  
+  while true; do
+    read -p "   - Enter your choice:" ch2
+    case $ch2 in
+      1)
+        echo " Terminal window open."
+        cd /mnt/EFIPartition
+        clear
         ;;
-        e) 
-          exitscr
-      esac
-    done
+  
+      2)
+        echo " File manager window open."
+        cd /mnt/EFIPartition
+        xdg-open
+        ;;
+  
+      3)
+        partition_unmount
+        ;;
+      e) 
+        exitscr
+        ;;
+    esac
+  done
 }
 
 partition_unmount ()
@@ -150,10 +146,9 @@ partition_unmount ()
   echo " "
   read -p "   - Press U to unmount the EFI partition or B to go back to the main menu..." ch3
   case $ch3 in
-
     b)
       mounted_mainmenu
-    ;;
+      ;;
     u)
       echo " "
       echo " "
@@ -164,27 +159,28 @@ partition_unmount ()
       echo " Done."
       read -s -r -p "   - Press any key to go back to the main menu..."
       unmounted_mainmenu
+      ;;
   esac
 }
 
 exitscr ()
 {
-echo " "
-echo    "#####################################################"
-echo   "#                   LinuxEFIMounter                   #"
-echo  "#####################################################"
-echo " "
-echo  LinuxEFIMounter version 1.0.0
-echo " "
-echo  Developed by GiovsTech and FranzaGeek
-echo " "
-echo " "
-echo  GitHub Repository [https://github.com/GiovsTech/LinuxEFIMounter]
-echo  Report an issue [https://github.com/franzageek/LinuxEFIMounter/issues]
-echo " "
-echo  Have a good day!
-echo " "
-echo " "
-echo " "
-rm -r /mnt/EFIMounter
+  echo " "
+  echo "   #####################################################"
+  echo "  #                  LinuxEFIMounter                  #"
+  echo " #####################################################"
+  echo " "
+  echo " LinuxEFIMounter version 1.0.0"
+  echo " "
+  echo " Developed by GiovsTech and FranzaGeek"
+  echo " "
+  echo " "
+  echo " GitHub Repository [https://github.com/GiovsTech/LinuxEFIMounter]"
+  echo " Report an issue [https://github.com/franzageek/LinuxEFIMounter/issues]"
+  echo " "
+  echo " Have a good day!"
+  echo " "
+  echo " "
+  echo " "
+  rm -r /mnt/EFIMounter
 }
