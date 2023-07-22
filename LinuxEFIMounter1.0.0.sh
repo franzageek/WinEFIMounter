@@ -12,7 +12,7 @@ echo "  #                  LinuxEFIMounter                  #"
 echo " #####################################################"
 echo " "
 echo " Welcome to LinuxEFIMounter. This program is meant to be used to access your"
-echo " Hackintosh EFI from Linux. "
+echo " Hackintosh EFI from Linux. This script is made by GiovsTech as a contribution to FranzaGeek's batch script, written for Windows."
 echo " "
 echo " LinuxEFIMounter could be used to mount any EFI partition, but the main purpose of it"
 echo " is to let you access your Hackintosh EFI partition from Linux."
@@ -92,6 +92,7 @@ if [ -d /mnt ]; then
   case $feature in
     1)
       echo "Opening /mnt folder in the terminal..."
+      clear
       cd /mnt
       ;;
 
