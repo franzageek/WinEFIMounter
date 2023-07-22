@@ -15,7 +15,7 @@ echo  Hackintosh EFI from Linux.
 echo
 echo  LinuxEFIMounter could be used to mount any EFI partition, but the main purpose of it
 echo  is to let you access your Hackintosh EFI partition from Linux since there is not
-echo  any tool to do that, apart mounting it by terminal.
+echo  any tool to do that, apart from mounting it by boring commands".
 echo 
 read -n 1 -s -r -p "Press any key to continue"
 clear
