@@ -107,8 +107,7 @@ if [ -d /mnt/LinuxEFIMounter ]; then
 
     2)
       echo "Opening /mnt/LinuxEFIMounter folder in the file manager of your Distro"
-      cd /mnt/LinuxEFIMounter
-      xdg_open
+      xdg-open /mnt/LinuxEFIMounter
       
       ;;
 
