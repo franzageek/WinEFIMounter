@@ -2,7 +2,7 @@
 
 # Check if it is opened as root
 if [[ $EUID -ne 0 ]]; then
-  echo "This script must to be opened as a root"
+  echo "This script must be opened as a root"
   exit 1
 fi
 
@@ -31,8 +31,4 @@ echo
 echo  "E. Exit"
 
 
-read -p "Choose an option: " choice
-
-
-case $choice in
 
