@@ -46,115 +46,25 @@ exitscr ()
   echo " "
   echo " "
   echo " "
+  umount /mnt/EFIPartition
   rm -r /mnt/EFIPartition
   exit 0
 }
 
-<<<<<<< Updated upstream
-=======
-0_mount_process ()
-{
-clear
-        echo " "
-        read -p "   - Press M to mount the selected partition or B to go back to the main menu..." ch1
-      
-      while true; do
-        case $ch1 in
-
-        M) 
-            if [ ! -d /mnt/EFIPartition ]; then
-              echo " "
-              echo " "
-              echo " Creating mount point..."
-              mkdir /mnt/EFIPartition/
-            fi
-
-        echo " Mounting the selected partition..."
-        mount "$disk_path" /mnt/EFIPartition
-        mounted_mainmenu
-        ;;
-          m) 
-            if [ ! -d /mnt/EFIPartition ]; then
-              echo " "
-              echo " "
-              echo " Creating mount point..."
-              mkdir /mnt/EFIPartition/
-            fi
-
-        echo " Mounting the selected partition..."
-        mount "$disk_path" /mnt/EFIPartition
-        mounted_mainmenu
-        ;;
-      b)
-        0_unmounted_mainmenu
-        ;;
-      B)
-        0_unmounted_mainmenu
-          esac
-     done
-}
-
-0_unmounted_mainmenu () 
-{
-  clear
-  echo " "
-  echo "   #####################################################"
-  echo "  #                  LinuxEFIMounter                  #"
-  echo " #####################################################"
-  echo " "
-  echo " The EFI partition is currently NOT MOUNTED."
-  echo " "
-  echo " 1. Mount EFI partition to /mnt/EFIPartition"
-  echo " "
-  echo " E. Exit"
-  echo " " 
-  echo " "
-  
-  
-  while true; do
-    read -p "   - Enter your choice:" ch0
-  
-    case $ch0 in
-      
-       E) 
-        exitscr
-        ;;
-      e) 
-        exitscr
-        ;;
-      1)
-        clear
-        echo " "
-        echo " In order to mount your EFI, you need to specify your Hackintosh EFI's path."
-        echo " From the below list, enter the full path of your EFI partition"
-        echo " "
-        fdisk -l
-        echo " "
-        read -p "   - Enter your partiton path:" disk_path
-  
-  
-        while [[ ! $(fdisk -l | grep -w -c "$disk_path") -eq 1 ]]; do
-          echo " The specified partition is not valid. Please enter a valid partition path."
-          read -p "   - Enter your partiton path:" disk_path
-        done
-      mount_process
-    esac
-  done
-}
-
->>>>>>> Stashed changes
 partition_unmount ()
 {
   clear
   echo " "
   read -p "   - Press U to unmount the EFI partition or B to go back to the main menu..." ch3
+   while true; do
   case $ch3 in
+    B)
+      mounted_mainmenu
+      ;;
     b)
       mounted_mainmenu
       ;;
-<<<<<<< Updated upstream
-=======
-     U)
+    U)
       echo " "
       echo " "
       echo " Unmounting the EFI partition..."
@@ -163,9 +73,8 @@ partition_unmount ()
       echo " "
       echo " Done."
       read -s -r -p "   - Press any key to go back to the main menu..."
-      0_unmounted_mainmenu
+      unmounted_mainmenu
       ;;
->>>>>>> Stashed changes
     u)
       echo " "
       echo " "
@@ -175,60 +84,11 @@ partition_unmount ()
       echo " "
       echo " Done."
       read -s -r -p "   - Press any key to go back to the main menu..."
-<<<<<<< Updated upstream
       unmounted_mainmenu
-=======
-      0_unmounted_mainmenu
->>>>>>> Stashed changes
-      ;;
   esac
+  done
 }
 
-<<<<<<< Updated upstream
-=======
-mount_process ()
-{
-clear
-        echo " "
-        read -p "   - Press M to mount the selected partition or B to go back to the main menu..." ch1
-      
-      while true; do
-        case $ch1 in
-
-        M) 
-            if [ ! -d /mnt/EFIPartition ]; then
-              echo " "
-              echo " "
-              echo " Creating mount point..."
-              mkdir /mnt/EFIPartition/
-            fi
-
-        echo " Mounting the selected partition..."
-        mount "$disk_path" /mnt/EFIPartition
-        mounted_mainmenu
-        ;;
-          m) 
-            if [ ! -d /mnt/EFIPartition ]; then
-              echo " "
-              echo " "
-              echo " Creating mount point..."
-              mkdir /mnt/EFIPartition/
-            fi
-
-        echo " Mounting the selected partition..."
-        mount "$disk_path" /mnt/EFIPartition
-        mounted_mainmenu
-        ;;
-      b)
-        0_unmounted_mainmenu
-        ;;
-      B)
-        0_unmounted_mainmenu
-          esac
-     done
-}
-
->>>>>>> Stashed changes
 mounted_mainmenu ()
 {
   clear
@@ -279,10 +139,20 @@ mount_process ()
 {
   clear
   echo " "
-  read -p "   - Press M to mount the selected partition or B to go back to the main menu..." ch1
+  read -p "   - Press M to mount the selected partition or E to exit from the program..." ch1
   while true; do
     case $ch1 in
-
+      M) 
+        if [ ! -d /mnt/EFIPartition ]; then
+          echo " "
+          echo " "
+          echo " Creating mount point..."
+          mkdir /mnt/EFIPartition/
+        fi
+        echo " Mounting the selected partition..."
+        mount "$disk_path" /mnt/EFIPartition
+        mounted_mainmenu
+        ;;
       m) 
         if [ ! -d /mnt/EFIPartition ]; then
           echo " "
@@ -294,8 +164,11 @@ mount_process ()
         mount "$disk_path" /mnt/EFIPartition
         mounted_mainmenu
         ;;
-      b)
-        unmounted_mainmenu
+         E)
+        exitscr
+        ;;
+      e)
+        exitscr
         ;;
     esac
   done
@@ -320,7 +193,9 @@ unmounted_mainmenu ()
     read -p "   - Enter your choice:" ch0
   
     case $ch0 in
-      
+      E) 
+        exitscr
+        ;;
       e) 
         exitscr
         ;;
@@ -338,7 +213,6 @@ unmounted_mainmenu ()
           read -p "   - Enter your partiton path:" disk_path
         done
         mount_process
-        ;;
     esac
   done
 }
