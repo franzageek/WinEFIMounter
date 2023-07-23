@@ -10,10 +10,10 @@ function2 ()
     read -p “Press A to proceed or B to go back...” choice
     case $choice in
         A) 
-          function1
+          function3
           ;;
         B)
-          function3
+          function1
           ;;
     esac
 }
