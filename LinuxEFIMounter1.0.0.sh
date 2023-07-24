@@ -1,15 +1,19 @@
 #!/bin/bash
 clear
+
+if [[ $EUID -ne 0 ]]; then
+  echo "This script must be run as root."
+  exit 1
+fi
+
 if [ -d /mnt/EFIPartition ]; then
   if mount | grep "/mnt/EFIPartition" > /dev/null; then
-    umount /mnt/EFIPartition
+    echo "Another disk is mounted in /mnt/EFIPartition. Please unmount it first"
+    exit 1
   fi
 fi
 
-if [[ $EUID -ne 0 ]]; then
-  echo "This script must be run as a root."
-  exit 1
-fi
+
 clear
 echo " "
 echo "   #####################################################"
@@ -46,7 +50,11 @@ exitscr ()
   echo " "
   echo " "
   echo " "
-  umount /mnt/EFIPartition
+  if [ -d /mnt/EFIPartition ]; then
+    if mount | grep "/mnt/EFIPartition" > /dev/null; then
+      umount -f $disk_path 
+    fi
+  fi
   rm -r /mnt/EFIPartition
   exit 0
 }
@@ -56,36 +64,36 @@ partition_unmount ()
   clear
   echo " "
   read -p "   - Press U to unmount the EFI partition or B to go back to the main menu..." ch3
-   while true; do
-  case $ch3 in
-    B)
-      mounted_mainmenu
-      ;;
-    b)
-      mounted_mainmenu
-      ;;
-    U)
-      echo " "
-      echo " "
-      echo " Unmounting the EFI partition..."
-      echo "    - Started unmounting $disk_path..."
-      umount /mnt/EFIPartition
-      echo " "
-      echo " Done."
-      read -s -r -p "   - Press any key to go back to the main menu..."
-      unmounted_mainmenu
-      ;;
-    u)
-      echo " "
-      echo " "
-      echo " Unmounting the EFI partition..."
-      echo "    - Started unmounting $disk_path..."
-      umount /mnt/EFIPartition
-      echo " "
-      echo " Done."
-      read -s -r -p "   - Press any key to go back to the main menu..."
-      unmounted_mainmenu
-  esac
+  while true; do
+    case $ch3 in
+      B)
+        mounted_mainmenu
+        ;;
+      b)
+        mounted_mainmenu
+        ;;
+      U)
+        echo " "
+        echo " "
+        echo " Unmounting the EFI partition..."
+        echo "    - Started unmounting $disk_path..."
+        umount /mnt/EFIPartition
+        echo " "
+        echo " Done."
+        read -s -r -p "   - Press any key to go back to the main menu..."
+        unmounted_mainmenu
+        ;;
+      u)
+        echo " "  
+        echo " "
+        echo " Unmounting the EFI partition..."
+        echo "    - Started unmounting $disk_path..."
+        umount /mnt/EFIPartition
+        echo " "
+        echo " Done."
+        read -s -r -p "   - Press any key to go back to the main menu..."
+        unmounted_mainmenu
+    esac
   done
 }
 
@@ -106,16 +114,19 @@ mounted_mainmenu ()
   echo " E. Exit"
   echo " " 
   echo " "
-  
+  read -p "   - Enter your choice:" ch2
   while true; do
-    read -p "   - Enter your choice:" ch2
     case $ch2 in
       1)
-        echo " Terminal window open."
-        cd /mnt/EFIPartition
-        clear
+        if [ "$XDG_CURRENT_DESKTOP" = "GNOME" ]; then
+          terminal="gnome-terminal"
+        elif [ "$XDG_CURRENT_DESKTOP" = "KDE" ]; then
+          terminal="konsole"
+        elif [ "$XDG_CURRENT_DESKTOP" = "XFCE" ]; then
+          terminal="xfce4-terminal"
+        fi
+        "${terminal[@]}" --working-directory=/mnt/EFIPartition/
         ;;
-  
       2)
         echo " File manager window open."
         xdg-open /mnt/EFIPartition
@@ -139,7 +150,7 @@ mount_process ()
 {
   clear
   echo " "
-  read -p "   - Press M to mount the selected partition or E to exit from the program..." ch1
+  read -p "   - Press M to mount the selected partition or B to go back to main menu..." ch1
   while true; do
     case $ch1 in
       M) 
@@ -164,11 +175,11 @@ mount_process ()
         mount "$disk_path" /mnt/EFIPartition
         mounted_mainmenu
         ;;
-         E)
-        exitscr
+      B)
+        unmounted_mainmenu
         ;;
-      e)
-        exitscr
+      b)
+        unmounted_mainmenu
         ;;
     esac
   done
@@ -191,7 +202,6 @@ unmounted_mainmenu ()
   echo " "
   while true; do
     read -p "   - Enter your choice:" ch0
-  
     case $ch0 in
       E) 
         exitscr
@@ -213,6 +223,7 @@ unmounted_mainmenu ()
           read -p "   - Enter your partiton path:" disk_path
         done
         mount_process
+        ;;
     esac
   done
 }
