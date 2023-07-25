@@ -100,10 +100,10 @@ goto :tempbookmark1
 cls
 echo.
 set /p chx=---- Press M to mount the selected partition or B to go back to the main menu...
-if /i "%chx%"=="m" set "chx=" &goto :proceed4
+if /i "%chx%"=="m" set "chx=" &goto :proceed1
 if /i "%chx%"=="b" set "chx=" &goto :unmounted_mainmenu
 set "chx="
-goto :proceed3
+goto :proceed4
 :proceed1
 title WinEFIMounter: Mounting...
 cls
