@@ -52,7 +52,7 @@ To choose the action to perform, just type `1` (to mount a partition) or `E` (to
 
 When you want to mount a partition, you have to press `1` at the main menu. You'll get to the point where you need to select the drive and the partition to mount.
 ![Screenshot 2023-07-16 202956](https://github.com/franzageek/WinEFIMounter/assets/88248950/cdceb712-3afd-465b-a8f7-43a524d12931)
-First, locate in the list the drive you want to edit the EFI partition of, then type its number and hit Enter.
+First, locate in the list the drive you want to mount the EFI partition of, then type its number and hit Enter.
 
 
 ![Screenshot 2023-07-16 203527](https://github.com/franzageek/WinEFIMounter/assets/88248950/65c5e495-3f59-4f65-a584-966f762a5ef0)
