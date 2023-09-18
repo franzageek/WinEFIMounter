@@ -3,7 +3,7 @@ Mount your Hackintosh EFI partition from Windows.
 
 [a.k.a. MountEFI for Windows].
 ![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/6904b05f-519e-4c40-92df-559feb890785)
-[**Introduction**](#introduction) - [**Usage**](#usage) - [**Errors**](#errors) - [**Credits**](#credits)
+[**Introduction**](#introduction) - [**Usage**](#usage) - [**Problems**](#problems) - [**Credits**](#credits)
 
 ## Introduction
 WinEFIMounter is a simple and standalone Batch program that makes it easy to **mount the EFI partition** on your Hackintosh drive **directly from Windows**. It could be used to mount any EFI partition (also Windows and Linux ones) from a Windows environment, but its main purpose is to let you mount **your Hackintosh EFI partition without having to boot it**. It's hard to believe but in reality _**there isn't any simple software**_ such as [Corpnewt](https://github.com/corpnewt)'s [**MountEFI**](https://github.com/corpnewt/MountEFI) (for Mac) that lets you do it from Windows: you would have to download **third-party programs**. Try WinEFIMounter instead: it's light and easy-to-use!
@@ -129,7 +129,7 @@ Choosing Option `E` from the main menu while your partition is still mounted wil
 > If you didn't care of the message and closed the window, the next time you will have to launch WinEFIMounter you would have to start again from mounting the partition (which is already mounted), resulting in a general mess where the `Z` letter is taken by the already mounted EFI partition and WinEFIMounter is forced to assign the `Y` letter to a partition which is already mounted to "`Z:\`" and when unmounting it WinEFIMounter will unmount a non-existent partition....... not a good situation to be in, after all.
 > > TL;DR: Just unmount your partition as you leave WinEFIMounter.
 
-## Errors
+## Problems
 
 ### Flushing procedure failed
 WinEFIMounter is a simple script. If you scroll through the code, you will see that it's **just about 400 lines long**, and the Mounting and Unmounting parts of the program are literally made of **3 lines of code** each. And those are DiskPart commands!
