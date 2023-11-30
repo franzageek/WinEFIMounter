@@ -54,9 +54,9 @@ Right after you start the program, you are able to do two things:
 - Choose a partition to mount
 - Quit the program
 
-To choose the action to perform, just type `1` (to mount a partition) or `E` (to exit WinEFIMounter) and then hit Enter.
+To choose the action to perform, just type <kbd>1</kbd> (to mount a partition) or <kbd>E</kbd> (to exit WinEFIMounter) and then hit Enter.
 
-When you want to mount a partition, you have to press `1` at the main menu. You'll get to the point where you need to select the drive and the partition to mount.
+When you want to mount a partition, you have to press <kbd>1</kbd> at the main menu. You'll get to the point where you need to select the drive and the partition to mount.
 ![Screenshot 2023-07-16 202956](https://github.com/franzageek/WinEFIMounter/assets/88248950/cdceb712-3afd-465b-a8f7-43a524d12931)
 First, locate in the list the drive you want to mount the EFI partition of, then type its number and hit Enter.
 
@@ -64,7 +64,7 @@ First, locate in the list the drive you want to mount the EFI partition of, then
 Do the same thing for the EFI partition you need to mount.
 
 ![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/d1109eef-0d9f-438a-a8bb-ffc472fbc02a)
-Once you selected your drive and EFI partition, type `M` to confirm. The mounting process will begin instantly.
+Once you selected your drive and EFI partition, type <kbd>M</kbd> to confirm. The mounting process will begin instantly.
 
 ![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/2735dfff-0ed2-4507-85b4-90fc38c38802)
 Congrats! Your EFI Partition is now mounted to "`Z:\`" (or, if it's taken, to another letter at the very end of the alphabet).
@@ -88,11 +88,11 @@ Now, you're able to do three more things:
 
 
 ![Screenshot 2023-07-17 050930](https://github.com/franzageek/WinEFIMounter/assets/88248950/abcda3ec-626e-4e89-90c3-93de454e2fda)
-Option `1` will simply open a Command Prompt window in the EFI partition directory.
+Option <kbd>1</kbd> will simply open a Command Prompt window in the EFI partition directory.
 
 
 ![Screenshot 2023-07-17 051300](https://github.com/franzageek/WinEFIMounter/assets/88248950/53ba8760-9fce-4379-9eef-5312d49fa8e3)
-Option `2` will show this message. To start cloning, type `C` and hit Enter.
+Option <kbd>2</kbd> will show this message. To start cloning, type `C` and hit Enter.
 
 
 ![Screenshot 2023-07-17 051401](https://github.com/franzageek/WinEFIMounter/assets/88248950/87d57928-cb4f-4fa9-93d5-6a3cdd69cd65)
