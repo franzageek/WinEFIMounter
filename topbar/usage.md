@@ -48,9 +48,9 @@ Right after you start the program, you are able to do two things:
 - Choose a partition to mount
 - Quit the program
 
-To choose the action to perform, just type `1` (to mount a partition) or `E` (to exit WinEFIMounter) and then hit Enter.
+To choose the action to perform, just type <kbd>1</kbd> (to mount a partition) or <kbd>E</kbd> (to exit WinEFIMounter) and then hit Enter.
 
-When you want to mount a partition, you have to press `1` at the main menu. You'll get to the point where you need to select the drive and the partition to mount.
+When you want to mount a partition, you have to press <kbd>1</kbd> at the main menu. You'll get to the point where you need to select the drive and the partition to mount.
 ![Screenshot 2023-07-16 202956](https://github.com/franzageek/WinEFIMounter/assets/88248950/cdceb712-3afd-465b-a8f7-43a524d12931)
 First, locate in the list the drive you want to mount the EFI partition of, then type its number and hit Enter.
 
@@ -59,7 +59,7 @@ First, locate in the list the drive you want to mount the EFI partition of, then
 Do the same thing for the EFI partition you need to mount.
 
 ![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/d1109eef-0d9f-438a-a8bb-ffc472fbc02a)
-Once you selected your drive and EFI partition, type `M` to confirm. The mounting process will begin instantly.
+Once you selected your drive and EFI partition, type <kbd>M</kbd> to confirm. The mounting process will begin instantly.
 
 ![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/2735dfff-0ed2-4507-85b4-90fc38c38802)
 Congrats! Your EFI Partition is now mounted to "`Z:\`" (or, if it's taken, to another letter at the very end of the alphabet).
@@ -83,15 +83,15 @@ Now, you're able to do three more things:
 
 
 ![Screenshot 2023-07-17 050930](https://github.com/franzageek/WinEFIMounter/assets/88248950/abcda3ec-626e-4e89-90c3-93de454e2fda)
-Option `1` will simply open a Command Prompt window in the EFI partition directory.
+Option <kbd>1</kbd> will simply open a Command Prompt window in the EFI partition directory.
 
 
 ![Screenshot 2023-07-17 051300](https://github.com/franzageek/WinEFIMounter/assets/88248950/53ba8760-9fce-4379-9eef-5312d49fa8e3)
-Option `2` will show this message. To start cloning, type `C` and hit Enter.
+Option <kbd>2</kbd> will show this message. To start cloning, type <kbd>C</kbd> and hit Enter.
 
 
 ![Screenshot 2023-07-17 051401](https://github.com/franzageek/WinEFIMounter/assets/88248950/87d57928-cb4f-4fa9-93d5-6a3cdd69cd65)
-After you typed `C`, all the files in your EFI folder get copied in "`C:\EFIPartition`". WinEFIMounter will automatically open an Explorer window in that directory for you.
+After you typed <kbd>C</kbd>, all the files in your EFI folder get copied in "`C:\EFIPartition`". WinEFIMounter will automatically open an Explorer window in that directory for you.
 
 You can now access your files like you normally would, and you won't even notice the fact that you're actually outside of your EFI partition.
 
@@ -100,7 +100,7 @@ But how can you make the changes made to your files in "`C:\EFIPartition`" effec
 
 Well, there's a simple yet slightly complex solution, but we'll talk about it later in this ReadMe.
 
-Just press `F` and hit Enter to start flushing the updated files back to the EFI.
+Just press <kbd>F</kbd> and hit Enter to start flushing the updated files back to the EFI.
 
 
 ![Screenshot 2023-07-17 053408](https://github.com/franzageek/WinEFIMounter/assets/88248950/76cb80af-8a14-47e4-b088-da2c0e5bcf7c)
@@ -110,7 +110,7 @@ The files you modified are now in your EFI partition, and you didn't have to wor
 
 
 ![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/21835753-d725-4e1a-92d0-e01d97543da3)
-Choosing Option `3` in the main menu will result in this screen. Type `U` and press Enter to continue.
+Choosing Option <kbd>3</kbd> in the main menu will result in this screen. Type <kbd>U</kbd> and press Enter to continue.
 > Before unmounting your EFI Partition, make sure you don't have any open file with unsaved work inside of it. Always save your work and close any file that belongs to the EFI partition before unmounting it.
 
 
@@ -119,7 +119,7 @@ And here you have your success screen. Pressing any key will show again the mini
 
 
 ![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/5ae3f0b3-ed03-4852-b068-f406ec46bbb9)
-Choosing Option `E` from the main menu while your partition is still mounted will take you to this warning screen, which basically reminds you to unmount your EFI partition before you leave WinEFIMounter.
+Choosing Option <kbd>E</kbd> from the main menu while your partition is still mounted will take you to this warning screen, which basically reminds you to unmount your EFI partition before you leave WinEFIMounter.
 
 > If you didn't care of the message and closed the window, the next time you will have to launch WinEFIMounter you would have to start again from mounting the partition (which is already mounted), resulting in a general mess where the `Z` letter is taken by the already mounted EFI partition and WinEFIMounter is forced to assign the `Y` letter to a partition which is already mounted to "`Z:\`" and when unmounting it WinEFIMounter will unmount a non-existent partition....... not a good situation to be in, after all.
 > > TL;DR: Just unmount your partition as you leave WinEFIMounter.
