@@ -98,7 +98,7 @@ You can now access your files like you normally would, and you won't even notice
 But how can you make the changes made to your files in "`C:\EFIPartition`" effective on the EFI partition itself?
 
 
-Well, there's a simple yet slightly complex solution, but we'll talk about it later in this ReadMe.
+Well, there's a simple yet slightly complex solution, but we'll cover it later on.
 
 Just press <kbd>F</kbd> and hit Enter to start flushing the updated files back to the EFI.
 
