@@ -469,7 +469,7 @@ namespace WinEFIMounter
                 CreateNoWindow = true
             };
             Process? __p_ = Process.Start(__psi_);
-            __p_.WaitForExit();
+            __p_?.WaitForExit();
             int flexcode = __p_.ExitCode;
             if (flexcode == 0)
             {
@@ -494,7 +494,7 @@ namespace WinEFIMounter
                 Console.WriteLine();
                 cpf = true;
                 Console.Title = "WinEFIMounter";
-                Console.WriteLine($" [ERROR] Something went wrong while flushing the files back to the EFI partition ({flexcode}).");
+                Console.WriteLine($" [ERROR] Something went wrong while flushing files back to the EFI partition ({flexcode}).");
                 Console.WriteLine($"         The files you modified will remain in \"C:\\EFIPartition\\\" so that no work is lost.\n         Aborting.");
                 Console.WriteLine();
                 Console.ResetColor();
