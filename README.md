@@ -1,3 +1,7 @@
+![](https://img.shields.io/github/license/franzageek/WinEFIMounter)
+![](https://img.shields.io/github/v/release/franzageek/WinEFIMounter)
+![](https://img.shields.io/github/downloads/franzageek/WinEFIMounter/total)
+
 # WinEFIMounter
 Mount your Hackintosh EFI partition from Windows. 
 
