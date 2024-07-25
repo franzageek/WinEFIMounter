@@ -25,7 +25,7 @@ WinEFIMounter allows you to:
 
 It can currently perform very basic actions, but it will get more and more advanced later in time.
 
-### Used tools
+### Required tools
 To get its job done, WinEFIMounter uses a bunch of Windows' **preinstalled tools**, such as:
   - DiskPart
     > It is used to mount & unmount the EFI partition. 
@@ -135,7 +135,7 @@ Choosing Option <kbd>E</kbd> from the main menu while your partition is still mo
 
 ## Problems
 ### Cannot mount an external EFI partition
-As 1dolla pointed out, when trying to mount an EFI partition located on an external drive, WinEFIMounter will fail to assign it the `Z` letter, and the reason is just a `diskpart`'s skill issue. There is however a PowerShell command that will allow you to assign it a letter, which you can find [here](https://github.com/franzageek/WinEFIMounter/issues/3). I'm terribly sorry for the inconvenience, I just didn't think WinEFIMounter could ever gain this much popularity, so back when I was coding it, I put together something that _should_ have worked without concerns, without doing much testing & without stressing too much about possible bugs. 
+As 1dolla pointed out, when trying to mount the EFI partition located on your install USB, WinEFIMounter will fail to assign it the `Z` letter, and the reason is just a `diskpart`'s skill issue. There is however a PowerShell command that will allow you to assign it a letter, which you can find here: https://github.com/franzageek/WinEFIMounter/issues/3. There are a few side effects, such as the fact that the EFI will be mounted every single time Windows detects it is unmounted. I'm terribly sorry for the inconvenience, I just didn't think WinEFIMounter could ever gain this much popularity, so back when I was coding it, I put together something that _should_ have worked without concerns, without doing much testing & without stressing too much about possible bugs. 
 This is only temporary, I will actually provide a C++ update for WinEFIMounter next month, which is expected to be much more stable & robust than this crappy C# script.
 Thanks to everyone for letting me know about the bugs, can't wait to fix them tbh, will get to it in a couple of weeks.
 
