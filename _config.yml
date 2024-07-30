@@ -4,7 +4,7 @@ description: Mount your Hackintosh EFI from Windows
 header_pages:
   - topbar/introduction.md
   - topbar/usage.md
-  - topbar/errors.md
+  - topbar/problems.md
   - topbar/credits.md
   - topbar/downloads.md
  
