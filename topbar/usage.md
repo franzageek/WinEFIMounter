@@ -109,7 +109,7 @@ The files you modified are now in your EFI partition, without the need for you t
 
 ![](https://github.com/franzageek/WinEFIMounter/assets/88248950/21835753-d725-4e1a-92d0-e01d97543da3)
 <br>Choosing Option <kbd>3</kbd> in the main menu will result in this screen. Type <kbd>U</kbd> and press Enter to continue.
-> [!IMPORTANT]
+
 > Before unmounting your EFI Partition, make sure you don't have any open file with unsaved work inside of it. Always save your work and close any file that belongs to the EFI partition before unmounting it.
 
 
