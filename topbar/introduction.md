@@ -4,7 +4,7 @@ title:  Introduction
 permalink: /introduction/
 ---
 
-WinEFIMounter is a simple and standalone C# program that makes it easy to **mount the EFI partition** on your Hackintosh drive **directly from Windows**. 
+WinEFIMounter is a simple and standalone C++ program that makes it easy to **mount the EFI partition** on your Hackintosh drive **directly from Windows**. 
 
 It could be used to mount any EFI partition (also Windows and Linux ones) from a Windows environment, but its main purpose is to let you mount **your Hackintosh EFI partition without having to boot it**. 
 
