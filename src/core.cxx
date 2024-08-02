@@ -24,6 +24,11 @@ bool check_if_already_mounted(u8& diskNumber, u8& partNumber, char& mntLetter)
     return false;
 }
 
+void del_temp_files(const std::string& listPath)
+{
+    if (fs::exists(listPath)) fs::remove_all(listPath);
+}
+
 bool efi_is_already_mounted(u8& diskNumber, u8& partNumber, const char& mntLetter)
 {
     std::ifstream cacheFile(std::string(1, mntLetter).append(":\\.winefimounter"));
