@@ -21,6 +21,7 @@ extern std::string currentLine;
 
 bool check_if_admin(void);
 bool check_if_already_mounted(u8& diskNumber, u8& partNumber, char& mntLetter);
+void del_temp_files(const std::string& listPath);
 bool efi_is_already_mounted(u8& diskNumber, u8& partNumber, const char& mntLetter);
 
 #endif // CORE_HXX
