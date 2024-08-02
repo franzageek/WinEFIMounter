@@ -11,7 +11,7 @@ Mount your Hackintosh EFI partition from Windows.
 [**Introduction**](#introduction) - [**Usage**](#usage) - [**Problems**](#problems) - [**Credits**](#credits)
 
 ## Introduction
-WinEFIMounter is a simple and standalone C# program that makes it easy to **mount the EFI partition** on your Hackintosh drive **directly from Windows**. It could be used to mount any EFI partition (also Windows and Linux ones) from a Windows environment, but its main purpose is to let you mount **your Hackintosh EFI partition without having to boot it**. It's hard to believe but in reality _**there isn't any simple software**_ such as [Corpnewt](https://github.com/corpnewt)'s [**MountEFI**](https://github.com/corpnewt/MountEFI) (for Mac) that lets you do it from Windows: you would have to download **third-party programs**. You might as well try WinEFIMounter instead: it's light and easy to use!
+WinEFIMounter is a simple and standalone C++ program that makes it easy to **mount the EFI partition** on your Hackintosh drive **directly from Windows**. It could be used to mount any EFI partition (also Windows and Linux ones) from a Windows environment, but its main purpose is to let you mount **your Hackintosh EFI partition without having to boot it**. It's hard to believe but in reality _**there isn't any simple software**_ such as [Corpnewt](https://github.com/corpnewt)'s [**MountEFI**](https://github.com/corpnewt/MountEFI) (for Mac) that lets you do it from Windows: you would have to download **third-party programs**. You might as well try WinEFIMounter instead: it's light and easy to use!
 
 
 ## Usage
@@ -135,12 +135,11 @@ Choosing Option <kbd>E</kbd> from the main menu while your partition is still mo
 > > TL;DR: Just unmount your partition as you leave WinEFIMounter.
 
 ## Problems
-### Cannot mount an external EFI partition
-As 1dolla pointed out, when trying to mount the EFI partition located on your install USB, WinEFIMounter will fail to assign it the `Z` letter, and the reason is just a `diskpart`'s skill issue. There is however a PowerShell command that will allow you to assign it a letter, which you can find here: [#3](https://github.com/franzageek/WinEFIMounter/issues/3). There are a few side effects, such as the fact that the EFI will be mounted every single time Windows detects it is unmounted. I'm terribly sorry for the inconvenience, I just didn't think WinEFIMounter could ever gain this much popularity, so back when I was coding it, I put together something that _should_ have worked without concerns, without doing much testing & without stressing too much about possible bugs. 
-This is only temporary, I will actually provide a C++ update for WinEFIMounter next month, which is expected to be much more stable & robust than this crappy C# script.
-Thanks to everyone for letting me know about the bugs, can't wait to fix them tbh, will get to it in a couple of weeks.
+### v1.0.1: Cannot mount an external EFI partition
+As 1dolla pointed out, when trying to mount the EFI partition located on your install USB, WinEFIMounter will fail to assign it the `Z` letter, and the reason is just a `diskpart`'s skill issue. There is however a PowerShell command that will allow you to assign it a letter, which you can find here: [#3](https://github.com/franzageek/WinEFIMounter/issues/3). There are a few side effects, such as the fact that the EFI will be mounted every single time Windows detects it is unmounted. <br>
+I've released a C++ update (v1.0.2) that fixes this bug.
 
-### Flushing procedure failed
+### v1.0.0: Flushing procedure failed
 WinEFIMounter is a simple script. If you scroll through the code, you will see that it's **just about 400 lines long**, and the Mounting and Unmounting parts of the program are literally made of **3 lines of code** each. And those are DiskPart commands!
 
 Other parts of WinEFIMounter are really simple too, such as the "Open partition in Command prompt" option (which literally consists in the `start cmd /k Z:` command) or the "Exit" option (it's all about showing the credits screen and resetting all the variables).
