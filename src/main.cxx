@@ -27,6 +27,7 @@ int main()
         exit(1);
     }
     std::string listPath = std::string(tempPath) + "dpout.txt";
+    del_temp_files(listPath);
     system("@mode 120, 30");
     SetConsoleTextAttribute(hConsole, COLOR_GREY);
     std::cout << std::endl << "   #####################################################" << std::endl;
