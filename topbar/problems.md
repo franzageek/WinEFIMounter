@@ -4,12 +4,11 @@ title:  Problems
 permalink: /problems/
 ---
 
-### Cannot mount an external EFI partition
-As 1dolla pointed out, when trying to mount the EFI partition located on your install USB, WinEFIMounter will fail to assign it the `Z` letter, and the reason is just a `diskpart`'s skill issue. There is however a PowerShell command that will allow you to assign it a letter, which you can find here: https://github.com/franzageek/WinEFIMounter/issues/3. There are a few side effects, such as the fact that the EFI will be mounted every single time Windows detects it is unmounted. I'm terribly sorry for the inconvenience, I just didn't think WinEFIMounter could ever gain this much popularity, so back when I was coding it, I put together something that _should_ have worked without concerns, without doing much testing & without stressing too much about possible bugs. 
-This is only temporary, I will actually provide a C++ update for WinEFIMounter next month, which is expected to be much more stable & robust than this crappy C# thing.
-Thanks to everyone for letting me know about the bugs, can't wait to fix them tbh, will get to it in a couple of weeks.
+### v1.0.1: Cannot mount an external EFI partition
+As 1dolla pointed out, when trying to mount the EFI partition located on your install USB, WinEFIMounter will fail to assign it the `Z` letter, and the reason is just a `diskpart`'s skill issue. There is however a PowerShell command that will allow you to assign it a letter, which you can find here: https://github.com/franzageek/WinEFIMounter/issues/3. There are a few side effects, such as the fact that the EFI will be mounted every single time Windows detects it is unmounted.<br>
+I've released a C++ update (v1.0.2) that fixes this issue.
 
-### Flushing procedure failed
+### v1.0.0: Flushing procedure failed
 WinEFIMounter is a simple program. If you scroll through the code, you will see that it's **just about 400 lines long**, and the Mounting and Unmounting parts of the program are literally made of **3 lines of code** each. And those are DiskPart commands!
 
 Other parts of WinEFIMounter are really simple too, such as the "Open partition in Command prompt" option (which literally consists in the `start cmd /k Z:` command) or the "Exit" option (it's all about showing the credits screen and resetting all the variables).
