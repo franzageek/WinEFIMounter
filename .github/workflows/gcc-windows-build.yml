@@ -1,0 +1,32 @@
+name: GCC Windows Build
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Install MSYS2
+      uses: msys2/setup-msys2@v2
+      with:
+        msystem: MINGW64
+        install: >-
+          mingw-w64-x86_64-gcc
+          mingw-w64-x86_64-make
+
+    - name: Add MSYS2 to PATH
+      run: echo "::add-path::C:\msys64\mingw64\bin"
+
+    - name: Compile
+      run: |
+        g++ src/*.cxx -o bin/WinEFIMounter.exe -Os -std=c++23 --static -Wall -Wextra -pedantic
