@@ -27,9 +27,6 @@ jobs:
     - name: Add MSYS2 to PATH
       run: echo "C:\msys64\mingw64\bin" >> $GITHUB_PATH
 
-    - name: Create bin/ directory
-      run: mkdir bin
-
     - name: Compile
       run: |
         g++ src/*.cxx -o bin/WinEFIMounter.exe -Os -std=c++23 -Wall -Wextra -pedantic
