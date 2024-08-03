@@ -29,5 +29,4 @@ jobs:
 
     - name: Compile
       run: |
-        g++ src/*.cxx -o bin/WinEFIMounter-static.exe -Os -std=c++23 --static -Wall -Wextra -pedantic
         g++ src/*.cxx -o bin/WinEFIMounter.exe -Os -std=c++23 -Wall -Wextra -pedantic
