@@ -3,6 +3,8 @@ layout: page
 title:  WinEFIMounter
 permalink: /
 ---
+[![](https://img.shields.io/github/license/franzageek/WinEFIMounter)](https://github.com/franzageek/WinEFIMounter/LICENSE)
+
 [a.k.a. MountEFI for Windows]
 ![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/60941873-ea53-4427-8e8b-1aac6605c433)
 Mount your Hackintosh EFI partition from Windows. 
