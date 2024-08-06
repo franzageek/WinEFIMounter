@@ -24,7 +24,7 @@ WinEFIMounter allows you to:
   - Via the Command Prompt
   - Via the File Explorer
 - Unmount the EFI partition
-> i tell you no shit
+  > i tell you no shit
 
 It can currently perform very basic actions, but it will get more and more advanced later in time.
 
