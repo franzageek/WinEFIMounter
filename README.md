@@ -24,12 +24,13 @@ WinEFIMounter allows you to:
   - Via the Command Prompt
   - Via the File Explorer
 - Unmount the EFI partition
+> i tell you no shit
 
 It can currently perform very basic actions, but it will get more and more advanced later in time.
 
 ### Required tools
 To get its job done, WinEFIMounter uses a bunch of Windows' **preinstalled tools**, such as:
-  - DiskPart
+  - PowerShell
     > It is used to mount & unmount the EFI partition. 
   - XCopy
     > Used to clone the entire EFI partition to the "C:\EFIPartition" directory. This is done to make the EFI partition accessible by GUI as it would be impossible to access it just by opening the partition in File Explorer (due to admin rights-related reasons).
@@ -38,11 +39,11 @@ To get its job done, WinEFIMounter uses a bunch of Windows' **preinstalled tools
 WinEFIMounter is the perfect solution for a variety of problems.
 You can use it to:
 - Fix your Hackintosh if it's not booting and you have no idea how to access the EFI folder
-  > If you fuck up with your kexts, SSDTs or drivers (like I did) you will likely need a quick way to fix them to make your Hackintosh ready again.
+  > If you fuck up with your kexts, SSDTs or drivers (like I did) you will likely need a quick way to fix them in order to make your Hackintosh ready again.
 - Clean up your EFI
   > If you've ever done Hackintoshing before, you'll be familiar with those annoying logs left by OpenCore every time you boot your Hackintosh. With WinEFIMounter you can get rid of them in under than 1 minute!
 - Add files to your EFI
-  > It's pretty similar to Point 1, both points focus on the ease of access to your EFI folder while on a Windows environment.
+  > It's pretty similar to Point 0, both points focus on the ease of access to your EFI folder while on a Windows environment.
 - Manage your Windows or Linux EFI folder
   > That's right, WinEFIMounter can mount all kinds of EFI partitions you can think of!
   > The program might often refer to the EFI partition as "the Hackintosh EFI partition" or to the drive as "your Hackintosh disk", but you can use it for non-Hackintosh systems too.
@@ -170,8 +171,6 @@ I'm planning to add the same `ERRORLEVEL` check when cloning the files from the 
 
 
 ## Credits
-The main reason I decided to create this program for is the fact that there isn't ANY MountEFI VERSION FOR WINDOWS! I was trying to repair my Hackintosh EFI I've _accidentally_ fucked up with, and I was negatively surprised when I learned that there wasn't any MountEFI version for Windows. So I did it my way, by playing around with Diskpart. But the procedure was long and boring, so I created a script that could automatically mount the partition, and then slightly modified it to make WinEFIMounter.
+The main reason I decided to create this program for is because in reality there isn't ANY MountEFI VERSION FOR WINDOWS! I was trying to repair my Hackintosh EFI I had _accidentally_ fucked up with, and I was negatively surprised when I learned that there wasn't any MountEFI version for Windows. So I did it my way, by playing around with Diskpart. But the procedure was long and boring, so I created a script that could automatically mount the partition, and then slightly modified it to make the first ever version of WinEFIMounter.
 
-I hope that with WinEFIMounter you can save the time you would have spent downloading a 3rd-party program.
-
-I hope you find it useful.
+I hope that by using WinEFIMounter you can save the time you would have spent on downloading a 3rd-party program.
