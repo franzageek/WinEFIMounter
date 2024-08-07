@@ -16,7 +16,7 @@ It can currently perform very basic actions, but it will get more and more advan
 
 ### Required tools
 To get its job done, WinEFIMounter uses a bunch of Windows' **preinstalled tools**, such as:
-  - DiskPart
+  - PowerShell
     > It is used to mount & unmount the EFI partition. 
   - XCopy
     > Used to clone the entire EFI partition to the "C:\EFIPartition" directory. This is done to make the EFI partition accessible by GUI as it would be impossible to access it just by opening the partition in File Explorer (due to admin rights-related reasons).
