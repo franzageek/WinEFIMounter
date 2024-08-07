@@ -13,7 +13,7 @@ permalink: /
 Mount your Hackintosh EFI partition from Windows. 
 
 
-## [**Download now**](https://franzageek.github.io/WinEFIMounter/downloads)
+## [**Download**](https://franzageek.github.io/WinEFIMounter/downloads)
 
 
 
