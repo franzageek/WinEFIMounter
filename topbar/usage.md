@@ -29,7 +29,7 @@ You can use it to:
 - Clean up your EFI
   > If you've ever done Hackintoshing before, you'll be familiar with those annoying logs left by OpenCore every time you boot your Hackintosh. With WinEFIMounter you can get rid of them in under than 1 minute!
 - Add files to your EFI
-  > It's pretty similar to Point 1, both points focus on the ease of access to your EFI folder while on a Windows environment.
+  > It's pretty similar to Point 0, both points focus on the ease of access to your EFI folder while on a Windows environment.
 - Manage your Windows or Linux EFI folder
   > That's right, WinEFIMounter can mount all kinds of EFI partitions you can think of!
   > The program might often refer to the EFI partition as "the Hackintosh EFI partition" or to the drive as "your Hackintosh disk", but you can use it for non-Hackintosh systems too.
