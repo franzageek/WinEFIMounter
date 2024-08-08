@@ -5,7 +5,7 @@ permalink: /problems/
 ---
 
 ### v1.0.1: Cannot mount an external EFI partition
-As 1dolla pointed out, when trying to mount the EFI partition located on your install USB, WinEFIMounter will fail to assign it the `Z` letter, and the reason is just a `diskpart`'s skill issue. There is however a PowerShell command that will allow you to assign it a letter, which you can find here: https://github.com/franzageek/WinEFIMounter/issues/3. There are a few side effects, such as the fact that the EFI will be mounted every single time Windows detects it is unmounted.<br>
+As 1dolla pointed out, when trying to mount the EFI partition located on your install USB, WinEFIMounter will fail to assign it the `Z` letter, and the reason is just a `diskpart`'s skill issue. There is however a PowerShell command that will allow you to assign it a letter, which you can find here: [#3](https://github.com/franzageek/WinEFIMounter/issues/3). There are a few side effects, such as the fact that the EFI will be mounted every single time Windows detects it is unmounted.<br>
 I've released a C++ update (v1.0.2) that fixes this issue.
 
 ### v1.0.0: Flushing procedure failed
