@@ -12,52 +12,52 @@ Mount your Hackintosh EFI partition from Windows.
 [**Introduction**](#introduction) - [**Usage**](#usage) - [**Problems**](#problems) - [**Credits**](#credits)
 
 ## Introduction
-WinEFIMounter is a simple and standalone C++ program that makes it easy to **mount the EFI partition** on your Hackintosh drive **directly from Windows**. It could be used to mount any EFI partition (also Windows and Linux ones) from a Windows environment, but its main purpose is to let you mount **your Hackintosh EFI partition without having to boot it**. It's hard to believe but in reality _**there isn't any simple software**_ such as [Corpnewt](https://github.com/corpnewt)'s [**MountEFI**](https://github.com/corpnewt/MountEFI) (for Mac) that lets you do it from Windows: you would have to download **third-party programs**. You might as well try WinEFIMounter instead: it's light and easy to use!
+WinEFIMounter is a simple, standalone C++ program designed to make mounting the EFI partition on your Hackintosh drive **directly from Windows** easy. While it can mount any EFI partition (including those from Windows and Linux), its primary purpose is to allow you to access your Hackintosh EFI without having to boot into macOS. It's hard to believe but in reality _**there isn't any simple software**_ such as [Corpnewt](https://github.com/corpnewt)'s [**MountEFI**](https://github.com/corpnewt/MountEFI) (for Mac) that lets you do it from Windows: you would have to download **third-party programs**. You might as well try WinEFIMounter instead: it's lightweight and easy to use!
 
 
 ## Usage
 ### Supported actions
-WinEFIMounter is very easy to use. It's got a **simple CLI** with numbers and menus that are really easy to navigate.
+WinEFIMounter is very easy to use. It features a **simple CLI** that makes everything very straightforward.
+
 WinEFIMounter allows you to:
 - Mount an EFI partiton
-- Browse its content
-  - Via the Command Prompt
-  - Via the File Explorer
+- Browse the content of the partition:
+  - Via Command Prompt
+  - Via File Explorer
 - Unmount the EFI partition
   > i tell you no shit
 
 It can currently perform very basic actions, but it will get more and more advanced later in time.
 
 ### Required tools
-To get its job done, WinEFIMounter uses a bunch of Windows' **preinstalled tools**, such as:
+WinEFIMounter relies on a bunch of **pre-installed Windows tools**, such as:
   - PowerShell
-    > It is used to mount & unmount the EFI partition. 
+    > Used for mounting and unmounting the EFI partition.
   - XCopy
     > Used to clone the entire EFI partition to the "C:\EFIPartition" directory. This is done to make the EFI partition accessible by GUI as it would be impossible to access it just by opening the partition in File Explorer (due to admin rights-related reasons).
 
 ### Use cases
-WinEFIMounter is the perfect solution for a variety of problems.
-You can use it to:
-- Fix your Hackintosh if it's not booting and you have no idea how to access the EFI folder
-  > If you fuck up with your kexts, SSDTs or drivers (like I did) you will likely need a quick way to fix them in order to make your Hackintosh ready again.
-- Clean up your EFI
-  > If you've ever done Hackintoshing before, you'll be familiar with those annoying logs left by OpenCore every time you boot your Hackintosh. With WinEFIMounter you can get rid of them in under than 1 minute!
-- Add files to your EFI
-  > It's pretty similar to Point 0, both points focus on the ease of access to your EFI folder while on a Windows environment.
-- Manage your Windows or Linux EFI folder
+WinEFIMounter is the perfect solution for a variety of problems, including:
+
+- Fixing your Hackintosh if it's not booting and you have no way to access the EFI partition
+  > If you fuck up with your kexts, SSDTs or drivers (like I did) you will likely need a quick way to fix them in order to make your Hackintosh boot again.
+- Cleaning up your EFI
+  > OpenCore leaves log files all over your EFI partition every time you boot macOS. WinEFIMounter allows you to get rid of them in the blink of an eye.
+- Adding files to your EFI
+  > Like fixing issues, accessing your EFI from Windows with WinEFIMounter is now easier than ever before.
+- Managing Windows or Linux EFI partitions
   > That's right, WinEFIMounter can mount all kinds of EFI partitions you can think of!
-  > The program might often refer to the EFI partition as "the Hackintosh EFI partition" or to the drive as "your Hackintosh disk", but you can use it for non-Hackintosh systems too.
+  > The program might often refer to the EFI partition as "the Hackintosh EFI partition" or to the drive as "your Hackintosh disk", but you can use it for other ESPs too.
 
 ### Application behavior
-When you start WinEFIMounter, you are welcomed by a simple introduction window.
+When you start WinEFIMounter, a welcome screen greets you:
 ![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/ef66e019-d72a-46d3-a22a-13cb6935fb7f)
-To skip it, just press any key.
+Press any key to skip the intro and move to the main menu:
 
 
 
 ![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/1ad744f3-bfa5-45a5-91ac-a7d283849d43)
-After it, you get brought to the main menu.
-Right after you start the program, you are able to do two things:
+The main menu allows you to:
 - Choose a partition to mount
 - Quit the program
 
@@ -86,12 +86,10 @@ Anyway, just press any key to skip it.
 
 
 ![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/348fdc42-7341-49ae-a7b5-f39bb04ba5ac)
-And here we go, once the partition is mounted you get access to the entire set of actions WinEFIMounter is capable of doing.
-Now, you're able to do three more things:
-- Open the EFI partition inside of a Command Prompt
-- Open it in the File Explorer
-- Unmount the partition
-  > Perform this action once you're about to leave WinEFIMounter.
+Once the EFI partition is mounted, you can:
+- Browse the partition via Command Prompt
+- Access a cloned version of the EFI partition in File Explorer
+- Unmount the partition when you're done
 
 
 ![Screenshot 2023-07-17 050930](https://github.com/franzageek/WinEFIMounter/assets/88248950/abcda3ec-626e-4e89-90c3-93de454e2fda)
@@ -116,7 +114,6 @@ Just press <kbd>F</kbd> and hit Enter to start flushing the updated files back t
 
 
 ![Screenshot 2023-07-17 053408](https://github.com/franzageek/WinEFIMounter/assets/88248950/76cb80af-8a14-47e4-b088-da2c0e5bcf7c)
-And you will see pretty much the same screen you saw when cloning the EFI partition, except that now every file you see is coming from "`C:\EFIPartition`" and it's heading towards your EFI partition.
 
 The files you modified are now in your EFI partition, without the need for you to worry about anything!
 
@@ -133,21 +130,17 @@ And here you have your success screen. Pressing a key will show the first main m
 ![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/5ae3f0b3-ed03-4852-b068-f406ec46bbb9)
 Choosing Option <kbd>E</kbd> from the main menu while your partition is still mounted will take you to this warning screen, which basically reminds you to unmount your EFI partition before you leave WinEFIMounter.
 
-> If you didn't care of the message and closed the window, the next time to launched WinEFIMounter you would have to start again from mounting the partition (which is already mounted), resulting in a general mess where the `Z` letter is taken by the already mounted EFI partition and WinEFIMounter is forced to assign the `Y` letter to a partition which is already mounted to "`Z:\`" and when unmounting it WinEFIMounter will unmount a non-existent partition....... not really the way we wanna live our life, after all.
+> If you didn't care of the message and closed the window, the next time to launched WinEFIMounter you would have to start again from mounting the partition (which is already mounted), resulting in a general mess where the `Z` letter is taken by the already mounted EFI partition and WinEFIMounter is forced to assign the `Y` letter to a partition which is already mounted to "`Z:\`" and when unmounting it WinEFIMounter will unmount a non-existent partition... a bit annoying if you asked me.
 > > TL;DR: Just unmount your partition as you leave WinEFIMounter. <br>
 > > **NOTE:** v1.0.2 is capable of detecting already mounted EFI partitions at startup. This should not be that much of a concern anymore.
 
 ## Problems
 ### v1.0.1: Cannot mount an external EFI partition
-As 1dolla pointed out, when trying to mount the EFI partition located on your install USB, WinEFIMounter will fail to assign it the `Z` letter, and the reason is just a `diskpart`'s skill issue. There is however a PowerShell command that will allow you to assign it a letter, which you can find here: [#3](https://github.com/franzageek/WinEFIMounter/issues/3). There are a few side effects, such as the fact that the EFI will be mounted every single time Windows detects it is unmounted. <br>
+As noted by 1dolla, WinEFIMounter has trouble assigning a letter to EFI partitions on external USB drives. There is however a PowerShell command that will allow you to assign it a letter, which you can find here: [#3](https://github.com/franzageek/WinEFIMounter/issues/3). There are a few side effects though, such as the fact that the EFI will be mounted every single time Windows detects it is unmounted. <br>
 I've released a C++ update (v1.0.2) that fixes this bug.
 
 ### v1.0.0: Flushing procedure failed
-WinEFIMounter is a simple script. If you scroll through the code, you will see that it's **just about 400 lines long**, and the Mounting and Unmounting parts of the program are literally made of **3 lines of code** each. And those are DiskPart commands!
-
-Other parts of WinEFIMounter are really simple too, such as the "Open partition in Command prompt" option (which literally consists in the `start cmd /k Z:` command) or the "Exit" option (it's all about showing the credits screen and resetting all the variables).
-
-The only part that can appear a little more complex is the cloning part. You see, a lot of stuff is involved there.
+WinEFIMounter is a simple script of about 400 lines of code, with basic mounting and unmounting handled by `DiskPart`. The most complex part is the cloning and flushing process, which copies files between the EFI partition and "`C:\EFIPartition\`". 
 
 This is the step-by-step description of what happens at the moment of cloning:
 
@@ -172,6 +165,6 @@ I'm planning to add the same `ERRORLEVEL` check when cloning the files from the 
 
 
 ## Credits
-The main reason I decided to start this project for is that in reality there isn't ANY MountEFI VERSION FOR WINDOWS! I was trying to repair my Hackintosh EFI I had _accidentally_ fucked up with, and I was negatively surprised when I learned that there wasn't any MountEFI version for Windows. So I did it my way, by playing around with Diskpart. But the procedure was long and boring, so I created a script that could automatically mount the partition, and then slightly modified it to make the first ever version of WinEFIMounter.
+This project began out of necessity when I needed to repair my Hackintosh EFI but couldn't find a version of MountEFI for Windows. I hope WinEFIMounter helps save you time and effort by offering a lightweight, easy-to-use alternative to third-party programs.
 
-I hope that by using WinEFIMounter you can save the time you would have spent on downloading a 3rd-party program.
+Thanks to all of ya that decided to star, clone & download WinEFIMounter! Really appreciate it <3
