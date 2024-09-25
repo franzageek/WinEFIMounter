@@ -59,6 +59,7 @@ Press any key to skip the intro and move to the main menu:
 
 
 ![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/1ad744f3-bfa5-45a5-91ac-a7d283849d43)
+
 The main menu allows you to:
 - Choose a partition to mount
 - Quit the program
