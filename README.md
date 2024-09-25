@@ -171,6 +171,6 @@ I'm planning to add the same `ERRORLEVEL` check when cloning the files from the 
 
 
 ## Credits
-The main reason I decided to create this program for is because in reality there isn't ANY MountEFI VERSION FOR WINDOWS! I was trying to repair my Hackintosh EFI I had _accidentally_ fucked up with, and I was negatively surprised when I learned that there wasn't any MountEFI version for Windows. So I did it my way, by playing around with Diskpart. But the procedure was long and boring, so I created a script that could automatically mount the partition, and then slightly modified it to make the first ever version of WinEFIMounter.
+The main reason I decided to start this project for is that in reality there isn't ANY MountEFI VERSION FOR WINDOWS! I was trying to repair my Hackintosh EFI I had _accidentally_ fucked up with, and I was negatively surprised when I learned that there wasn't any MountEFI version for Windows. So I did it my way, by playing around with Diskpart. But the procedure was long and boring, so I created a script that could automatically mount the partition, and then slightly modified it to make the first ever version of WinEFIMounter.
 
 I hope that by using WinEFIMounter you can save the time you would have spent on downloading a 3rd-party program.
