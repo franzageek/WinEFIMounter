@@ -5,15 +5,11 @@ permalink: /problems/
 ---
 
 ### v1.0.1: Cannot mount an external EFI partition
-As 1dolla pointed out, when trying to mount the EFI partition located on your install USB, WinEFIMounter will fail to assign it the `Z` letter, and the reason is just a `diskpart`'s skill issue. There is however a PowerShell command that will allow you to assign it a letter, which you can find here: [#3](https://github.com/franzageek/WinEFIMounter/issues/3). There are a few side effects, such as the fact that the EFI will be mounted every single time Windows detects it is unmounted.<br>
-I've released a C++ update (v1.0.2) that fixes this issue.
+As noted by 1dolla, WinEFIMounter has trouble assigning a letter to EFI partitions on external USB drives. There is however a PowerShell command that will allow you to assign it a letter, which you can find here: [#3](https://github.com/franzageek/WinEFIMounter/issues/3). There are a few side effects though, such as the fact that the EFI will be mounted every single time Windows detects it is unmounted. <br>
+I've released a C++ update (v1.0.2) that fixes this bug.
 
 ### v1.0.0: Flushing procedure failed
-WinEFIMounter is a simple program. If you scroll through the code, you will see that it's **just about 400 lines long**, and the Mounting and Unmounting parts of the program are literally made of **3 lines of code** each. And those are DiskPart commands!
-
-Other parts of WinEFIMounter are really simple too, such as the "Open partition in Command prompt" option (which literally consists in the `start cmd /k Z:` command) or the "Exit" option (it's all about showing the credits screen and resetting all the variables).
-
-The only part that can appear a little more complex is the cloning part. You see, a lot of stuff is involved there.
+WinEFIMounter is a simple script of about 400 lines of code, with basic mounting and unmounting handled by `DiskPart`. The most complex part is the cloning and flushing process, which copies files between the EFI partition and "`C:\EFIPartition\`". 
 
 This is the step-by-step description of what happens at the moment of cloning:
 
@@ -35,4 +31,3 @@ One of the cases this error is supposed to occur is if the destination directory
 > The way I managed to test the error (just to check if everything was working fine) is by mounting and cloning the partition using WinEFIMounter, then unmounting it from outside WinEFIMounter and start flushing back the files with WinEFIMounter. This will restult in `XCopy Error 4: Destination cannot be found`.
 
 I'm planning to add the same `ERRORLEVEL` check when cloning the files from the EFI to the destination folder, to check if the files have been successfully copied to the destination directory or if an error has occurred along the way. I'll do that in a future version.
-
