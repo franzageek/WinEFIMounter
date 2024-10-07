@@ -5,6 +5,8 @@
 ![](https://img.shields.io/endpoint?url=https%3A%2F%2Fhits.dwyl.com%2Ffranzageek%2FWinEFIMounter.json&label=total%20views%20(tracking...))
  
 # WinEFIMounter
+> [!NOTE]
+> I'm starting to work on a new version.<br>If you have any idea about a new feature you think I should implement, please [open a feature request](https://github.com/franzageek/WinEFIMounter/issues/new?assignees=&labels=&projects=&template=feature_request.md).<br>I'm looking for new features to implement that you guys might actually find useful.<br><br>
 Mount your Hackintosh EFI partition from Windows. 
 <br><br>
 ![winefimounter](https://github.com/user-attachments/assets/52d4fdc2-6cab-4a69-93d6-953b81f80d54)
