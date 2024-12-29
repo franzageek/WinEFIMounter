@@ -82,7 +82,7 @@ First, locate in the list the drive you want to mount the EFI partition of, then
 Do the same thing for the EFI partition you need to mount.
 
 ![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/d1109eef-0d9f-438a-a8bb-ffc472fbc02a)
-Once you selected your drive and EFI partition, type <kbd>M</kbd> to confirm. The mounting process will begin instantly.
+Once you've selected your drive and EFI partition, type <kbd>M</kbd> to confirm. The mounting process will begin instantly.
 
 ![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/2735dfff-0ed2-4507-85b4-90fc38c38802)
 Congrats! Your EFI Partition is now mounted to "`Z:\`" (or, if it's taken, to another letter at the very end of the alphabet).
@@ -97,7 +97,7 @@ Anyway, just press any key to skip it.
 
 
 ![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/348fdc42-7341-49ae-a7b5-f39bb04ba5ac)
-Once the EFI partition is mounted, you can:
+Once the EFI partition has been mounted, you can:
 - Browse the partition via Command Prompt
 - Access a cloned version of the EFI partition in File Explorer
 - Unmount the partition when you're done
@@ -112,9 +112,9 @@ Option <kbd>2</kbd> will show this message. To start cloning, type <kbd>C</kbd> 
 
 
 ![Screenshot 2023-07-17 051401](https://github.com/franzageek/WinEFIMounter/assets/88248950/87d57928-cb4f-4fa9-93d5-6a3cdd69cd65)
-After you typed <kbd>C</kbd>, all the files in your EFI folder get copied inside of "`C:\EFIPartition`". WinEFIMounter will automatically open an Explorer window in that directory for you.
+After type <kbd>C</kbd>, all the files in your EFI folder get copied inside of "`C:\EFIPartition`". WinEFIMounter will automatically open an Explorer window in that directory for you.
 
-You can now access your files like you normally would, and you won't even notice the fact that you're actually outside of your EFI partition.
+You can now access your files like you normally would, and you won't even notice you're actually outside of your EFI partition.
 
 But how can you make the changes made to your files in "`C:\EFIPartition`" effective on the EFI partition itself?
 
@@ -130,8 +130,8 @@ The files you modified are now in your EFI partition, without the need for you t
 
 
 ![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/21835753-d725-4e1a-92d0-e01d97543da3)
-Choosing Option <kbd>3</kbd> in the main menu will result in this screen. Type <kbd>U</kbd> and press Enter to continue.
-> Always save your work and close any file that belongs to the EFI partition before you unmount it.
+Choosing Option <kbd>3</kbd> in the main menu will show in this screen. Type <kbd>U</kbd> and press Enter to continue.
+> Always save your work and close any file located on the EFI partition before you unmount it.
 
 
 ![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/c5ec573c-3cbc-4351-a97c-fb08dace2cb8)
