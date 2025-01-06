@@ -11,7 +11,7 @@
 <br><br>
 Mount your Hackintosh EFI partition from Windows. 
 <br><br>
-![winefimounter](https://github.com/user-attachments/assets/52d4fdc2-6cab-4a69-93d6-953b81f80d54)
+![winefimounter](https://github.com/user-attachments/assets/e65dbd86-a4dc-439a-a1a2-860baa5535f8)
 <br>
 
 [a.k.a. MountEFI for Windows]
