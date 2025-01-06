@@ -13,7 +13,8 @@ permalink: /
 ![winefimounter](https://github.com/user-attachments/assets/45f6a4ef-3bf4-47ed-b3fa-f3d6e648b8a6)
 <br>
 
-Mount your Hackintosh EFI partition from Windows. 
+Mount your Hackintosh EFI partition from Windows. <br>
+(sry for light mode :3)
 
 
 ### [**Download available here**](https://franzageek.github.io/WinEFIMounter/downloads)
