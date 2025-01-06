@@ -10,7 +10,7 @@ permalink: /
 ![](https://img.shields.io/endpoint?url=https%3A%2F%2Fhits.dwyl.com%2Ffranzageek%2FWinEFIMounter.json&label=total%20views%20(tracking...))
 <!--![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/60941873-ea53-4427-8e8b-1aac6605c433)-->
 <br><br>
-![winefimounter](https://github.com/user-attachments/assets/52d4fdc2-6cab-4a69-93d6-953b81f80d54)
+![winefimounter](https://github.com/user-attachments/assets/45f6a4ef-3bf4-47ed-b3fa-f3d6e648b8a6)
 <br>
 
 Mount your Hackintosh EFI partition from Windows. 
