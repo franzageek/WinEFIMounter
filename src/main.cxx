@@ -31,8 +31,8 @@ int main(void)
     std::cout <<              " This tool is designed to give you quick and easy access to your EFI partition\n";
     std::cout <<              " directly from Windows.\n\n";
     std::cout <<              " While WinEFIMounter can be used to mount all sorts of EFI partitions, it's primarily\n";
-    std::cout <<              " aimed at Hackintosh users since Windows doesn't provide any tool they can use";
-    std::cout <<              " for managing their Hackintosh EFI.\n\n";
+    std::cout <<              " aimed at Hackintosh users since Windows doesn't provide any tool they can use\n";
+    std::cout <<              " for managing their Hackintosh EFI partition.\n\n";
     std::cout <<              "   - Press any key to begin...";
     system("@pause >nul");
     std::string choice;
