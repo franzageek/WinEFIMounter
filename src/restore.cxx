@@ -4,6 +4,8 @@
 #include <fstream>
 #include <iostream>
 
+namespace fs = std::filesystem;
+
 namespace efi
 {
     bool decode_cache_file(EfiPartition& efi)
@@ -74,7 +76,7 @@ namespace efi
                     
                     case 'A':
                     {
-                        efi = {0};
+                        efi.clear();
                         return false; // Ignore the EFI partition and jump to the main menu
                     }
                 }
@@ -86,7 +88,7 @@ namespace efi
     {
         for (char i = 'Z'; i >= 'O'; --i) // Iterate through every letter of the lower part of the alphabet
         {
-            if (std::filesystem::exists(std::string(1, i).append(":\\.winefimounter")))
+            if (fs::exists(std::string(1, i).append(":\\.winefimounter")))
             {
                 efi.letter = i; // EFI is expected to be empty here, so we set the letter we found and pass everything down to restore_mounted() so that the letter can be read and the other fields can be overwritten
                 if (restore_mounted(efi)) // If an EFI partition appears to be mounted, ask the user what to do

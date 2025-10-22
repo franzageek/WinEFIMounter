@@ -6,6 +6,8 @@
 #include <string>
 #include <Windows.h>
 
+namespace fs = std::filesystem;
+
 int main(void)
 {
     SetConsoleTitleA("WinEFIMounter v1.0.3");
@@ -18,7 +20,8 @@ int main(void)
         exit(1);
     }
     core::change_text_color(COLOR_GREY);
-    efi::EfiPartition efi = {0};
+    efi::EfiPartition efi;
+    efi.clear();
     core::init_temp_path();
     system("@mode 120, 30 && @cls");
     std::cout << std::endl << "   #####################################################\n";
@@ -169,10 +172,10 @@ int main(void)
         core::change_text_color(COLOR_GREY);
         std::cout <<              "]" << std::endl << std::endl << std::endl;
         std::cout <<              " Have a good day! " << std::endl << std::endl;
-        if (std::filesystem::exists("C:\\EFIPartition"))
+        if (fs::exists("C:\\EFIPartition"))
         {
             core::change_text_color(COLOR_YELLOW);
-            std::cout <<              " (The \"C:\\EFIPartition\" directory will be ";
+            std::cout <<              " (The \"C:\\EFIPartition\\\" directory will be ";
             core::change_text_color(COLOR_RED);
             std::cout << "PERMANENTLY";
             core::change_text_color(COLOR_YELLOW);
@@ -181,7 +184,7 @@ int main(void)
         }
         std::cout <<              "   - Press any key to exit...";
         system("@pause>nul");
-        if (std::filesystem::exists("C:\\EFIPartition")) std::filesystem::remove_all("C:\\EFIPartition");
+        if (fs::exists("C:\\EFIPartition")) fs::remove_all("C:\\EFIPartition");
         exit(0);
     }
 }

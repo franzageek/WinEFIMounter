@@ -3,6 +3,8 @@
 #include <filesystem>
 #include <Windows.h>
 
+namespace fs = std::filesystem;
+
 namespace core
 {
     char tempPath[MAX_PATH] = {0};
@@ -17,8 +19,8 @@ namespace core
             exit(1);
         }
         diskListFile = std::string(tempPath) + "list.txt";
-        if (std::filesystem::exists(diskListFile))
-            std::filesystem::remove_all(diskListFile);
+        if (fs::exists(diskListFile))
+            fs::remove_all(diskListFile);
         return;
     }
 
@@ -30,5 +32,26 @@ namespace core
     void change_text_color(u8 color)
     {
         SetConsoleTextAttribute(hConsole, color);
+    }
+
+    bool copy_file_sub(std::string from, std::string to)
+    {
+        fs::path path = to;
+        try 
+        {
+            bool err = true;
+            if (!fs::exists(path.parent_path()))
+                err &= fs::create_directories(path.parent_path());
+            
+            err &= fs::copy_file(from, path, fs::copy_options::overwrite_existing);
+            return err;
+        }
+        catch (std::exception& e)
+        {
+            change_text_color(COLOR_DARK_GREY);
+            std::cerr << "\n Error while copying files: " << e.what();
+            change_text_color(COLOR_GREY);
+        }
+        return false;
     }
 }

@@ -77,7 +77,7 @@ namespace ui
                     core::change_text_color(COLOR_BLUE);
                     std::cout << "C";
                     core::change_text_color(COLOR_GREY);
-                    std::cout << " to start cloning the EFI partition to \"C:\\EFIPartition\" or ";
+                    std::cout << " to start cloning the EFI partition to \"C:\\EFIPartition\\\" or ";
                     core::change_text_color(COLOR_RED);
                     std::cout << "B";
                     core::change_text_color(COLOR_GREY);
