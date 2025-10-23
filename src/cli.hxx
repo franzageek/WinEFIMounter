@@ -1,9 +1,9 @@
-#ifndef UI_HXX
-#define UI_HXX
+#ifndef CLI_HXX
+#define CLI_HXX
 
 typedef unsigned char u8;
 
-namespace ui
+namespace cli
 {
     enum prompt
     {

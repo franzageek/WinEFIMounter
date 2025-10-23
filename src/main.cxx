@@ -1,6 +1,6 @@
+#include "cli.hxx"
 #include "core.hxx"
 #include "efi.hxx"
-#include "ui.hxx"
 #include <filesystem>
 #include <iostream>
 #include <string>
@@ -67,7 +67,7 @@ int main(void)
                     if 
                     (
                         efi::select_partition(efi) && 
-                        ui::display_prompt(ui::prompt::mount) && 
+                        cli::display_prompt(cli::prompt::mount) && 
                         efi::mount_partition(efi)
                     )
                     {
@@ -117,7 +117,7 @@ int main(void)
                 {
                     if 
                     (
-                        ui::display_prompt(ui::prompt::clone) &&
+                        cli::display_prompt(cli::prompt::clone) &&
                         efi::clone_partition(efi)
                     )
                     {
@@ -129,7 +129,7 @@ int main(void)
 
                 case '3':
                 {
-                    if (ui::display_prompt(ui::prompt::unmount))
+                    if (cli::display_prompt(cli::prompt::unmount))
                     {
                         efi::unmount_partition(efi);
                         goto unmountedMenu;
@@ -140,7 +140,7 @@ int main(void)
                 
                 case 'E':
                 {
-                    if (ui::display_prompt(ui::prompt::exit))
+                    if (cli::display_prompt(cli::prompt::exit))
                         goto exitScr;
                 }
             }

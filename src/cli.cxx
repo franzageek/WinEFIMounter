@@ -1,9 +1,9 @@
-#include "ui.hxx"
+#include "cli.hxx"
 #include "core.hxx"
 #include <iostream>
 #include <string>
 
-namespace ui
+namespace cli
 {
     bool display_prompt(prompt type)
     {
