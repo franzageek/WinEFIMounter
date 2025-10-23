@@ -24,8 +24,7 @@ It's hard to believe but in reality _**there isn't any simple software**_ such a
 ## Usage
 ### Supported actions
 WinEFIMounter is very easy to use. It features a **simple CLI** that makes everything very straightforward.
-
-WinEFIMounter allows you to:
+It allows you to:
 - [Mount an EFI partiton](#mount-an-efi-partition)
 - [Access the partition via Command Prompt](#access-the-efi-partition-via-command-prompt)
 - [Open the partition in File Explorer](#open-the-efi-partition-in-file-explorer)
