@@ -33,7 +33,7 @@ It allows you to:
 It can currently perform very basic actions, but it will get more and more advanced later in time.
 
 ### Mount an EFI Partition
-When you're at the main menu, just enter <kbd>M</kbd> at the prompt.
+When you're at the main menu, just enter <kbd>1</kbd> at the prompt.
 You will be asked to enter the **drive number** and the **partition number** corresponding to the specific drive and EFI partition to mount.
 
 ### Access the EFI partition via Command Prompt
