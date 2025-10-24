@@ -1,110 +1,77 @@
-#include "../include/core.hxx"
+#include "core.hxx"
+#include <iostream>
+#include <filesystem>
+#include <Windows.h>
 
-HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-std::string currentLine = "";
+namespace fs = std::filesystem;
 
-bool check_if_admin(void)
+namespace core
 {
-    return (system("@echo off && @cls && @net session >nul 2>nul") == 0);
-}
+    char tempPath[MAX_PATH] = {0};
+    std::string diskListFile;
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
-bool check_if_already_mounted(u8& diskNumber, u8& partNumber, char& mntLetter)
-{
-    for (char i = 'Z'; i >= 'O'; --i) // Iterate through every letter of the lower part of the alphabet
+    void init_temp_path(void)
     {
-        if (fs::exists(std::string(1, i).append(":\\.winefimounter")))
+        if (GetTempPathA(MAX_PATH, tempPath) == 0) // Get TEMP path 
         {
-            if (efi_is_already_mounted(diskNumber, partNumber, i)) // If an EFI partition appears to be mounted, ask the user to unmount it
-            {
-                mntLetter = i;
-                return true;
-            }
-        }
+            std::cerr << " Failed to get TEMP path: " << GetLastError() << std::endl;
+            exit(1);
+        }   
+        diskListFile = std::string(tempPath) + std::string("list.txt");
+        return;
     }
-    return false;
-}
 
-void del_temp_files(const std::string& listPath)
-{
-    if (fs::exists(listPath)) fs::remove_all(listPath);
-}
+    void del_temp_files()
+    {
+        std::string diffScript = std::string(core::tempPath) + std::string("diff.ps1");
+        std::string diffFile = std::string(core::tempPath) + std::string("diff.txt");
 
-bool efi_is_already_mounted(u8& diskNumber, u8& partNumber, const char& mntLetter)
-{
-    std::ifstream cacheFile(std::string(1, mntLetter).append(":\\.winefimounter"));
-    char currChar;
-    do
+        if (fs::exists(diskListFile))
+            fs::remove_all(diskListFile);
+
+        if (fs::exists(std::string(core::tempPath) + std::string("diff.ps1")))
+            fs::remove_all(std::string(core::tempPath) + std::string("diff.ps1"));
+
+        if (fs::exists(std::string(core::tempPath) + std::string("diff.txt")))
+            fs::remove_all(std::string(core::tempPath) + std::string("diff.txt"));
+
+        return;
+    }
+
+    bool is_admin(void)
     {
-        cacheFile.get(currChar);
-    } while (currChar != '[' && cacheFile.good());
-    if (!cacheFile.good())
+        return (system("@echo off && @net session >nul 2>nul") == 0);
+    }
+
+    bool has_pwsh()
     {
-        cacheFile.close();
-        system("@cls");
-        SetConsoleTextAttribute(hConsole, COLOR_YELLOW);
-        std::cout << std::endl << " [E8] WinEFIMounter detected a mounted EFI partition on " << mntLetter << ":\\, but was unable to retrieve further info.";
-        std::cout << std::endl << "      Press any key to skip it...";
-        system("@pause>nul");
+        return (system("exit | powershell >nul 2>nul") == 0);
+    }
+
+    void change_text_color(u8 color)
+    {
+        SetConsoleTextAttribute(hConsole, color);
+    }
+
+    bool copy_file_sub(std::string from, std::string to)
+    {
+        fs::path path = to;
+        try 
+        {
+            bool err = true;
+            if (!fs::exists(path.parent_path()))
+                err &= fs::create_directories(path.parent_path());
+            
+            err &= fs::copy_file(from, path, fs::copy_options::overwrite_existing);
+            return err;
+        }
+        catch (std::exception& e)
+        {
+            change_text_color(COLOR_DARK_GREY);
+            std::cerr << "\n Error while copying files: " << e.what();
+            change_text_color(COLOR_GREY);
+        }
         return false;
     }
-    cacheFile.get(currChar);
-    u8 mountedEFIDiskNumber = currChar-'0';
-    cacheFile.get(currChar);
-    cacheFile.get(currChar);
-    u8 mountedEFIPartNumber = currChar-'0';
-    cacheFile.close(); // Retrieve disk and partition number from a cache file
-
-displayMsg:
-    system("@cls");
-    SetConsoleTextAttribute(hConsole, COLOR_YELLOW);
-    std::cout << std::endl << " [!!] WinEFIMounter detected a mounted EFI partition (disk " << std::string(1, mountedEFIDiskNumber+'0') << ", partition " << std::string(1, mountedEFIPartNumber+'0') <<") on " << mntLetter << ":\\.";
-    std::cout << std::endl << "   - Type ";
-    SetConsoleTextAttribute(hConsole, COLOR_BLUE);
-    std::cout << "U";
-    SetConsoleTextAttribute(hConsole, COLOR_YELLOW);
-    std::cout << " to unmount the partition, ";
-    SetConsoleTextAttribute(hConsole, COLOR_GREEN);
-    std::cout << "K";
-    SetConsoleTextAttribute(hConsole, COLOR_YELLOW);
-    std::cout << " to keep it mounted or ";
-    SetConsoleTextAttribute(hConsole, COLOR_RED);
-    std::cout << "A";
-    SetConsoleTextAttribute(hConsole, COLOR_YELLOW);
-    std::cout << " to ignore it & mount another one...";
-    SetConsoleTextAttribute(hConsole, COLOR_GREY);
-    std::getline(std::cin, currentLine);
-    if (currentLine.length() == 1)
-    {
-        switch (currentLine[0])
-        {
-            case 'K':
-            {
-                diskNumber = mountedEFIDiskNumber;
-                partNumber = mountedEFIPartNumber;
-                return true; // Update all the variables and treat the already mounted EFI partition normally
-            }
-            case 'U':
-                goto unmountMountedEFI; // Unmount the EFI partition
-            case 'A':
-                return false; // Ignore the EFI partition and jump to the main menu
-        }
-    }
-    goto displayMsg;
-
-unmountMountedEFI: 
-    std::cout << std::endl << std::endl;
-    std::cout << " > Unmounting disk " << std::string(1, mountedEFIDiskNumber+'0') << ", partition " << std::string(1, mountedEFIPartNumber+'0') << "..." << std::endl;
-    fs::remove_all(std::string(1, mntLetter).append(":\\.winefimounter"));
-    int exitCode = system(("@echo Remove-PartitionAccessPath -DiskNumber " + std::string(1, mountedEFIDiskNumber+'0') + " -PartitionNumber " + std::string(1, mountedEFIPartNumber+'0') + " -AccessPath \"" + std::string(1, mntLetter) + ":\" | powershell>nul").c_str());
-    if (exitCode != 0)
-    {
-        SetConsoleTextAttribute(hConsole, COLOR_YELLOW);
-        system(("@echo off && @echo ## [" + std::string(1, mountedEFIDiskNumber+'0') + ":" + std::string(1, mountedEFIPartNumber+'0') + "] MOUNTED ON %date% @ %time% ## > \"" + std::string(1, mntLetter) + ":\\.winefimounter\"").c_str());
-        std::cerr << " [E4] Failed to unmount the partition (error " << std::string(1, exitCode+'0') << ").\n      Press any key to exit..." << std::endl;
-        SetConsoleTextAttribute(hConsole, COLOR_GREY);
-        system("@pause >nul");
-        exit(exitCode);
-    }
-    std::cout << " > Done!";
-    return false;
 }
