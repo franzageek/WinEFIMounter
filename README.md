@@ -58,7 +58,7 @@ WinEFIMounter relies on a bunch of **pre-installed Windows tools**, such as:
 WinEFIMounter is the perfect solution for a variety of problems, including:
 
 - Fixing your Hackintosh if it's not booting and you have no way to access the EFI partition
-  > If you fuck up with your kexts, SSDTs or drivers (like I did) you will likely need a quick way to fix them in order to make your Hackintosh boot again.
+  > If you fuck up with your kexts, SSDTs or drivers (just like myself) you will likely need a quick way to fix them in order to make your Hackintosh boot again.
 - Cleaning up your EFI
   > OpenCore leaves log files all over your EFI partition every time you boot macOS. WinEFIMounter allows you to get rid of them in the blink of an eye.
 - Adding files to your EFI
