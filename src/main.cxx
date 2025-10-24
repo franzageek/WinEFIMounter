@@ -23,6 +23,7 @@ int main(void)
     efi::EfiPartition efi;
     efi.clear();
     core::init_temp_path();
+    core::del_temp_files();
     system("@mode 120, 30 && @cls");
     std::cout << std::endl << "   #####################################################\n";
     std::cout <<              "  #                   WinEFIMounter                   #\n" ;
@@ -35,6 +36,16 @@ int main(void)
     std::cout <<              " for managing their Hackintosh EFI partition.\n\n";
     std::cout <<              "   - Press any key to begin...";
     system("@pause >nul");
+    std::cout << "\n\n Loading...";
+    if (!core::has_pwsh())
+    {
+        system("@cls");
+        core::change_text_color(COLOR_YELLOW);
+        std::cerr << std::endl << " [!!] You need Windows PowerShell to be installed on your system in order to run WinEFIMounter.\n      Press any key to exit...";
+        system("@pause >nul");
+        core::change_text_color(COLOR_GREY);
+        exit(1);
+    }
     std::string choice;
 
     if (efi::check_if_mounted(efi))
@@ -84,7 +95,7 @@ int main(void)
         goto unmountedMenu;
     }
 
-    mountedMenu:
+    mountedMenu: // Display the full main menu
     {
         system("@cls");
         SetConsoleTitleA("WinEFIMounter v1.0.3 (MOUNTED)");
@@ -148,7 +159,7 @@ int main(void)
         goto mountedMenu;
     }
 
-    exitScr: // Display an exit screen
+    exitScr: // Display the exit screen
     {
         system("@cls");
         SetConsoleTitleA("WinEFIMounter v1.0.3");
@@ -185,6 +196,7 @@ int main(void)
         std::cout <<              "   - Press any key to exit...";
         system("@pause>nul");
         if (fs::exists("C:\\EFIPartition")) fs::remove_all("C:\\EFIPartition");
+        core::del_temp_files();
         exit(0);
     }
 }

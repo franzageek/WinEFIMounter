@@ -17,16 +17,36 @@ namespace core
         {
             std::cerr << " Failed to get TEMP path: " << GetLastError() << std::endl;
             exit(1);
-        }
-        diskListFile = std::string(tempPath) + "list.txt";
+        }   
+        diskListFile = std::string(tempPath) + std::string("list.txt");
+        return;
+    }
+
+    void del_temp_files()
+    {
+        std::string diffScript = std::string(core::tempPath) + std::string("diff.ps1");
+        std::string diffFile = std::string(core::tempPath) + std::string("diff.txt");
+
         if (fs::exists(diskListFile))
             fs::remove_all(diskListFile);
+
+        if (fs::exists(std::string(core::tempPath) + std::string("diff.ps1")))
+            fs::remove_all(std::string(core::tempPath) + std::string("diff.ps1"));
+
+        if (fs::exists(std::string(core::tempPath) + std::string("diff.txt")))
+            fs::remove_all(std::string(core::tempPath) + std::string("diff.txt"));
+
         return;
     }
 
     bool is_admin(void)
     {
         return (system("@echo off && @net session >nul 2>nul") == 0);
+    }
+
+    bool has_pwsh()
+    {
+        return (system("exit | powershell >nul 2>nul") == 0);
     }
 
     void change_text_color(u8 color)

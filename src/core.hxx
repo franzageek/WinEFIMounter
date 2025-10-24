@@ -18,7 +18,9 @@ namespace core
     extern char tempPath[];
     extern std::string diskListFile;
     void init_temp_path();
+    void del_temp_files();
     bool is_admin();
+    bool has_pwsh();
     void change_text_color(u8 color);
     bool copy_file_sub(std::string from, std::string to);
 }
