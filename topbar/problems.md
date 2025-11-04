@@ -4,6 +4,10 @@ title:  Problems
 permalink: /problems/
 ---
 
+### v1.0.2: Deleted files don't actually get deleted
+Due to a misuse of XCopy, only new or modified files are transferred back to the EFI partition. Deleted files don't actually get updated.
+Version 1.0.3 fixes the issue, by implementing a new flushing method that updates only the required files, without overwriting the whole partition. 
+
 ### v1.0.1: Cannot mount an external EFI partition
 As noted by 1dolla, WinEFIMounter has trouble assigning a letter to EFI partitions on external USB drives. There is however a PowerShell command that will allow you to assign it a letter, which you can find here: [#3](https://github.com/franzageek/WinEFIMounter/issues/3). There are a few side effects though, such as the fact that the EFI will be mounted every single time Windows detects it is unmounted. <br>
 I've released a C++ update (v1.0.2) that fixes this bug.
