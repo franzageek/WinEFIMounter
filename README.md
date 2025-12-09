@@ -7,7 +7,7 @@
 # WinEFIMounter
 Mount your EFI partition from Windows. 
 <br><br>
-![winefimounter](https://github.com/user-attachments/assets/e65dbd86-a4dc-439a-a1a2-860baa5535f8)
+![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/6904b05f-519e-4c40-92df-559feb890785)
 <br>
 
 [a.k.a. MountEFI for Windows]
