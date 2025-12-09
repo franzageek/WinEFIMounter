@@ -30,11 +30,11 @@ namespace core
         if (fs::exists(diskListFile))
             fs::remove_all(diskListFile);
 
-        if (fs::exists(std::string(core::tempPath) + std::string("diff.ps1")))
-            fs::remove_all(std::string(core::tempPath) + std::string("diff.ps1"));
+        if (fs::exists(diffScript))
+            fs::remove_all(diffScript);
 
-        if (fs::exists(std::string(core::tempPath) + std::string("diff.txt")))
-            fs::remove_all(std::string(core::tempPath) + std::string("diff.txt"));
+        if (fs::exists(diffFile))
+            fs::remove_all(diffFile);
 
         return;
     }

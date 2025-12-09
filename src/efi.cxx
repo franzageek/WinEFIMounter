@@ -214,7 +214,7 @@ namespace efi
 
     bool mount_partition(EfiPartition& efi)
     {
-        SetConsoleTitleA("WinEFIMounter v1.0.3 (Mounting...)");
+        SetConsoleTitleA("WinEFIMounter v1.0.4 (Mounting...)");
         std::cout << std::endl << std::endl << std::endl;
         std::cout << " > Setting mount point..." << std::endl;
         bool found = false;
@@ -230,7 +230,7 @@ namespace efi
         }
         if (!found)
         {
-            SetConsoleTitleA("WinEFIMounter v1.0.3");
+            SetConsoleTitleA("WinEFIMounter v1.0.4");
             core::change_text_color(COLOR_YELLOW);
             std::cerr << " [E3] Failed to locate a suitable letter. Please try to free a letter after \'O:\\\', then run WinEFIMounter again.\n      Press any key to exit..." << std::endl;
             core::change_text_color(COLOR_GREY);
@@ -243,7 +243,7 @@ namespace efi
         if (exitCode != 0)
         {
             core::change_text_color(COLOR_YELLOW);
-            std::cerr << std::endl << " [E4] Failed to mount the selected partition (error " << std::string(1, exitCode+'0') << ").\n      The partition might not be formatted correctly. Double-check that it is FAT formatted, then retry.\n      Make sure you're not trying to mount an already mounted EFI partition either.\n      Press any key to exit..." << std::endl;
+            std::cerr << std::endl << " [E4] Failed to mount the selected partition (error " << std::string(1, exitCode+'0') << ").\n      The partition might not be formatted correctly. Double-check that it is FAT formatted, then retry.\n      Make sure you're not trying to mount an already mounted EFI partition either.\n      Press any key to go back..." << std::endl;
             core::change_text_color(COLOR_GREY);
             system("@pause >nul");
             efi.clear();
@@ -256,7 +256,7 @@ namespace efi
 
     void unmount_partition(EfiPartition& efi)
     {
-        SetConsoleTitleA("WinEFIMounter v1.0.3 (Unmounting...)");
+        SetConsoleTitleA("WinEFIMounter v1.0.4 (Unmounting...)");
         std::cout << std::endl << std::endl;
         std::cout << std::endl << " > Unmounting the EFI partition..." << std::endl;
         std::cout << "   > Start unmounting disk " << std::string(1, efi.disk+'0') << ", partition " << std::string(1, efi.part+'0') << "..." << std::endl;
@@ -264,7 +264,7 @@ namespace efi
         int exitCode = system(("@echo Remove-PartitionAccessPath -DiskNumber " + std::string(1, efi.disk+'0') + " -PartitionNumber " + std::string(1, efi.part+'0') + " -AccessPath \"" + std::string(1, efi.letter) + ":\" | powershell>nul 2>nul").c_str());
         if (exitCode != 0)
         {
-            SetConsoleTitleA("WinEFIMounter v1.0.3");
+            SetConsoleTitleA("WinEFIMounter v1.0.4");
             core::change_text_color(COLOR_YELLOW);
             system(("@echo off && @echo ## [" + std::string(1, efi.disk+'0') + ":" + std::string(1, efi.part+'0') + "] Do NOT delete this file! It's needed by WinEFIMounter as a failsafe. It will be automatically deleted after unmounting the partition. Mounted on %date% @ %time% ## > \"" + std::string(1, efi.letter) + ":\\.winefimounter\"").c_str()); // Restore cache file
             std::cerr << " [E4] Failed to unmount the partition (error " << std::string(1, exitCode+'0') << ").\n      Make sure it hasn't been unmounted from outside WinEFIMounter.\n      If that's not the case, you can always run WinEFIMounter again after you have fixed the issue\n      in order to unmount the EFI partition.\n      Press any key to exit..." << std::endl;
