@@ -159,6 +159,22 @@ namespace efi
         system("@mode 120, 30");
         SetConsoleTitleA("WinEFIMounter v1.0.4 (Flushing...)");
         std::cout << "\n > Updating files...\n";
+        if (files.size() == 0)
+        {
+            fs::remove_all("C:\\EFIPartition");
+
+            std::cout << "\n > ";
+            core::change_text_color(COLOR_DARK_GREY);
+            std::cout << "Nothing to do...\n"; 
+            core::change_text_color(COLOR_GREY);
+            std::cout << "\n No file was touched.\n Make sure this is intentional: it could also mean your EFI partition was unmounted inadvertently.\n The previous configuration of the EFI partition is available inside of \"";
+            core::change_text_color(COLOR_BLUE);
+            std::cout << "C:\\EFIPartition_backup\\"; 
+            core::change_text_color(COLOR_GREY);
+            std::cout << "\" in case\n you still need it.\n\n Press any key to go back to the main menu...";
+            system("@pause >nul");
+            return;
+        }
         bool err = false;
         // Added files are updated first, modified files last
         for (size_t i = 0; i < files.size(); ++i)
@@ -175,8 +191,8 @@ namespace efi
                 catch(const std::exception& e)
                 {
                     err = true;
-                    core::change_text_color(COLOR_DARK_GREY);
-                    std::cerr << "\n Error when adding files: " << e.what();
+                    core::change_text_color(COLOR_RED);
+                    std::cerr << "\n Error when adding files!";
                     break;
                 }
                 files[i].second = 4; // and mark the file as backed up
@@ -212,8 +228,8 @@ namespace efi
                 catch(const std::exception& e)
                 {
                     err = true;
-                    core::change_text_color(COLOR_DARK_GREY);
-                    std::cerr << "\n Error when deleting files: " << e.what();
+                    core::change_text_color(COLOR_RED);
+                    std::cerr << "\n Error when deleting files!";
                     break;
                 }
                 files[i].second = 5; // and mark the file as backed up
@@ -255,8 +271,8 @@ namespace efi
                 catch(const std::exception& e)
                 {
                     err = true;
-                    core::change_text_color(COLOR_DARK_GREY);
-                    std::cerr << "\n Error when updating files: " << e.what();
+                    core::change_text_color(COLOR_RED);
+                    std::cerr << "\n Error when updating files!";
                     break;
                 }
                 files[i].second = 6; // and mark the file as backed up

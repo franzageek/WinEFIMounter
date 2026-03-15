@@ -241,7 +241,7 @@ namespace efi
         {
             SetConsoleTitleA("WinEFIMounter v1.0.4");
             core::change_text_color(COLOR_YELLOW);
-            std::cerr << " [E3] Failed to locate a suitable letter. Please try to free a letter after \'O:\\\', then run WinEFIMounter again.\n      Press any key to exit..." << std::endl;
+            std::cerr << " [E3] Failed to locate a suitable letter. Please try to free a letter after \'O:\\\', then run WinEFIMounter again.\n      Press any key to exit...";
             core::change_text_color(COLOR_GREY);
             system("@pause >nul");
             exit(3);
@@ -286,7 +286,7 @@ namespace efi
             SetConsoleTitleA("WinEFIMounter v1.0.4");
             system(("@echo off && @echo ## [" + std::string(1, efi.disk+'0') + ":" + std::string(1, efi.part+'0') + "] Do NOT delete this file! It's needed by WinEFIMounter as a failsafe. It will be automatically deleted after unmounting the partition. Mounted on %date% @ %time% ## > \"" + std::string(1, efi.letter) + ":\\.winefimounter\"").c_str()); // Restore cache file
             core::change_text_color(COLOR_YELLOW);
-            std::cerr << " [E4] Failed to unmount the partition (error " << std::to_string(exitCode) << ").\n      Make sure it hasn't been unmounted from outside WinEFIMounter.\n      If that's not the case, you can always run WinEFIMounter again after you have fixed the issue\n      in order to unmount the EFI partition.\n      Press any key to exit..." << std::endl;
+            std::cerr << " [E4] Failed to unmount the partition (error " << std::to_string(exitCode) << ").\n      Make sure it hasn't been already unmounted from outside WinEFIMounter.\n      If that's not the case, you can always run WinEFIMounter again after you have fixed the issue\n      in order to unmount the EFI partition.\n      Press any key to exit...";
             core::change_text_color(COLOR_GREY);
             system("@pause >nul");
             exit(exitCode);
