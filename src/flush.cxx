@@ -166,7 +166,7 @@ namespace efi
             if (err)
                 break;
             
-            if (files[i].second == 0) // 1. If added, copy file and mark as backed up
+            if (files[i].second == 0) // 1. If added, copy file 
             {
                 try
                 {
@@ -191,7 +191,7 @@ namespace efi
             }
 
             core::change_text_color(COLOR_YELLOW);
-            std::cerr << "\n [!!] An error occurred while applying changes!\n      All the files you've modified will be kept inside of \"C:\\EFIPartition\\\" \n      so that no work is lost, while the changes to the EFI partition will be reverted.\n      Please make sure to back up the updated files, then delete the directory\n      and try again.\n      Press any key to go back to the main menu...\n";
+            std::cerr << "\n [!!] An error occurred while applying changes!\n      All the files you've modified will be kept inside of \"C:\\EFIPartition\\\" \n      so that no work is lost, while the changes to the EFI partition will be reverted.\n      Please make sure to back up the updated files, then delete the directory\n      and try again.\n      Press any key to go back to the main menu...";
             core::change_text_color(COLOR_GREY);
             system("@pause >nul");
             return;
@@ -234,7 +234,7 @@ namespace efi
             }
 
             core::change_text_color(COLOR_YELLOW);
-            std::cerr << "\n [!!] An error occurred while applying changes!\n      All the files you've modified will be kept inside of \"C:\\EFIPartition\\\" \n      so that no work is lost, while the changes to the EFI partition will be reverted.\n      Please make sure to back up the updated files, then delete the directory\n      and try again.\n      Press any key to go back to the main menu...\n";
+            std::cerr << "\n [!!] An error occurred while applying changes!\n      All the files you've modified will be kept inside of \"C:\\EFIPartition\\\" \n      so that no work is lost, while the changes to the EFI partition will be reverted.\n      Please make sure to back up the updated files, then delete the directory\n      and try again.\n      Press any key to go back to the main menu...";
             core::change_text_color(COLOR_GREY);
             system("@pause >nul");
             return;
@@ -283,7 +283,7 @@ namespace efi
             }
             fs::remove_all("C:\\EFIPartition\\winefimounter_backup");
             core::change_text_color(COLOR_YELLOW);
-            std::cerr << "\n [!!] An error occurred while applying changes!\n      All the files you've modified will be kept inside of \"C:\\EFIPartition\\\" \n      so that no work is lost, while the changes to the EFI partition will be reverted.\n      Please make sure to back up the updated files, then delete the directory\n      and try again.\n      Press any key to go back to the main menu...\n";
+            std::cerr << "\n [!!] An error occurred while applying changes!\n      All the files you've modified will be kept inside of \"C:\\EFIPartition\\\" \n      so that no work is lost, while the changes to the EFI partition will be reverted.\n      Please make sure to back up the updated files, then delete the directory\n      and try again.\n      Press any key to go back to the main menu...";
             core::change_text_color(COLOR_GREY);
             system("@pause >nul");
             return;
