@@ -217,18 +217,27 @@ namespace efi
         SetConsoleTitleA("WinEFIMounter v1.0.4 (Mounting...)");
         std::cout << std::endl << std::endl << std::endl;
         std::cout << " > Setting mount point..." << std::endl;
-        bool found = false;
-        for (char i = 'Z'; i >= 'O'; --i)
+        DWORD availableDrives = GetLogicalDrives();
+        if (availableDrives == 0)
         {
-            if (!fs::exists(std::string(1, i).append(":\\"))) // Find a free letter
-            {
-                efi.letter = i;
-                std::cout << "   > Mounting to \"" << i << ":\\\"..." << std::endl;
-                found = true;
-                break;
-            }
+            core::change_text_color(COLOR_YELLOW);
+            std::cerr << std::endl << " [E4] Failed to mount the selected partition (error " << std::string(1, GetLastError()+'0') << ").\n      WinEFIMounter was unable to retrieve available drive letters.\n      Press any key to go back..." << std::endl;
+            core::change_text_color(COLOR_GREY);
+            system("@pause >nul");
+            efi.clear();
+            return false;
         }
-        if (!found)
+        availableDrives = ~availableDrives; // Get free letters
+        availableDrives &= 0x03FFC000; // Keep only letters O..=Z
+        u8 count = 0;
+        DWORD tmp = availableDrives;
+        while (tmp) 
+        {
+            tmp &= (tmp - 1);
+            ++count;
+        }
+        std::cout << "   > Found " << std::to_string(count) << " suitable letter(s)" << std::endl;
+        if (!count)
         {
             SetConsoleTitleA("WinEFIMounter v1.0.4");
             core::change_text_color(COLOR_YELLOW);
@@ -237,8 +246,18 @@ namespace efi
             system("@pause >nul");
             exit(3);
         }
+        availableDrives >>= 14;
+        for (u8 i = 12; i > 0; --i) // Reverse the order (start from Z up)
+        {
+            if ((availableDrives & (1 << (i-1))) > 0)
+            {
+                efi.letter = 'O' + (i-1);
+                std::cout << "   >> Mounting to \"" << efi.letter << ":\\\"..." << std::endl;
+                break;
+            }
+        }
         std::cout << std::endl << " > Mounting the selected partition..." << std::endl;
-        std::cout << "   > Start mounting disk " << std::string(1, efi.disk+'0') << ", partition " << std::string(1, efi.part+'0') << "..." << std::endl;
+        std::cout << "   >> Start mounting disk " << std::string(1, efi.disk+'0') << ", partition " << std::string(1, efi.part+'0') << "..." << std::endl;
         int exitCode = system(("@echo Add-PartitionAccessPath -DiskNumber " + std::string(1, efi.disk+'0') + " -PartitionNumber " + std::string(1, efi.part+'0') + " -AccessPath \"" + std::string(1, efi.letter) + ":\" | powershell>nul").c_str());
         if (exitCode != 0)
         {
@@ -259,7 +278,7 @@ namespace efi
         SetConsoleTitleA("WinEFIMounter v1.0.4 (Unmounting...)");
         std::cout << std::endl << std::endl;
         std::cout << std::endl << " > Unmounting the EFI partition..." << std::endl;
-        std::cout << "   > Start unmounting disk " << std::string(1, efi.disk+'0') << ", partition " << std::string(1, efi.part+'0') << "..." << std::endl;
+        std::cout << "   >> Start unmounting disk " << std::string(1, efi.disk+'0') << ", partition " << std::string(1, efi.part+'0') << "..." << std::endl;
         fs::remove_all(std::string(1, efi.letter).append(":\\.winefimounter")); // Delete cache file
         int exitCode = system(("@echo Remove-PartitionAccessPath -DiskNumber " + std::string(1, efi.disk+'0') + " -PartitionNumber " + std::string(1, efi.part+'0') + " -AccessPath \"" + std::string(1, efi.letter) + ":\" | powershell>nul 2>nul").c_str());
         if (exitCode != 0)

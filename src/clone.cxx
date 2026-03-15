@@ -33,7 +33,7 @@ namespace efi
             system("@pause >nul");
             return false;
         }
-        std::cout << "   > Successfully created the \"C:\\EFIPartition\\\" directory, proceeding..." << std::endl;
+        std::cout << "   >> Successfully created the \"C:\\EFIPartition\\\" directory, proceeding..." << std::endl;
         std::cout << std::endl << " > Copying files..." << std::endl;
         
         if ((system(("@xcopy /E /Y \"" + std::string(1, efi.letter) + ":\\*\" \"C:\\EFIPartition\\\" >nul 2>nul").c_str()) != 0) ||
