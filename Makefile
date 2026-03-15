@@ -2,6 +2,8 @@ ARGS=-Os -std=c++23 -Wall -Wextra -pedantic -v
 
 all: release release-static
 
+everything: all debug debug-static
+
 release: src/*.cxx
 	g++ src/*.cxx -o bin/WinEFIMounter.exe $(ARGS)
 
@@ -20,7 +22,8 @@ clean:
 help:
 	@echo "Available targets:"
 	@echo ""
-	@echo "all: generate both a dynamically & a statically compiled executable."
+	@echo "everything: generate release & debug static & dynamic executables"
+	@echo "all: generate both a dynamically & a statically compiled release executable."
 	@echo "release: generate a dynamically compiled executable."
 	@echo "release-static: generate a statically compiled executable."
 	@echo "debug: generate a dynamic executable with debug symbols."
