@@ -1,19 +1,23 @@
-ARGS=-Os -std=c++23 -Wall -Wextra -pedantic -v
+ARGS=-Os -m64 -std=c++23 -Wall -Wextra -pedantic -v
 
-all: release release-static
+everything: 	clean all debug debug-static
+all: 			release release-static
 
-everything: all debug debug-static
+release: 		bin/WinEFIMounter.exe
+release-static: bin/WinEFIMounter-static.exe
+debug: 			bin/WinEFIMounter-debug.exe
+debug-static: 	bin/WinEFIMounter-debug-static.exe
 
-release: src/*.cxx
+bin/WinEFIMounter.exe: src/*.cxx
 	g++ src/*.cxx -o bin/WinEFIMounter.exe $(ARGS)
 
-release-static: src/*.cxx
+bin/WinEFIMounter-static.exe: src/*.cxx
 	g++ src/*.cxx -o bin/WinEFIMounter-static.exe $(ARGS) --static 
 
-debug: src/*.cxx
+bin/WinEFIMounter-debug.exe: src/*.cxx
 	g++ src/*.cxx -o bin/WinEFIMounter-debug.exe $(ARGS) -g
 
-debug-static: src/*.cxx
+bin/WinEFIMounter-debug-static.exe: src/*.cxx
 	g++ src/*.cxx -o bin/WinEFIMounter-debug-static.exe $(ARGS) -g --static 
 
 clean:
