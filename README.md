@@ -7,7 +7,7 @@
 # WinEFIMounter
 Mount your EFI partition from Windows. 
 <br><br>
-![winefimounter](https://github.com/user-attachments/assets/e65dbd86-a4dc-439a-a1a2-860baa5535f8)
+![image](https://github.com/franzageek/WinEFIMounter/assets/88248950/6904b05f-519e-4c40-92df-559feb890785)
 <br>
 
 [a.k.a. MountEFI for Windows]
@@ -68,6 +68,11 @@ WinEFIMounter is the perfect solution for a variety of problems, including:
   > The program might often refer to the EFI partition as "the Hackintosh EFI partition" or to the drive as "your Hackintosh disk", but you can use it for other ESPs too.
 
 ## Problems
+
+### v1.0.3: Network drives are ignored
+As mentioned by m4st3rP, WinEFIMounter might include a drive letter taken by a network drive in the list of suitable letters.
+This is caused because the `filesystem::exists()` function returns `false` when called on a letter that's taken by a network drive, and so WinEFIMounter assumes it's free.
+In v1.0.4 I've dropped the `exists()` function in favor of a new method that uses WinAPI to get a bitmask of available drive letters.
 
 ### v1.0.2: Deleted files don't actually get deleted
 Due to a misuse of XCopy, only new or modified files are transferred back to the EFI partition. Deleted files don't actually get updated.

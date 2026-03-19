@@ -30,10 +30,10 @@ namespace efi
         if (!diskList) 
         {
             diskList.close();
-            core::change_text_color(COLOR_YELLOW);
-            std::cerr << " [E1] Failed to read the disk list. Press any key to go back..." << std::endl;
-            core::change_text_color(COLOR_GREY);
             fs::remove_all(core::diskListFile);
+            core::change_text_color(COLOR_YELLOW);
+            std::cerr << " [E1] Failed to read the disk list. Press any key to go back to the main menu...";
+            core::change_text_color(COLOR_GREY);
             system("@pause >nul");
             return false;
         }
@@ -46,10 +46,10 @@ namespace efi
         if (currentLine[0] != 'N' || (currentLine[0] == 'P' && currentLine[1] == 'S')) 
         {
             diskList.close();
-            core::change_text_color(COLOR_YELLOW);
-            std::cerr << " [E2] Failed to read the disk list. Press any key to go back..." << std::endl;
-            core::change_text_color(COLOR_GREY);
             fs::remove_all(core::diskListFile);
+            core::change_text_color(COLOR_YELLOW);
+            std::cerr << " [E2] Failed to read the disk list. Press any key to go back to the main menu...";
+            core::change_text_color(COLOR_GREY);
             system("@pause >nul");
             return false;
         }
@@ -138,11 +138,11 @@ namespace efi
         if (!partList) 
         {
             partList.close();
-            core::change_text_color(COLOR_YELLOW);
-            std::cerr << " [E1] Failed to read the partition list. Press any key to go back..." << std::endl;
-            core::change_text_color(COLOR_GREY);
-            efi.clear();
             fs::remove_all(core::diskListFile);
+            efi.clear();
+            core::change_text_color(COLOR_YELLOW);
+            std::cerr << " [E1] Failed to read the partition list. Press any key to go back to the main menu...";
+            core::change_text_color(COLOR_GREY);
             system("@pause >nul");
             return false;
         }
@@ -155,11 +155,11 @@ namespace efi
         if (currentLine[0] != 'P' || (currentLine[0] == 'P' && currentLine[1] == 'S')) 
         {
             partList.close();
-            core::change_text_color(COLOR_YELLOW);
-            std::cerr << " [E2] Failed to read the partition list. Press any key to go back..." << std::endl;
-            core::change_text_color(COLOR_GREY);
-            efi.clear();
             fs::remove_all(core::diskListFile);
+            efi.clear();
+            core::change_text_color(COLOR_YELLOW);
+            std::cerr << " [E2] Failed to read the partition list. Press any key to go back to the main menu...";
+            core::change_text_color(COLOR_GREY);
             system("@pause >nul");
             return false;
         }
@@ -214,39 +214,58 @@ namespace efi
 
     bool mount_partition(EfiPartition& efi)
     {
-        SetConsoleTitleA("WinEFIMounter v1.0.3 (Mounting...)");
+        SetConsoleTitleA("WinEFIMounter v1.0.4 (Mounting...)");
         std::cout << std::endl << std::endl << std::endl;
         std::cout << " > Setting mount point..." << std::endl;
-        bool found = false;
-        for (char i = 'Z'; i >= 'O'; --i)
+        DWORD availableDrives = GetLogicalDrives();
+        if (availableDrives == 0)
         {
-            if (!fs::exists(std::string(1, i).append(":\\"))) // Find a free letter
-            {
-                efi.letter = i;
-                std::cout << "   > Mounting to \"" << i << ":\\\"..." << std::endl;
-                found = true;
-                break;
-            }
-        }
-        if (!found)
-        {
-            SetConsoleTitleA("WinEFIMounter v1.0.3");
+            efi.clear();
             core::change_text_color(COLOR_YELLOW);
-            std::cerr << " [E3] Failed to locate a suitable letter. Please try to free a letter after \'O:\\\', then run WinEFIMounter again.\n      Press any key to exit..." << std::endl;
+            std::cerr << std::endl << " [E4] Failed to mount the selected partition (error " << std::to_string(GetLastError()) << ").\n      WinEFIMounter was unable to retrieve available drive letters.\n      Press any key to go back to the main menu...";
+            core::change_text_color(COLOR_GREY);
+            system("@pause >nul");
+            return false;
+        }
+        availableDrives = ~availableDrives; // Get free letters
+        availableDrives &= 0x03FFC000; // Keep only letters O..=Z
+        u8 count = 0;
+        DWORD tmp = availableDrives;
+        while (tmp) 
+        {
+            tmp &= (tmp - 1);
+            ++count;
+        }
+        std::cout << "   > Found " << std::to_string(count) << " suitable letter(s)" << std::endl;
+        if (!count)
+        {
+            SetConsoleTitleA("WinEFIMounter v1.0.4");
+            core::change_text_color(COLOR_YELLOW);
+            std::cerr << " [E3] Failed to locate a suitable letter. Please try to free a letter after \'O:\\\', then run WinEFIMounter again.\n      Press any key to exit...";
             core::change_text_color(COLOR_GREY);
             system("@pause >nul");
             exit(3);
         }
+        availableDrives >>= 14;
+        for (u8 i = 12; i > 0; --i) // Reverse the order (start from Z up)
+        {
+            if ((availableDrives & (1 << (i-1))) > 0)
+            {
+                efi.letter = 'O' + (i-1);
+                std::cout << "   >> Mounting to \"" << efi.letter << ":\\\"..." << std::endl;
+                break;
+            }
+        }
         std::cout << std::endl << " > Mounting the selected partition..." << std::endl;
-        std::cout << "   > Start mounting disk " << std::string(1, efi.disk+'0') << ", partition " << std::string(1, efi.part+'0') << "..." << std::endl;
+        std::cout << "   >> Start mounting disk " << std::string(1, efi.disk+'0') << ", partition " << std::string(1, efi.part+'0') << "..." << std::endl;
         int exitCode = system(("@echo Add-PartitionAccessPath -DiskNumber " + std::string(1, efi.disk+'0') + " -PartitionNumber " + std::string(1, efi.part+'0') + " -AccessPath \"" + std::string(1, efi.letter) + ":\" | powershell>nul").c_str());
         if (exitCode != 0)
         {
+            efi.clear();
             core::change_text_color(COLOR_YELLOW);
-            std::cerr << std::endl << " [E4] Failed to mount the selected partition (error " << std::string(1, exitCode+'0') << ").\n      The partition might not be formatted correctly. Double-check that it is FAT formatted, then retry.\n      Make sure you're not trying to mount an already mounted EFI partition either.\n      Press any key to exit..." << std::endl;
+            std::cerr << std::endl << " [E4] Failed to mount the selected partition (error " << std::to_string(exitCode) << ").\n      The partition might not be formatted correctly. Double-check that it is FAT formatted, then retry.\n      Make sure you're not trying to mount an already mounted EFI partition either.\n      Press any key to go back to the main menu...";
             core::change_text_color(COLOR_GREY);
             system("@pause >nul");
-            efi.clear();
             return false;
         }
         system(("@echo off && @echo ## [" + std::string(1, efi.disk+'0') + ":" + std::string(1, efi.part+'0') + "] Do NOT delete this file! It's needed by WinEFIMounter as a failsafe. It will be automatically deleted after unmounting the partition. Mounted on %date% @ %time% ## > \"" + std::string(1, efi.letter) + ":\\.winefimounter\"").c_str()); // Create cache file
@@ -256,24 +275,27 @@ namespace efi
 
     void unmount_partition(EfiPartition& efi)
     {
-        SetConsoleTitleA("WinEFIMounter v1.0.3 (Unmounting...)");
+        SetConsoleTitleA("WinEFIMounter v1.0.4 (Unmounting...)");
         std::cout << std::endl << std::endl;
         std::cout << std::endl << " > Unmounting the EFI partition..." << std::endl;
-        std::cout << "   > Start unmounting disk " << std::string(1, efi.disk+'0') << ", partition " << std::string(1, efi.part+'0') << "..." << std::endl;
+        std::cout << "   >> Start unmounting disk " << std::string(1, efi.disk+'0') << ", partition " << std::string(1, efi.part+'0') << "..." << std::endl;
         fs::remove_all(std::string(1, efi.letter).append(":\\.winefimounter")); // Delete cache file
+        core::change_text_color(COLOR_DARK_GREY);
+        std::cout << "\n ";
         int exitCode = system(("@echo Remove-PartitionAccessPath -DiskNumber " + std::string(1, efi.disk+'0') + " -PartitionNumber " + std::string(1, efi.part+'0') + " -AccessPath \"" + std::string(1, efi.letter) + ":\" | powershell>nul 2>nul").c_str());
         if (exitCode != 0)
         {
-            SetConsoleTitleA("WinEFIMounter v1.0.3");
-            core::change_text_color(COLOR_YELLOW);
+            SetConsoleTitleA("WinEFIMounter v1.0.4");
             system(("@echo off && @echo ## [" + std::string(1, efi.disk+'0') + ":" + std::string(1, efi.part+'0') + "] Do NOT delete this file! It's needed by WinEFIMounter as a failsafe. It will be automatically deleted after unmounting the partition. Mounted on %date% @ %time% ## > \"" + std::string(1, efi.letter) + ":\\.winefimounter\"").c_str()); // Restore cache file
-            std::cerr << " [E4] Failed to unmount the partition (error " << std::string(1, exitCode+'0') << ").\n      Make sure it hasn't been unmounted from outside WinEFIMounter.\n      If that's not the case, you can always run WinEFIMounter again after you have fixed the issue\n      in order to unmount the EFI partition.\n      Press any key to exit..." << std::endl;
+            core::change_text_color(COLOR_YELLOW);
+            std::cerr << " [E4] Failed to unmount the partition (error " << std::to_string(exitCode) << ").\n      Make sure it hasn't been already unmounted from outside WinEFIMounter.\n      If that's not the case, you can always run WinEFIMounter again after you have fixed the issue\n      in order to unmount the EFI partition.\n      Press any key to exit...";
             core::change_text_color(COLOR_GREY);
             system("@pause >nul");
             exit(exitCode);
         }
         efi.clear();
-        std::cout << " > Done!";
+        core::change_text_color(COLOR_GREY);
+        std::cout << "> Done!";
         return;
     }
 
