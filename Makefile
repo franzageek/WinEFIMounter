@@ -1,5 +1,8 @@
 ARGS=-Os -m64 -std=c++23 -Wall -Wextra -pedantic -v
 
+.PHONY: 		first everything all release release-static debug debug-static clean help
+
+first:			help
 everything: 	clean all debug debug-static
 all: 			release release-static
 
@@ -9,16 +12,16 @@ debug: 			bin/WinEFIMounter-debug.exe
 debug-static: 	bin/WinEFIMounter-debug-static.exe
 
 bin/WinEFIMounter.exe: src/*.cxx
-	g++ src/*.cxx -o bin/WinEFIMounter.exe $(ARGS)
+	g++ $^ -o $@ $(ARGS)
 
 bin/WinEFIMounter-static.exe: src/*.cxx
-	g++ src/*.cxx -o bin/WinEFIMounter-static.exe $(ARGS) --static 
+	g++ $^ -o $@ $(ARGS) --static 
 
 bin/WinEFIMounter-debug.exe: src/*.cxx
-	g++ src/*.cxx -o bin/WinEFIMounter-debug.exe $(ARGS) -g
+	g++ $^ -o $@ $(ARGS) -g
 
 bin/WinEFIMounter-debug-static.exe: src/*.cxx
-	g++ src/*.cxx -o bin/WinEFIMounter-debug-static.exe $(ARGS) -g --static 
+	g++ $^ -o $@ $(ARGS) -g --static 
 
 clean:
 	rm -rf bin/*
@@ -36,3 +39,5 @@ help:
 	@echo "help: i think you've already figured this out."
 	@echo ""
 	@echo "Generated executables will be placed inside of the 'bin/' folder."
+	@echo "Run 'make <target> -j' to speed up the process."
+	@exit 0
