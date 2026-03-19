@@ -269,7 +269,7 @@ namespace efi
 
     bool mount_partition(EfiPartition& efi)
     {
-        SetConsoleTitleA("WinEFIMounter v1.0.4 (Mounting...)");
+        SetConsoleTitleA("WinEFIMounter v1.0.5 (Mounting...)");
         std::cout << std::endl << std::endl << std::endl;
         std::cout << " > Setting mount point..." << std::endl;
         DWORD availableDrives = GetLogicalDrives();
@@ -294,7 +294,7 @@ namespace efi
         std::cout << "   > Found " << std::to_string(count) << " suitable letter(s)" << std::endl;
         if (!count)
         {
-            SetConsoleTitleA("WinEFIMounter v1.0.4");
+            SetConsoleTitleA("WinEFIMounter v1.0.5");
             core::change_text_color(COLOR_YELLOW);
             std::cerr << " [E3] Failed to locate a suitable letter. Please try to free a letter after \'N:\\\', then run WinEFIMounter again.\n      Press any key to exit...";
             core::change_text_color(COLOR_GREY);
@@ -330,7 +330,7 @@ namespace efi
 
     void unmount_partition(EfiPartition& efi)
     {
-        SetConsoleTitleA("WinEFIMounter v1.0.4 (Unmounting...)");
+        SetConsoleTitleA("WinEFIMounter v1.0.5 (Unmounting...)");
         std::cout << std::endl << std::endl;
         std::cout << std::endl << " > Unmounting the EFI partition..." << std::endl;
         std::cout << "   >> Start unmounting disk " << std::to_string(efi.disk) << ", partition " << std::to_string(efi.part) << "..." << std::endl;
@@ -340,7 +340,7 @@ namespace efi
         int exitCode = system(("@echo Remove-PartitionAccessPath -DiskNumber " + std::to_string(efi.disk) + " -PartitionNumber " + std::to_string(efi.part) + " -AccessPath \"" + std::string(1, efi.letter) + ":\" | powershell>nul 2>nul").c_str());
         if (exitCode != 0)
         {
-            SetConsoleTitleA("WinEFIMounter v1.0.4");
+            SetConsoleTitleA("WinEFIMounter v1.0.5");
             system(("@echo off && @echo ## [" + std::to_string(efi.disk) + ":" + std::to_string(efi.part) + "] Do NOT delete this file! It's needed by WinEFIMounter as a failsafe. It will be automatically deleted after unmounting the partition. Mounted on %date% @ %time% ## > \"" + std::string(1, efi.letter) + ":\\.winefimounter\"").c_str()); // Restore cache file
             core::change_text_color(COLOR_YELLOW);
             std::cerr << " [E4] Failed to unmount the partition (error " << std::to_string(exitCode) << ").\n      Make sure it hasn't been already unmounted from outside WinEFIMounter.\n      If that's not the case, you can always run WinEFIMounter again after you have fixed the issue\n      in order to unmount the EFI partition.\n      Press any key to exit...";

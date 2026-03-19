@@ -11,7 +11,7 @@ namespace efi
 {
     bool clone_partition(EfiPartition efi)
     {
-        SetConsoleTitleA("WinEFIMounter v1.0.4 (Cloning...)");
+        SetConsoleTitleA("WinEFIMounter v1.0.5 (Cloning...)");
         std::cout << std::endl << std::endl;
         std::cout << std::endl << " > Creating the destination directory..." << std::endl;
         if (fs::exists("C:\\EFIPartition"))
@@ -51,7 +51,7 @@ namespace efi
         std::cout << "Done!"; 
         core::change_text_color(COLOR_GREY);
         std::cout << " Your EFI partition has been cloned to \"C:\\EFIPartition\\\" and you can now access it from Windows Explorer." << std::endl;
-        SetConsoleTitleA("WinEFIMounter v1.0.4 (MOUNTED)");
+        SetConsoleTitleA("WinEFIMounter v1.0.5 (MOUNTED)");
         system("@start explorer \"C:\\EFIPartition\"");
         return true;
     }

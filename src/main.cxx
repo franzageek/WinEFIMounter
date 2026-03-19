@@ -10,7 +10,7 @@ namespace fs = std::filesystem;
 
 int main(void)
 {
-    SetConsoleTitleA("WinEFIMounter v1.0.4");
+    SetConsoleTitleA("WinEFIMounter v1.0.5");
     if (!core::is_admin())
     {
         core::change_text_color(COLOR_YELLOW);
@@ -28,7 +28,7 @@ int main(void)
     std::cout << std::endl << "   #####################################################\n";
     std::cout <<              "  #                   WinEFIMounter                   #\n" ;
     std::cout <<              " #####################################################\n\n";
-    std::cout <<              " Welcome to WinEFIMounter v1.0.4.\n";
+    std::cout <<              " Welcome to WinEFIMounter v1.0.5.\n";
     std::cout <<              " This tool is designed to give you quick and easy access to your EFI partition\n";
     std::cout <<              " directly from Windows.\n\n";
     std::cout <<              " While WinEFIMounter can be used to mount all sorts of EFI partitions, it's primarily\n";
@@ -55,7 +55,7 @@ int main(void)
     while (true)
     {
         system("@cls");
-        SetConsoleTitleA("WinEFIMounter v1.0.4 (UNMOUNTED)");
+        SetConsoleTitleA("WinEFIMounter v1.0.5 (UNMOUNTED)");
         core::change_text_color(COLOR_GREY);
         std::cout << std::endl << "   #####################################################" << std::endl;
         std::cout <<              "  #                   WinEFIMounter                   #" << std::endl;
@@ -99,7 +99,7 @@ int main(void)
     while (true)
     {
         system("@cls");
-        SetConsoleTitleA("WinEFIMounter v1.0.4 (MOUNTED)");
+        SetConsoleTitleA("WinEFIMounter v1.0.5 (MOUNTED)");
         std::cout << std::endl << "   #####################################################" << std::endl;
         std::cout <<              "  #                   WinEFIMounter                   #" << std::endl;
         std::cout <<              " #####################################################" << std::endl << std::endl;
@@ -162,12 +162,12 @@ int main(void)
     exitScr: // Display the exit screen
     {
         system("@cls");
-        SetConsoleTitleA("WinEFIMounter v1.0.4");
+        SetConsoleTitleA("WinEFIMounter v1.0.5");
         core::change_text_color(COLOR_GREY);
         std::cout << std::endl << "   #####################################################" << std::endl;
         std::cout <<              "  #                   WinEFIMounter                   #" << std::endl;
         std::cout <<              " #####################################################" << std::endl << std::endl;
-        std::cout <<              " WinEFIMounter version 1.0.4" << std::endl << std::endl;
+        std::cout <<              " WinEFIMounter version 1.0.5" << std::endl << std::endl;
         std::cout <<              " Developed by ";
         core::change_text_color(COLOR_GREEN);
         std::cout << "<franzageek>" << std::endl << std::endl;

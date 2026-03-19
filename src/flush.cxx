@@ -167,7 +167,7 @@ namespace efi
         }
     flush:
         system("@mode 120, 30");
-        SetConsoleTitleA("WinEFIMounter v1.0.4 (Flushing...)");
+        SetConsoleTitleA("WinEFIMounter v1.0.5 (Flushing...)");
         std::cout << "\n > Updating files...\n";
         if (files.size() == 0)
         {
