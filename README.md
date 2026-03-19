@@ -69,6 +69,11 @@ WinEFIMounter is the perfect solution for a variety of problems, including:
 
 ## Problems
 
+### v1.0.3: Network drives are ignored
+As mentioned by m4st3rP, WinEFIMounter might include a drive letter taken by a network drive in the list of suitable letters.
+This is caused because the `filesystem::exists()` function returns `false` when called on a letter that's taken by a network drive, and so WinEFIMounter assumes it's free.
+In v1.0.4 I've dropped the `exists()` function in favor of a new method that uses WinAPI to get a bitmask of available drive letters.
+
 ### v1.0.2: Deleted files don't actually get deleted
 Due to a misuse of XCopy, only new or modified files are transferred back to the EFI partition. Deleted files don't actually get updated.
 Version 1.0.3 fixes the issue, by implementing a new flushing method that updates only the required files, without overwriting the whole partition. 

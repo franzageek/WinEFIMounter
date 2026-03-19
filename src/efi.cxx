@@ -280,6 +280,8 @@ namespace efi
         std::cout << std::endl << " > Unmounting the EFI partition..." << std::endl;
         std::cout << "   >> Start unmounting disk " << std::string(1, efi.disk+'0') << ", partition " << std::string(1, efi.part+'0') << "..." << std::endl;
         fs::remove_all(std::string(1, efi.letter).append(":\\.winefimounter")); // Delete cache file
+        core::change_text_color(COLOR_DARK_GREY);
+        std::cout << "\n ";
         int exitCode = system(("@echo Remove-PartitionAccessPath -DiskNumber " + std::string(1, efi.disk+'0') + " -PartitionNumber " + std::string(1, efi.part+'0') + " -AccessPath \"" + std::string(1, efi.letter) + ":\" | powershell>nul 2>nul").c_str());
         if (exitCode != 0)
         {
@@ -292,7 +294,8 @@ namespace efi
             exit(exitCode);
         }
         efi.clear();
-        std::cout << " > Done!";
+        core::change_text_color(COLOR_GREY);
+        std::cout << "> Done!";
         return;
     }
 
