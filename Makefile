@@ -3,7 +3,7 @@ ARGS=-Os -m64 -std=c++23 -Wall -Wextra -pedantic -v
 .PHONY: 		first everything all release release-static debug debug-static clean help
 
 first:			help
-everything: 	clean all debug debug-static
+everything: 	all debug debug-static
 all: 			release release-static
 
 release: 		bin/WinEFIMounter.exe
