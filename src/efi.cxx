@@ -54,15 +54,30 @@ namespace efi
             return false;
         }
 
-        std::vector<char> indexBuffer;
+        std::vector<u8> indexBuffer;
         std::cout << currentLine << std::endl;
         std::getline(diskList, currentLine);
         std::getline(diskList, currentLine);
-
+        char tmp[3];
         do
         {
             std::cout << currentLine << std::endl;
-            indexBuffer.push_back(currentLine[0]);
+            memset(&tmp, 0, 3 * sizeof(char));
+            if (isdigit(currentLine[0]))
+            {
+                if (isdigit(currentLine[1]))
+                {
+                    tmp[0] = currentLine[0];
+                    tmp[1] = currentLine[1];
+                    indexBuffer.push_back(atoi(tmp));
+
+                }
+                else
+                {
+                    tmp[0] = currentLine[0];
+                    indexBuffer.push_back(atoi(tmp));
+                }
+            }
         } 
         while (std::getline(diskList, currentLine) && (currentLine[0] != 'P' || currentLine[1] != 'S')); // Display the disk list
         
@@ -91,9 +106,23 @@ namespace efi
             {
                 for (u8 i = 0; i < indexBuffer.size(); ++i)
                 {
-                    if (currentLine[0] == indexBuffer[i])
+                    if (currentLine[0]-'0' == indexBuffer[i])
                     {
-                        efi.disk = currentLine[0]-'0';
+                        efi.disk = indexBuffer[i];
+                        found = true;
+                        break;
+                    }
+                }
+                if (found)
+                    break;
+            }
+            if (currentLine.length() == 2 && isdigit(currentLine[0]) && isdigit(currentLine[1]))
+            {
+                for (u8 i = 0; i < indexBuffer.size(); ++i)
+                {
+                    if (atoi(currentLine.c_str()) == indexBuffer[i])
+                    {
+                        efi.disk = indexBuffer[i];
                         found = true;
                         break;
                     }
@@ -109,7 +138,7 @@ namespace efi
         }
         found = false;
         std::cout << "\n Loading...";
-        system(("@echo off > \"%temp%\\list.txt\" && echo Get-Partition -DiskNumber " + std::string(1, efi.disk+'0') + " | powershell >\"%temp%\\list.txt\"").c_str());
+        system(("@echo off > \"%temp%\\list.txt\" && echo Get-Partition -DiskNumber " + std::to_string(efi.disk) + " | powershell >\"%temp%\\list.txt\"").c_str());
         system("@cls");
         std::cout << std::endl;
         std::cout <<" Now you need to specify your EFI partition number.\n Choose it from the table below:\n\n ";
@@ -167,7 +196,22 @@ namespace efi
         do
         {
             std::cout << currentLine << std::endl;
-            indexBuffer.push_back(currentLine[0]);
+            memset(&tmp, 0, 3 * sizeof(char));
+            if (isdigit(currentLine[0]))
+            {
+                if (isdigit(currentLine[1]))
+                {
+                    tmp[0] = currentLine[0];
+                    tmp[1] = currentLine[1];
+                    indexBuffer.push_back(atoi(tmp));
+
+                }
+                else
+                {
+                    tmp[0] = currentLine[0];
+                    indexBuffer.push_back(atoi(tmp));
+                }
+            }
         } 
         while (std::getline(partList, currentLine) && (currentLine[0] != 'P' || currentLine[1] != 'S')); // Display the partition list
         
@@ -195,9 +239,20 @@ namespace efi
             {
                 for (u8 i = 0; i < indexBuffer.size(); ++i)
                 {
-                    if (currentLine[0] == indexBuffer[i])
+                    if (currentLine[0]-'0' == indexBuffer[i])
                     {
-                        efi.part = indexBuffer[i]-'0';
+                        efi.part = indexBuffer[i];
+                        return true;
+                    }
+                }
+            }
+            if (currentLine.length() == 2 && isdigit(currentLine[0]) && isdigit(currentLine[1]))
+            {
+                for (u8 i = 0; i < indexBuffer.size(); ++i)
+                {
+                    if (atoi(currentLine.c_str()) == indexBuffer[i])
+                    {
+                        efi.part = indexBuffer[i];
                         return true;
                     }
                 }
@@ -241,7 +296,7 @@ namespace efi
         {
             SetConsoleTitleA("WinEFIMounter v1.0.4");
             core::change_text_color(COLOR_YELLOW);
-            std::cerr << " [E3] Failed to locate a suitable letter. Please try to free a letter after \'O:\\\', then run WinEFIMounter again.\n      Press any key to exit...";
+            std::cerr << " [E3] Failed to locate a suitable letter. Please try to free a letter after \'N:\\\', then run WinEFIMounter again.\n      Press any key to exit...";
             core::change_text_color(COLOR_GREY);
             system("@pause >nul");
             exit(3);
@@ -257,8 +312,8 @@ namespace efi
             }
         }
         std::cout << std::endl << " > Mounting the selected partition..." << std::endl;
-        std::cout << "   >> Start mounting disk " << std::string(1, efi.disk+'0') << ", partition " << std::string(1, efi.part+'0') << "..." << std::endl;
-        int exitCode = system(("@echo Add-PartitionAccessPath -DiskNumber " + std::string(1, efi.disk+'0') + " -PartitionNumber " + std::string(1, efi.part+'0') + " -AccessPath \"" + std::string(1, efi.letter) + ":\" | powershell>nul").c_str());
+        std::cout << "   >> Start mounting disk " << std::to_string(efi.disk) << ", partition " << std::to_string(efi.part) << "..." << std::endl;
+        int exitCode = system(("@echo Add-PartitionAccessPath -DiskNumber " + std::to_string(efi.disk) + " -PartitionNumber " + std::to_string(efi.part) + " -AccessPath \"" + std::string(1, efi.letter) + ":\" | powershell>nul").c_str());
         if (exitCode != 0)
         {
             efi.clear();
@@ -268,7 +323,7 @@ namespace efi
             system("@pause >nul");
             return false;
         }
-        system(("@echo off && @echo ## [" + std::string(1, efi.disk+'0') + ":" + std::string(1, efi.part+'0') + "] Do NOT delete this file! It's needed by WinEFIMounter as a failsafe. It will be automatically deleted after unmounting the partition. Mounted on %date% @ %time% ## > \"" + std::string(1, efi.letter) + ":\\.winefimounter\"").c_str()); // Create cache file
+        system(("@echo off && @echo ## [" + std::to_string(efi.disk) + ":" + std::to_string(efi.part) + "] Do NOT delete this file! It's needed by WinEFIMounter as a failsafe. It will be automatically deleted after unmounting the partition. Mounted on %date% @ %time% ## > \"" + std::string(1, efi.letter) + ":\\.winefimounter\"").c_str()); // Create cache file
         std::cout << std::endl << " > Done!" << std::endl;
         return true;
     }
@@ -278,15 +333,15 @@ namespace efi
         SetConsoleTitleA("WinEFIMounter v1.0.4 (Unmounting...)");
         std::cout << std::endl << std::endl;
         std::cout << std::endl << " > Unmounting the EFI partition..." << std::endl;
-        std::cout << "   >> Start unmounting disk " << std::string(1, efi.disk+'0') << ", partition " << std::string(1, efi.part+'0') << "..." << std::endl;
+        std::cout << "   >> Start unmounting disk " << std::to_string(efi.disk) << ", partition " << std::to_string(efi.part) << "..." << std::endl;
         fs::remove_all(std::string(1, efi.letter).append(":\\.winefimounter")); // Delete cache file
         core::change_text_color(COLOR_DARK_GREY);
         std::cout << "\n ";
-        int exitCode = system(("@echo Remove-PartitionAccessPath -DiskNumber " + std::string(1, efi.disk+'0') + " -PartitionNumber " + std::string(1, efi.part+'0') + " -AccessPath \"" + std::string(1, efi.letter) + ":\" | powershell>nul 2>nul").c_str());
+        int exitCode = system(("@echo Remove-PartitionAccessPath -DiskNumber " + std::to_string(efi.disk) + " -PartitionNumber " + std::to_string(efi.part) + " -AccessPath \"" + std::string(1, efi.letter) + ":\" | powershell>nul 2>nul").c_str());
         if (exitCode != 0)
         {
             SetConsoleTitleA("WinEFIMounter v1.0.4");
-            system(("@echo off && @echo ## [" + std::string(1, efi.disk+'0') + ":" + std::string(1, efi.part+'0') + "] Do NOT delete this file! It's needed by WinEFIMounter as a failsafe. It will be automatically deleted after unmounting the partition. Mounted on %date% @ %time% ## > \"" + std::string(1, efi.letter) + ":\\.winefimounter\"").c_str()); // Restore cache file
+            system(("@echo off && @echo ## [" + std::to_string(efi.disk) + ":" + std::to_string(efi.part) + "] Do NOT delete this file! It's needed by WinEFIMounter as a failsafe. It will be automatically deleted after unmounting the partition. Mounted on %date% @ %time% ## > \"" + std::string(1, efi.letter) + ":\\.winefimounter\"").c_str()); // Restore cache file
             core::change_text_color(COLOR_YELLOW);
             std::cerr << " [E4] Failed to unmount the partition (error " << std::to_string(exitCode) << ").\n      Make sure it hasn't been already unmounted from outside WinEFIMounter.\n      If that's not the case, you can always run WinEFIMounter again after you have fixed the issue\n      in order to unmount the EFI partition.\n      Press any key to exit...";
             core::change_text_color(COLOR_GREY);

@@ -8,8 +8,10 @@ namespace fs = std::filesystem;
 
 namespace efi
 {
-    bool decode_cache_file(EfiPartition& efi)
+    bool decode_cache_file(EfiPartition& efi) // Retrieve disk and partition number from a cache file
     {
+        // CACHE FILE FORMAT:
+        // ## [<disk_number>:<partition_number>] Do NOT delete this file! It's needed by WinEFIMounter as a failsafe. It will be automatically deleted after unmounting the partition. Mounted on %date% @ %time% ##
         std::ifstream cacheFile(std::string(1, efi.letter).append(":\\.winefimounter"));
         char currChar;
         do
@@ -29,13 +31,24 @@ namespace efi
         cacheFile.get(currChar);
         efi.disk = currChar-'0';
         cacheFile.get(currChar);
+        if (isdigit(currChar))
+        {
+            efi.disk *= 10;
+            efi.disk += currChar-'0';
+        }
         cacheFile.get(currChar);
-        efi.part = currChar-'0'; // Both fields are updated here so that by the time we reach the prompt we already have a well-formed EFI 
-        cacheFile.close(); // Retrieve disk and partition number from a cache file
+        efi.part = currChar-'0'; 
+        cacheFile.get(currChar);
+        if (isdigit(currChar))
+        {
+            efi.part *= 10;
+            efi.part += currChar-'0';
+        } // Both fields are updated here so that by the time we reach the prompt we already have a well-formed EFI 
+        cacheFile.close();
         return true;
     }
 
-    bool restore_mounted(EfiPartition& efi)
+    bool restore_mounted(EfiPartition& efi) // If an already mounted EFI partition is detected, ask the user what to do with it
     {
         if (!decode_cache_file(efi))
             return false;
@@ -45,7 +58,7 @@ namespace efi
         {
             system("@cls");
             core::change_text_color(COLOR_YELLOW);
-            std::cout << std::endl << " [!!] WinEFIMounter detected a mounted EFI partition (disk " << std::string(1, efi.disk+'0') << ", partition " << std::string(1, efi.part+'0') <<") on " << efi.letter << ":\\.";
+            std::cout << std::endl << " [!!] WinEFIMounter detected a mounted EFI partition (disk " << std::to_string(efi.disk) << ", partition " << std::to_string(efi.part) <<") on " << efi.letter << ":\\.";
             std::cout << std::endl << "   - Type ";
             core::change_text_color(COLOR_BLUE);
             std::cout << "U";
