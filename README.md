@@ -40,7 +40,7 @@ You will be asked to enter the **drive number** and the **partition number** cor
 After you've mounted the EFI partition, enter <kbd>1</kbd> at the prompt. You'll be given a **CMD window** from which to work with your EFI partition.
 
 ### Open the EFI partition in File Explorer
-After you EFI has been mounted successfully, enter <kbd>2</kbd> at the prompt.<br>
+After your EFI has been mounted successfully, enter <kbd>2</kbd> at the prompt.<br>
 Since Windows' weird permission system doesn't allow you to view the EFI partition in File Explorer, WinEFIMounter is forced to **clone it** to some other directory (*"C:\EFIPartition\\"*) so that you can work with the files. WinEFIMounter will then let you **revise the changes** and **apply them** back to the EFI partition on your behalf once you're done, so you don't have to worry about anything.
 In case something goes wrong during this process, you'll be provided with a **backup of the EFI partition** (*"C:\EFIPartition_backup\\"*) that gets automatically updated by WinEFIMounter every time you clone it.
 
